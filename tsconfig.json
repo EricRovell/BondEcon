@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [ "DOM", "ES2017", "WebWorker" ],
+    "lib": [ "DOM", "ES2017", "WebWorker", "ES2020.Promise" ],
     "target": "es2018",
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
@@ -10,17 +10,20 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
-    "types": [ "svelte" ],
+    "types": [ "svelte", "node", "sapper/runtime", "mongodb" ],
     "baseUrl": ".",
     "paths": {
-      "@components/*": [ "src/components/*" ],
+      "@components": [ "src/components/index.ts" ],
       "@stores": [ "src/stores/index.ts" ],
       "@config/*": [ "src/config/*" ],
-      "#db": [ "src/services/db.js" ],
+      "@i18n": [ "src/i18n/*" ],
+      "#db": [ "src/services/db.ts" ],
       "@static/*": [ "static/*" ],
-      "@util/*": [ "src/util/*" ],
+      "#views": [ "src/views/index.ts" ],
+      "@util": [ "src/util/index.ts" ],
       "#types": [ "src/types/index.ts" ]
-    }
+    },
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*",
