@@ -27,13 +27,35 @@ const customResolver = resolve({
   extensions: [ "js", "ts" ]
 });
 
+/* Aliases */
+const aliases = [
+  [ "@src", "src" ],
+  [ "@config", "src/config" ],
+  [ "@i18n", "src/i18n" ],
+  [ "@layout", "src/layout" ],
+  [ "#views", "src/views/index.ts" ],
+  [ "@static", "src/static" ],
+  [ "#db", "src/services/db.ts" ],
+  [ "@components", "src/components/index.ts" ],
+  [ "@util", "src/util/index.ts" ]
+];
 
 const warningIsIgnored = (warning) => warning.message.includes(
 	"Use of eval is strongly discouraged, as it poses security risks and may cause issues with minification",
 ) || warning.message.includes("Circular dependency: node_modules");
 
-// Workaround for https://github.com/sveltejs/sapper/issues/1266
-const onwarn = (warning, _onwarn) => (warning.code === "CIRCULAR_DEPENDENCY" && /[/\\]@sapper[/\\]/.test(warning.message)) || warningIsIgnored(warning) || console.warn(warning.toString());
+const onwarn = (warning, _onwarn) => {
+  // https://github.com/rollup/rollup/issues/1518#issuecomment-321875784
+  if (warning.code === "THIS_IS_UNDEFINED") return;
+
+  // Workaround for https://github.com/sveltejs/sapper/issues/1266
+  return (
+    warning.code === "CIRCULAR_DEPENDENCY" &&
+    /[/\\]@sapper[/\\]/.test(warning.message)) ||
+    warningIsIgnored(warning) ||
+    console.warn(warning.toString()
+  );
+};
 
 export default {
 	client: {
@@ -51,17 +73,11 @@ export default {
 				preprocess,
       }),
       alias({
-        extensions: [ "js", "ts" ],
-        entries: [
-          { find: "@src", replacement: path.resolve(projectRootDir, 'src') },
-          { find: "@config", replacement: path.resolve(projectRootDir, 'src/config') },
-          { find: "@stores", replacement: path.resolve(projectRootDir, 'src/stores/index.ts') },
-          { find: "#db", replacement: path.resolve(projectRootDir, 'src/services/db.js') },
-          { find: "@layout", replacement: path.resolve(projectRootDir, 'src/layout') },
-          { find: "@static", replacement: path.resolve(projectRootDir, 'static') },
-          { find: "@components", replacement: path.resolve(projectRootDir, 'src/components') },
-          { find: "@util", replacement: path.resolve(projectRootDir, 'src/util') }
-        ],
+        extensions: [ "js", "ts", "json" ],
+        entries: aliases.map(([ find, replacement ]) => ({
+          find,
+          replacement: path.resolve(projectRootDir, replacement)
+        })),
         customResolver
       }),
 			resolve({
@@ -118,16 +134,11 @@ export default {
 				preprocess,
       }),
       alias({
-        extensions: [ "js", "ts" ],
-        entries: [
-          { find: "@src", replacement: path.resolve(projectRootDir, 'src') },
-          { find: "@config", replacement: path.resolve(projectRootDir, 'src/config') },
-          { find: "@layout", replacement: path.resolve(projectRootDir, 'src/layout') },
-          { find: "@static", replacement: path.resolve(projectRootDir, 'static') },
-          { find: "#db", replacement: path.resolve(projectRootDir, 'src/services/db.js') },
-          { find: "@components", replacement: path.resolve(projectRootDir, 'src/components') },
-          { find: "@util", replacement: path.resolve(projectRootDir, 'src/util') }
-        ],
+        extensions: [ "js", "ts", "json" ],
+        entries: aliases.map(([ find, replacement ]) => ({
+          find,
+          replacement: path.resolve(projectRootDir, replacement)
+        })),
         customResolver
       }),
 			resolve({
