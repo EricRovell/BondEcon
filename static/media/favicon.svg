@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
+  <style>
+    stop:first-child { stop-color: #ffa722; }
+    stop:last-child { stop-color: #ac455a; }
+    @media (prefers-color-scheme: dark) {
+      stop:first-child { stop-color: #ac455a; }
+      stop:last-child { stop-color: #30163d; }
+    }
+  </style>
+  <defs>
+    <radialGradient id="radial-gradient" cx="404.37" cy="-741.89" r="32.95" gradientTransform="matrix(1.46, 0, 0, -1.42, -540.18, -999.82)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" />
+      <stop offset="1" />
+    </radialGradient>
+  </defs>
+  <title>BondEcon Logo</title>
+  <path d="M1.07,39.75l24.18,23L20.28,95,49.7,79.62l30,15.27L73.82,62.47l24.63-23.4L64.36,34.65,49.37,5,34.42,34.91" style="stroke: #fff;stroke-linejoin: round;stroke-opacity: 0;stroke-width: 3px;fill-rule: evenodd;fill: url(#radial-gradient)"/>
+</svg>
