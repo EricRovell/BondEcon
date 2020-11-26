@@ -24,20 +24,21 @@ import path from "path";
 const projectRootDir = path.resolve(__dirname);
 
 const customResolver = resolve({
-  extensions: [ "js", "ts" ]
+  extensions: [ ".js", ".ts", ".css" ]
 });
 
 /* Aliases */
 const aliases = [
   [ "@src", "src" ],
+  [ "@components", "src/components" ],
+  [ "@svg", "src/components/svg" ],
+  [ "@views", "src/views" ],
+  [ "@stores", "src/stores" ],
   [ "@config", "src/config" ],
-  [ "@i18n", "src/i18n" ],
-  [ "@layout", "src/layout" ],
-  [ "#views", "src/views/index.ts" ],
+  [ "@services", "src/services" ],
   [ "@static", "src/static" ],
-  [ "#db", "src/services/db.ts" ],
-  [ "@components", "src/components/index.ts" ],
-  [ "@util", "src/util/index.ts" ]
+  [ "#db", "src/services/db.ts" ], 
+  [ "@util", "src/util" ]
 ];
 
 const warningIsIgnored = (warning) => warning.message.includes(
@@ -73,7 +74,7 @@ export default {
 				preprocess,
       }),
       alias({
-        extensions: [ "js", "ts", "json" ],
+        extensions: [ "js", "ts", "json", "css" ],
         entries: aliases.map(([ find, replacement ]) => ({
           find,
           replacement: path.resolve(projectRootDir, replacement)
@@ -90,7 +91,7 @@ export default {
 			typescript({
 				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
-			}),
+      }),
 			json(),
 
 			legacy && babel({
@@ -134,7 +135,7 @@ export default {
 				preprocess,
       }),
       alias({
-        extensions: [ "js", "ts", "json" ],
+        extensions: [ "js", "ts", "json", "css" ],
         entries: aliases.map(([ find, replacement ]) => ({
           find,
           replacement: path.resolve(projectRootDir, replacement)
