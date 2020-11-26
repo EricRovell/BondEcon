@@ -1,12 +1,16 @@
 const sveltePreprocess = require("svelte-preprocess");
+const cssModules = require("svelte-preprocess-cssmodules");
 
 const createPreprocessors = ({ sourceMap }) => [
 	sveltePreprocess({
 		sourceMap,
 		defaults: {
-			script: "typescript",
-		},
-	}),
+      script: "typescript",
+    }
+  }),
+  cssModules({
+    includePaths: [ "src" ]
+  })
 	// You could have more preprocessors, like mdsvex
 ];
 
