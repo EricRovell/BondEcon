@@ -10,14 +10,13 @@ import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup";
 import pkg from "./package.json";
 
-const { createPreprocessors } = require("./svelte.config.js");
+import sveltePreprocess from "svelte-preprocess";
+import cssModules from "svelte-preprocess-cssmodules";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
 const sourcemap = dev ? "inline" : false;
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
-
-const preprocess = createPreprocessors({ sourceMap: !!sourcemap });
 
 import path from "path";
 
@@ -40,6 +39,21 @@ const aliases = [
   [ "#db", "src/services/db.ts" ], 
   [ "@util", "src/util" ]
 ];
+
+const createPreprocessors = ({ sourceMap }) => [
+	sveltePreprocess({
+		sourceMap,
+		defaults: {
+      script: "typescript",
+    }
+  }),
+  cssModules({
+    includePaths: [ "src" ]
+  })
+	// You could have more preprocessors, like mdsvex
+];
+
+const preprocess = createPreprocessors({ sourceMap: !!sourcemap });
 
 const warningIsIgnored = (warning) => warning.message.includes(
 	"Use of eval is strongly discouraged, as it poses security risks and may cause issues with minification",
