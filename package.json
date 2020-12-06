@@ -50,6 +50,7 @@
 		"@types/express": "^4.17.8",
 		"@types/mongodb": "^3.5.27",
 		"@types/node-fetch": "^2.5.7",
+		"@types/resize-observer-browser": "^0.1.4",
 		"cross-env": "^7.0.2",
 		"eslint-plugin-svelte3": "^2.7.3",
 		"marked": "^1.2.5",
