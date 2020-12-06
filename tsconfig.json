@@ -10,7 +10,12 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
-    "types": [ "svelte", "node", "mongodb" ],
+    "types": [
+      "svelte",
+      "node",
+      "mongodb",
+      "resize-observer-browser"
+    ],
     "typeRoots": [
       "src/types"
     ],
