@@ -48,6 +48,18 @@
     : renderDate(date, $locale, options);
 </script>
 
+<!--
+  @component
+  DateTime component.
+  Renders the date in readable format.
+  
+  Props:
+    | Props name | type                   | default      | description                     |
+    |------------|------------------------|--------------|---------------------------------|
+    | date       | Date or string         | current date | date string or object to render |
+    | options    | Intl.DateFormatOptions | undefined    | date options                    |
+    | relative   | boolean                | false        | showing relative date           |  
+-->
 <time datetime={renderedDate}>
   {renderedDate}
 </time>
