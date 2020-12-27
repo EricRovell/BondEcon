@@ -3,9 +3,9 @@
     const renderDate = new Intl.DateTimeFormat(locale, params ?? {
       year: "numeric",
       month: "short",
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
       hour12: false
     });
 
@@ -54,13 +54,11 @@
 
 <style>
   time {
-    --size: 0.85em;
-
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
-    font-size: var(--size);
+    font-size: inherit;
     user-select: none;
   }
 </style>
