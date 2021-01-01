@@ -29,8 +29,8 @@
 
 <script lang="ts">
   export let level: HeaderLevel = undefined;
-  export let weight: number = 700;
-  export let size: number = 5;
+  export let weight = 700;
+  export let size = 5;
   export let accent = false;
   export let decorated = false;
   
@@ -40,15 +40,24 @@
 <!--
   @component
   
-  Header/Heading component.
+  Heading component.
   
-  props:
-    - level: the desired heading level: 1-6. If unset, becomes the header component;
-    - weight: the desired font-weight value: 100 - 900;
-    - size: the predefined value of font-size: 1 - 9;
-    - href: sets the link;
-    - accent: sets the accent color on text;
-    - decorated: sets decorated underline, recommended for use for titles;
+  Usage:
+    ```
+      <Heading level={3} weight={800} size={6} href="/some-link">
+        Some title
+      </Heading>
+    ```
+  
+  Props:
+    | Props name | type        | default   | description                                  |
+    |------------|-------------|---------- |--------------|-------------------------------|
+    | level      | HeaderLevel | undefined | heading level. If unset, becomes the header  |
+    | weight     | number      | 700       | font-weight value                            |
+    | size       | number      | 5         | the predefined value of font-size            |
+    | href       | string      | undefined | sets the link                                |
+    | accent     | boolean     | false     | sets the accent text color                   |
+    | decorated  | boolean     | false     | sets decorated underline                     |
 -->
 <header
   class="header"
@@ -67,7 +76,7 @@
 
 <style>
   .header {
-    padding-bottom: 0.25em;
+    padding-bottom: var(--spacing-1);
     font-weight: var(--size);
     font-size: var(--size, 1.25em);
   }
@@ -80,7 +89,7 @@
     position: relative;
     
     text-align: center;
-    padding: 0.5em 1em;
+    padding: var(--spacing-2) var(--spacing-4);
   }
   
   .header.decorated::after {
