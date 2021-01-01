@@ -1,7 +1,7 @@
 export const illustrationBlog = {
   viewBox: "0 0 100 100",
   name: "Blog",
-  src: `
+  svg: `
     <defs>
       <linearGradient id="linear-gradient" x1="18.75" y1="-1131.1" x2="91.32" y2="-1131.1" gradientTransform="matrix(1, 0, 0, -1, -5.04, -1079.54)" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#ffa722"/>
@@ -21,7 +21,7 @@ export const illustrationBlog = {
 export const illustrationShootingStar = {
   viewBox: "0 0 100 100",
   name: "Shooting Star",
-  src: `
+  svg: `
     <defs>
       <linearGradient id="shooting-star-linear-gradient-1" x1="1257.48" y1="-505.08" x2="1260.1" y2="-505.08" gradientTransform="matrix(3.91, 0, 0, -3.91, -4851.8, -1933.94)" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#ac455a" stop-opacity="0.85"/>
@@ -52,7 +52,7 @@ export const illustrationShootingStar = {
 export const illustrationAvatar = {
   viewBox: "0 0 100 100",
   name: "Xena",
-  src: `
+  svg: `
     <g style="stroke: #fff;stroke-width: 3px;stroke-linejoin: round;stroke-opacity: 0;">
       <path d="M50.83,15.73h0c13.73,0,24.86,11.7,24.86,26.14,0,0,11,33.55,5.86,47.24-.9,2.43-2.89,3.49-4.6,4.81-.34.27,1-3.29,1.65-7a30.49,30.49,0,0,0,.21-6.62A52.7,52.7,0,0,1,78,87.8c-.94,3.55-2,6.22-4.13,7.51-.33.21,1.25-2.9,1.93-5.88a16.83,16.83,0,0,0,.31-5.09,25.58,25.58,0,0,1-1.25,6.25c-.94,2.56-2.67,4.52-3.42,4.76-7,2.17-16.08,1.29-16.08,1.29-2.4,0-16.21,4.93-23.54-1.49-1-.88-1.35-1.44-2.38-5.26a25.3,25.3,0,0,1-.77-5.68c-.05-.93-.13-2.68-.23-4a39.28,39.28,0,0,0,.07,7.43c.2,2.34,1.31,6.86,1.15,6.75a10.75,10.75,0,0,1-5-7.17,30.2,30.2,0,0,1,0-8.19A24.21,24.21,0,0,0,23.38,86c-.07,2.9,2.22,7,1.88,6.76-2.35-1.47-4.9-3.24-6.27-5.89-6.81-13.16,7-45,7-45C26,27.43,37.1,15.73,50.83,15.73Z" fill="#e5c742"/>
       <path d="M51,23.94h0c11.07,0,20,8.2,20,18.32,0,0-1,13.47-2.58,16.54-2.82,5.36-8.36,11.78-15.51,12.5-9.34.94-17.56-8-19.25-12.4a42.63,42.63,0,0,1-2.74-16.64C30.91,32.14,39.89,23.94,51,23.94Z" fill="#fff8d9"/>
