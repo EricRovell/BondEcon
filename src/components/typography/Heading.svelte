@@ -82,7 +82,7 @@
   }
   
   .accent {
-    color: var(--color-3);
+    color: var(--color-3-500);
   }
   
   .decorated {
