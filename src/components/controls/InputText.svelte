@@ -46,7 +46,7 @@
     ```
     
   | Prop name   | type    | default   | description      |
-  |-------------|---------|-----------|------------------|
+  |:------------|:--------|:----------|:-----------------|
   | value       | string  | undefined | self-explanatory |
   | placeholder | string  | undefined | self-explanatory |
   | required    | boolean | false     | self-explanatory |
@@ -54,7 +54,7 @@
   Forwarded events: 
   
   | Event name        | type   | detail  | description                                                                           |
-  |-------------------|--------|---------|---------------------------------------------------------------------------------------|
+  |:------------------|:-------|:--------|:--------------------------------------------------------------------------------------|
   | on:input          | native | Event   | Fired when any character is added or removed in the text field.                       |
   | on:change         | native | Event   | Fired when a change to the field's value is confirmed (with Enter or by unfocusing).  |
   | on:focus          | native | Event   | Fired when the field gains focus.                                                     |
