@@ -108,7 +108,7 @@
   }
   
   .accent {
-    fill: var(--color-3);
+    fill: var(--color-3-500);
   }
   
   .mr {
