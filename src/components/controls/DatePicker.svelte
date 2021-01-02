@@ -60,7 +60,7 @@
     border-radius: var(--radius-small);
     padding: var(--spacing-1);
     
-    box-shadow: 0 0 0 var(--shadow-size) var(--color-3);
+    box-shadow: 0 0 0 var(--shadow-size) var(--color-3-500);
     transition: box-shadow 0.15s linear;
   }
 
