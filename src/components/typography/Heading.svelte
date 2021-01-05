@@ -31,6 +31,7 @@
   export let level: HeaderLevel = undefined;
   export let weight = 700;
   export let size = 5;
+  export let center = false;
   export let accent = false;
   export let decorated = false;
   
@@ -62,6 +63,7 @@
 <header
   class="header"
   class:accent
+  class:center
   class:decorated
   use:setHeader={level}
   style="--weight: {weight}; --size: var(--font-size-{size});">
@@ -83,6 +85,10 @@
   
   .accent {
     color: var(--color-3-500);
+  }
+  
+  .center {
+    text-align: center;
   }
   
   .decorated {
