@@ -33,6 +33,8 @@
   export let weight = 700;
   export let size: Size = 5;
   export let alignment: Alignment = "left";
+  export let maxlines: number | undefined = undefined;
+  export let ellipsis = false;
   export let accent = false;
   export let decorated = false;
   
@@ -52,22 +54,26 @@
     ```
   
   Props:
-    | Props name | type        | default   | description                                  |
-    |------------|-------------|---------- |--------------|-------------------------------|
-    | level      | HeaderLevel | undefined | heading level. If unset, becomes the header  |
-    | weight     | number      | 700       | font-weight value                            |
-    | size       | number      | 5         | the predefined value of font-size            |
-    | alignment  | Alignment   | left      | text alignment                               |
-    | href       | string      | undefined | sets the link                                |
-    | accent     | boolean     | false     | sets the accent text color                   |
-    | decorated  | boolean     | false     | sets decorated underline                     |
+    | Name       | type        | default   | description                                                                                 |
+    |------------|-------------|---------- |--------------|------------------------------------------------------------------------------|
+    | level      | HeaderLevel | undefined | heading level. If unset, becomes the header                                                 |
+    | weight     | number      | 700       | font-weight value                                                                           |
+    | size       | number      | 5         | the predefined value of font-size                                                           |
+    | alignment  | Alignment   | left      | text alignment                                                                              |
+    | maxlines   | number?     | undefined | truncating the text contents by the maximum lines of text. Mutually exclusive with ellipsis |
+    | ellipsis   | boolean?    | false     | truncating the text at the end of the line. Mutually exclusive with maxlines                |
+    | href       | string      | undefined | sets the link                                                                               |
+    | accent     | boolean     | false     | sets the accent text color                                                                  |
+    | decorated  | boolean     | false     | sets decorated underline                                                                    |
 -->
 <header
   class="header align-{alignment}"
   class:accent
   class:align={alignment}
+  class:line-clamp={maxlines}
+  class:ellipsis
   use:setHeader={level}
-  style="--weight: {weight}; --size: var(--font-size-{size});">
+  style="--weight: {weight}; --size: var(--font-size-{size}); --maxlines: {maxlines}">
     {#if href}
       <a {href}>
         <slot />
@@ -82,6 +88,8 @@
     padding-bottom: var(--spacing-1);
     font-weight: var(--size);
     font-size: var(--size, 1.25em);
+    
+    line-height: 1.25;
   }
   
   .accent {
@@ -103,6 +111,21 @@
   
   .center {
     text-align: center;
+  }
+  
+  .line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: var(--maxlines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 0
+  }
+  
+  .ellipsis {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .decorated {
