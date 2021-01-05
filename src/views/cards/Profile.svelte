@@ -30,7 +30,7 @@
 -->
 <div id="profile">
   <Avatar glasses size="100%" />
-  <Heading level={1} size={7} center>
+  <Heading level={1} size={7} alignment="center">
     {name}
   </Heading>
   <ul>
