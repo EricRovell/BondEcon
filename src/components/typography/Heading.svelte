@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
-  export type HeaderLevel = 1 | 2 | 3 | 4 | 5 | 6 | undefined;
-  export type size = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  type HeaderLevel = 1 | 2 | 3 | 4 | 5 | 6 | undefined;
+  type Size = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  type Alignment = "left" | "center" | "right" | "justify";
   
   /**
    * Action: sets the header's desired type.
@@ -30,8 +31,8 @@
 <script lang="ts">
   export let level: HeaderLevel = undefined;
   export let weight = 700;
-  export let size = 5;
-  export let center = false;
+  export let size: Size = 5;
+  export let alignment: Alignment = "left";
   export let accent = false;
   export let decorated = false;
   
@@ -56,15 +57,15 @@
     | level      | HeaderLevel | undefined | heading level. If unset, becomes the header  |
     | weight     | number      | 700       | font-weight value                            |
     | size       | number      | 5         | the predefined value of font-size            |
+    | alignment  | Alignment   | left      | text alignment                               |
     | href       | string      | undefined | sets the link                                |
     | accent     | boolean     | false     | sets the accent text color                   |
     | decorated  | boolean     | false     | sets decorated underline                     |
 -->
 <header
-  class="header"
+  class="header align-{alignment}"
   class:accent
-  class:center
-  class:decorated
+  class:align={alignment}
   use:setHeader={level}
   style="--weight: {weight}; --size: var(--font-size-{size});">
     {#if href}
@@ -85,6 +86,19 @@
   
   .accent {
     color: var(--color-3-500);
+  }
+  
+  .align-left {
+    text-align: left;
+  }
+  .align-center {
+    text-align: center;
+  }
+  .align-right {
+    text-align: right;
+  }
+  .align-justify {
+    text-align: justify;
   }
   
   .center {
