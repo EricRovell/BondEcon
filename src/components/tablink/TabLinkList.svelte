@@ -3,6 +3,7 @@
     href: string;
     label: string;
     hash?: string;
+    id?: string;
   }
 </script>
 
@@ -15,6 +16,7 @@
   export let prefetch = false;
   export let underline: "top" | "bottom" = "bottom";
   export let exact = false;
+  export let activeID: string | undefined = undefined;
 
   const { page } = stores();
 </script>
@@ -52,13 +54,13 @@
   class:full-width={fullWidth}
   class:remove-border={underline === "top"}>
     {#if tabs.length}
-      {#each tabs as { label, href }}
+      {#each tabs as { label, href, id }}
         <TabLink
           {href}
           {underline}
           {prefetch}
           url={exact && $page.path}
-          active={!exact && `/${$page.path.split("/")[1]}` === href}
+          active={(activeID && id === activeID) || (!exact && !exact && `/${$page.path.split("/")[1]}` === href)}
         >
           {label}
         </TabLink>
