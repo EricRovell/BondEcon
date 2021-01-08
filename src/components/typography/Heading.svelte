@@ -29,6 +29,7 @@
 </script>
 
 <script lang="ts">
+  export let id: string | undefined = undefined;
   export let level: HeaderLevel = undefined;
   export let weight = 700;
   export let size: Size = 5;
@@ -54,21 +55,25 @@
     ```
   
   Props:
-    | Name       | type        | default   | description                                                                                 |
-    |------------|-------------|---------- |--------------|------------------------------------------------------------------------------|
-    | level      | HeaderLevel | undefined | heading level. If unset, becomes the header                                                 |
-    | weight     | number      | 700       | font-weight value                                                                           |
-    | size       | number      | 5         | the predefined value of font-size                                                           |
-    | alignment  | Alignment   | left      | text alignment                                                                              |
-    | maxlines   | number?     | undefined | truncating the text contents by the maximum lines of text. Mutually exclusive with ellipsis |
-    | ellipsis   | boolean?    | false     | truncating the text at the end of the line. Mutually exclusive with maxlines                |
-    | href       | string      | undefined | sets the link                                                                               |
-    | accent     | boolean     | false     | sets the accent text color                                                                  |
-    | decorated  | boolean     | false     | sets decorated underline                                                                    |
+  
+    | Name       | type         | default   | description                                                                                 |
+    |------------|--------------|---------- |---------------------------------------------------------------------------------------------|
+    | id         | string?      | undefined | The id attribute value.                                                                     |
+    | level      | HeaderLevel? | undefined | Heading level. If unset, becomes the header                                                 |
+    | weight     | number?      | 700       | Font-weight value                                                                           |
+    | size       | number?      | 5         | The predefined value of font-size                                                           |
+    | alignment  | Alignment    | left      | Text alignment                                                                              |
+    | maxlines   | number?      | undefined | Truncating the text contents by the maximum lines of text. Mutually exclusive with ellipsis |
+    | ellipsis   | boolean?     | false     | Truncating the text at the end of the line. Mutually exclusive with maxlines                |
+    | href       | string?      | undefined | Sets the link                                                                               |
+    | accent     | boolean?     | false     | Sets the accent text color                                                                  |
+    | decorated  | boolean?     | false     | Sets decorated underline                                                                    |
 -->
 <header
+  {id}
   class="header align-{alignment}"
   class:accent
+  class:decorated
   class:align={alignment}
   class:line-clamp={maxlines}
   class:ellipsis
