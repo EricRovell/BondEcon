@@ -98,6 +98,7 @@
     flex-flow: var(--flow);
     gap: var(--gap);
     width: 100%;
+    height: min-content;
     
     justify-content: var(--justify-content);
     align-items: var(--align-items);
@@ -111,5 +112,20 @@
   ol,
   ul {
     list-style: none;
+  }
+  
+  /* glex gap fallback */  
+  @supports (not (gap: 1em)) and (display: flex) {
+    .flex {
+      --gap: var(--gap);
+      
+      margin: 0 calc(-1 * var(--gap));
+      padding-left: var(--spacing-2);
+    }
+    
+    .flex > :global(*) {
+      --half-gap: calc(0.5 * var(--gap));
+      margin: var(--gap) var(--half-gap) 0 var(--half-gap);
+    }
   }
 </style>
