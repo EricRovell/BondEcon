@@ -11,7 +11,6 @@ import config from "sapper/config/rollup";
 import pkg from "./package.json";
 
 import sveltePreprocess from "svelte-preprocess";
-import cssModules from "svelte-preprocess-cssmodules";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
@@ -46,11 +45,7 @@ const createPreprocessors = ({ sourceMap }) => [
 		defaults: {
       script: "typescript",
     }
-  }),
-  cssModules({
-    includePaths: [ "src" ]
   })
-	// You could have more preprocessors, like mdsvex
 ];
 
 const preprocess = createPreprocessors({ sourceMap: !!sourcemap });
@@ -85,7 +80,7 @@ export default {
 				dev,
 				hydratable: true,
 				emitCss: true,
-				preprocess,
+        preprocess
       }),
       alias({
         extensions: [ "js", "ts", "json", "css" ],
@@ -109,7 +104,7 @@ export default {
 			json(),
 
 			legacy && babel({
-				extensions: [".js", ".mjs", ".html", ".svelte"],
+				extensions: [".js", ".mjs", ".html", ".svelte" ],
 				babelHelpers: "runtime",
 				exclude: ["node_modules/@babel/**"],
 				presets: [
@@ -146,7 +141,8 @@ export default {
 			svelte({
 				generate: "ssr",
 				dev,
-				preprocess,
+        preprocess,
+        hydratable: true
       }),
       alias({
         extensions: [ "js", "ts", "json", "css" ],
