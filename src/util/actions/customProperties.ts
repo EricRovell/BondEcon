@@ -1,9 +1,9 @@
-type Props = Record<string, string>;
+type Props = Record<string, string | null>;
 
 /**
  * Action for reactive setting the custom css properties from object.
  */
-export default function customProperties(node: HTMLElement, props: Props = {}) {
+export function customProperties(node: HTMLElement, props: Props = {}) {
   let currentProps = props;
   
 	update(props);
@@ -14,7 +14,9 @@ export default function customProperties(node: HTMLElement, props: Props = {}) {
     });
     
 		Object.entries(props).forEach(([ property, value ]) => {
-      node.style.setProperty(`--${property}`, value);
+      if (value) {
+        node.style.setProperty(`--${property}`, value);
+      }  
     });
 
 		currentProps = props;
