@@ -27,7 +27,6 @@ export function observe(node: HTMLElement, { targets, handleIntersect }: Observe
 
   return {
     destroy() {
-      console.log("Stop observing!")
       observer.disconnect();
     }
   }
