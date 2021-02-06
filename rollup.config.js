@@ -12,8 +12,8 @@ import pkg from "./package.json";
 
 import sveltePreprocess from "svelte-preprocess";
 
-const mode = process.env.NODE_ENV;
-const dev = mode === "development";
+const mode = process.env.MODE;
+const dev = mode === "dev";
 const sourcemap = dev ? "inline" : false;
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
