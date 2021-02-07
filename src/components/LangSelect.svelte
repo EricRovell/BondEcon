@@ -1,8 +1,8 @@
 <script lang="ts">
   import { goto, stores } from "@sapper/app";
-  import { locale, supportsLocale } from "@stores/i18n";
+  import { locale, supportsLocale } from "@stores/locale";
   import { SVG, iconLocale } from "@svg";
-  import { SelectControl } from "@components/controls";
+  import { Select } from "@components/controls";
   
   const { page } = stores();
   
@@ -40,7 +40,7 @@
 -->
 <div class="wrapper">
   <SVG data={iconLocale} icon accent />
-  <SelectControl
+  <Select
     id="global-language-select"
     name="global-language-select"
     title="Select a language"
@@ -60,7 +60,7 @@
     justify-content: center;
     align-items: center;
     
-    box-shadow: 0 0 0 var(--shadow-size) var(--color-3);
+    box-shadow: 0 0 0 var(--shadow-size) var(--color-3-500);
     transition: box-shadow 0.15s linear;
     
     font-size: var(--font-size-6);
