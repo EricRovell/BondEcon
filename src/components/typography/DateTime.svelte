@@ -37,7 +37,7 @@
 </script>
 
 <script lang="ts">
-  import { locale } from "@stores/i18n";
+  import { locale } from "@stores/locale";
 
   export let date: Date | string = new Date();
   export let options: Intl.DateTimeFormatOptions | undefined = undefined; 
