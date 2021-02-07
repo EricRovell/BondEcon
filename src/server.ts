@@ -4,7 +4,7 @@ import * as sapper from "@sapper/server";
 import compression from "compression";
 import express, { Express, Request as ExpressRequest, Response as ExpressResponse } from "express";
 import sirv from "sirv";
-import { localeMiddleware } from "@stores/i18n";
+import { localeMiddleware } from "@stores/locale";
 
 dotenv.config();
 
