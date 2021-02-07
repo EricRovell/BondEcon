@@ -31,7 +31,7 @@
 
 <!--
   @component
-  Input type="text" filed component.
+  Input type="text" field component.
   
   Usage:
     ```
