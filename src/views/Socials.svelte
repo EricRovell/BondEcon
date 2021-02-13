@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import {
-    SVG,
+    Icon,
     iconSocialHSE,
     iconSocialLinkedIn,
     iconSocialTelegram,
@@ -65,7 +65,7 @@
   {#each socials as { href, name, icon }}
     <li>
       <a {href} class:labels>
-        <SVG data={icon} size={iconSize} />
+        <Icon path={icon} size={iconSize} color="info" />
         <span>{name}</span>
       </a>
     </li>
