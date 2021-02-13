@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { message } from "@stores/i18n";
+  import { message } from "@stores/locale";
   import { Heading } from "@components/typography";
   
   export let title: string;
