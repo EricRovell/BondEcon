@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Avatar } from "@svg/complex";
-  import { SVG, iconLocation, iconMobile, iconMail } from "@svg";
+  import { Icon, iconLocation, iconMobile, iconMail } from "@svg";
   import { Heading } from "@components/typography";
   
   export let name: string;
@@ -35,17 +35,17 @@
   </Heading>
   <ul>
     <li>
-      <SVG data={iconLocation} icon accent mr />
+      <Icon path={iconLocation} margin="0 0.4em 0 0" color="primary" />
       <span>{location}</span>
     </li>
     <li>
-      <SVG data={iconMobile} icon accent mr />     
+      <Icon path={iconMobile} margin="0 0.4em 0 0" color="primary" />     
       <a href="tel:{mobile.replace(/\s|-/g, "")}">
         {mobile}
       </a>
     </li>
     <li>
-      <SVG data={iconMail} icon accent mr />
+      <Icon path={iconMail} margin="0 0.4em 0 0" color="primary" />
       <a href="mailto:{mail}">
         {mail}
       </a>
