@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SVG, iconLocation } from "@components/svg";
+  import { Icon, iconLocation } from "@components/svg";
   import { Heading } from "@components/typography";
   
   export let organization: string;
@@ -36,7 +36,7 @@
     {degree}
   </Heading>
   <address>
-    <SVG data={iconLocation} icon accent />
+    <Icon path={iconLocation} color="primary" />
     <span>{location}</span>
   </address>
 </article>
