@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto, stores } from "@sapper/app";
   import { locale, supportsLocale } from "@stores/locale";
-  import { SVG, iconLocale } from "@svg";
+  import { Icon, iconLocale } from "@svg";
   import { Select } from "@components/controls";
   
   const { page } = stores();
@@ -39,7 +39,7 @@
     ```
 -->
 <div class="wrapper">
-  <SVG data={iconLocale} icon accent />
+  <Icon path={iconLocale} color="primary" />
   <Select
     id="global-language-select"
     name="global-language-select"
