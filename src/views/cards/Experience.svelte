@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SVG, iconLocation } from "@components/svg";
+  import { Icon, iconLocation } from "@components/svg";
   import { Heading } from "@components/typography";
   
   export let organization: string;
@@ -38,7 +38,7 @@
     {title}
   </Heading>
   <address>
-    <SVG data={iconLocation} icon accent />
+    <Icon path={iconLocation} color="primary" />
     <span>{location}</span>
   </address>
   {#if activities && Array.isArray(activities) && activities.length}
