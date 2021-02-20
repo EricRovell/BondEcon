@@ -1,3 +1,11 @@
+<script lang="ts" context="module">
+  const options = [
+    { label: "RU", value: "ru" },
+    { label: "EN", value: "en" },
+    { label: "FR", value: "fr" }
+  ];
+</script>
+
 <script lang="ts">
   import { goto, stores } from "@sapper/app";
   import { locale, supportsLocale } from "@stores/locale";
@@ -5,12 +13,6 @@
   import { Select } from "@components/controls";
   
   const { page } = stores();
-  
-  const options = [
-    { label: "RU", value: "ru" },
-    { label: "EN", value: "en" },
-    { label: "FR", value: "fr" }
-  ];
   
   /**
    * Get's the locale value, validates it and updates the URL path.
@@ -37,6 +39,16 @@
     ```
       <LangSelect />
     ```
+    
+  Inherited Custom Properties:
+  
+    | Name               | Type     | Default  | Description                         |
+    |:-------------------|:---------|:---------|:------------------------------------|
+    | --focus-ring-size  | <length> | 1.5px    | Focus ring size (box-shadow based). |
+    | --focus-ring-color | <color>  | unset    | Focus ring color (box-shadow based).|
+    | --font-size-6      | <length> | unset    | Options font size.                  |
+    | --spacing-1        | <length> | 0.25em   | Icon and options spacing.           |
+    | --radius-medium    | <length> | 5px      | Element's border radius.            |
 -->
 <div class="wrapper">
   <Icon path={iconLocale} color="primary" />
@@ -54,22 +66,24 @@
 
 <style>
   .wrapper {
-    --shadow-size: 0;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     
-    box-shadow: 0 0 0 var(--shadow-size) var(--color-3-500);
+    box-shadow: 0 0 0 var(--focus-ring-size) var(--focus-ring-color);
     transition: box-shadow 0.15s linear;
     
     font-size: var(--font-size-6);
-    padding: var(--spacing-1);
-    border-radius: var(--radius-medium);
+    padding: var(--spacing-1, 0.25em);
+    border-radius: var(--radius-medium, 5px);
   }
   
   .wrapper:focus-within,
   .wrapper:hover {
-    --shadow-size: 1px;
+    --focus-ring-size: 1.5px;
+  }
+  
+  .wrapper :global(select) {
+    --focus-ring-size: 0;
   }
 </style>
