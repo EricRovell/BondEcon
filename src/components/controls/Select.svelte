@@ -103,6 +103,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
     background: var(--color-1-500);
     color: var(--color-gray-700);
