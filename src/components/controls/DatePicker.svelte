@@ -49,7 +49,7 @@
   }
 
   span {
-    margin-bottom: 0.4em;
+    margin-bottom: var(--spacing-2, 0.5em);
   }
 
   input[type="date"] {
