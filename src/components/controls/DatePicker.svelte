@@ -45,6 +45,7 @@
     justify-content: center;
     flex-flow: column;
     align-items: flex-start;
+    width: 100%;
   }
 
   span {
@@ -59,6 +60,7 @@
     border: 1px solid var(--color-gray-500);
     border-radius: var(--radius-small);
     padding: var(--spacing-1);
+    width: 100%;
     
     box-shadow: 0 0 0 var(--shadow-size) var(--color-3-500);
     transition: box-shadow 0.15s linear;
