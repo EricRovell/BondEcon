@@ -44,7 +44,5 @@
     align-items: flex-start;
     flex-shrink: 0;
     gap: var(--spacing-4, 1em);
-
-    font-size: inherit;
   }
 </style>
