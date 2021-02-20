@@ -3,7 +3,7 @@
 </script>
 
 <!--
-  @components
+  @component
   Form Component
   
   Usage:
