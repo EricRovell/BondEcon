@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   interface SelectOption {
     label: string;
-    value?: string;
+    value?: string | number | null;
   }
 </script>
 
@@ -11,8 +11,8 @@
   export let name: string | undefined = undefined;
   export let label: string | undefined = undefined;
   export let title: string | undefined = undefined;
-  export let value: string | undefined = undefined;
-  export let defaultOption: string | undefined = undefined;
+  export let value: string | null = null;
+  export let defaultOption: string | null = null;
   
   export let hiddenFocus = false;  
   export let outline: boolean = true;
@@ -40,24 +40,36 @@
   
   Props:
 
-  | Name          | type         | default   | description                                                   |
-  |:--------------|:-------------|:----------|:--------------------------------------------------------------|
-  | id            | string       | undefined | input's ID                                                    |
-  | name          | string       | undefined | input's name                                                  |
-  | label         | string       | undefined | label text                                                    |
-  | title         | string       | undefined | used in case if no label needed for better accessibility      |
-  | options       | SelectOption |     -     | select options object                                         |
-  | value         | string       | undefined | current selected value                                        |
-  | defaultOption | string       | undefined | default selected value                                        |
-  | hiddenFocus   | boolean      | false     | hides the visible focus effects, useful in complex components |
-  | outline       | boolean      | false     | renders the outline                                           |
+    | Name          | type         | default   | description                                                   |
+    |:--------------|:-------------|:----------|:--------------------------------------------------------------|
+    | id            | string       | undefined | input's ID                                                    |
+    | name          | string       | undefined | input's name                                                  |
+    | label         | string       | undefined | label text                                                    |
+    | title         | string       | undefined | used in case if no label needed for better accessibility      |
+    | options       | SelectOption |     -     | select options object                                         |
+    | value         | string       | undefined | current selected value                                        |
+    | defaultOption | string       | undefined | default selected value                                        |
+    | hiddenFocus   | boolean      | false     | hides the visible focus effects, useful in complex components |
+    | outline       | boolean      | false     | renders the outline                                           |
   
   Events:
   
-  | Event     | type   |  Description                                                                         |
-  |:----------|:-------|:-------------------------------------------------------------------------------------|
-  | on:change | Native |Fired when a change to the field's value is confirmed (with Enter or by unfocusing).  |
-  | on:blur   | Native |Fired when the field loses focus.                                                     |
+    | Event     | type   |  Description                                                                         |
+    |:----------|:-------|:-------------------------------------------------------------------------------------|
+    | on:change | Native |Fired when a change to the field's value is confirmed (with Enter or by unfocusing).  |
+    | on:blur   | Native |Fired when the field loses focus.                                                     |
+  
+  Inherited Custom Properties:
+  
+    | Name               | type     | default | description                                                   |
+    |:-------------------|:---------|:--------|:--------------------------------------------------------------|
+    | --spacing-2        | <length> | 0.5em   | Determines margin between the input elements and the label.   |
+    | --color-1-500      | <color>  | unset   | Determines the background color of the select element.        |
+    | --color-gray-700   | <color>  | unset   | Sets the font-color for select element and it's children.     |
+    | --spacing-1        | <length> | 0.25em  | Sets the padding of the select element.                       | 
+    | --radius-small     | <length> | 2px     | Sets the border-radius of the select element.                 |
+    | --focus-ring-size  | <length> | 0       | Sets the focus ring (based on box-shadow) size.               |
+    | --focus-ring-color | <color>  | unset   | Sets the focus ring (based on box-shadow) color.              |
 -->
 <div class="wrapper">
   {#if label}
@@ -94,12 +106,10 @@
   }
   
   label {
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--spacing-2, 0.5em);
   }
 
   select {
-    --shadow-size: 0;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,16 +120,16 @@
     cursor: pointer;
     border: none;
     
-    padding: var(--spacing-1);
-    border-radius: var(--radius-small);
+    padding: var(--spacing-1, 0.25em);
+    border-radius: var(--radius-small, 2px);
     
-    box-shadow: 0 0 0 var(--shadow-size) var(--color-3-500);
+    box-shadow: 0 0 0 var(--focus-ring-size, 0) var(--focus-ring-color);
     transition: box-shadow 0.15s linear;
   }
   
   select:hover,
   select:focus {
-    --shadow-size: 1px;
+    --focus-ring-size: 1.5px;
   }
   
   .outline {
@@ -128,7 +138,7 @@
   
   select.hiddenFocus:hover,
   select.hiddenFocus:focus {
-    --shadow-size: 0;
+    --focus-ring-size: 0;
     
     outline: none;
   }  
