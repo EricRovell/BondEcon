@@ -13,6 +13,7 @@ export class EcontwittQueryBuilder extends QueryBuilder<Projection> {
     return {
       summary: {
         _id: 1,
+        lang: 1,
         summary: 1,
         date: 1
       },
