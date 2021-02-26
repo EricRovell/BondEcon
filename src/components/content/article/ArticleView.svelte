@@ -62,14 +62,14 @@
     
   Inherited Custom Properties:
   
-    | Name             | Type     | Default   | Description                          |
-    |:-----------------|:---------|:----------|:-------------------------------------|
-    | --font-secondary | <string> | system-ui | Article's title font family.         |
-    | --font-size-2    | <length> | unset     | Article's summary text font size.    |
-    | --font-size-3    | <length> | unset     | Article's contents font size.        |
-    | --spacing-4      | <color>  | 1.25em    | Meta and aside contents spacing gap. |
-    | --spacing-5      | <length> | 1em       | Article's header spacing gap.        |
-    | --color-1-400    | <color>  | unset     | Article's header background color    |
+    | Name                | Type     | Default   | Description                          |
+    |:--------------------|:---------|:----------|:-------------------------------------|
+    | --font-secondary    | <string> | system-ui | Article's title font family.         |
+    | --font-size-2       | <length> | unset     | Article's summary text font size.    |
+    | --font-size-3       | <length> | unset     | Article's contents font size.        |
+    | --spacing-4         | <color>  | 1.25em    | Meta and aside contents spacing gap. |
+    | --spacing-5         | <length> | 1em       | Article's header spacing gap.        |
+    | --color-surface-400 | <color>  | unset     | Article's header background color    |
 -->
 <Head {...head} />
 <header>
@@ -120,7 +120,7 @@
     width: 100%;
     
     text-align: center;
-    background: var(--color-1-400);
+    background: var(--color-surface-400);
   }
   
   header :global(h1) {
