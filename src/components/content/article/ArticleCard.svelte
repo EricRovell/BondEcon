@@ -30,12 +30,12 @@
     
   Inherited Custom Properties:
   
-    | Name            | Type     | Default  | Description                 |
-    |:----------------|:---------|:---------|:----------------------------|
-    | --color-1-600   | <color>  | unset    | Card's background color.    |
-    | --spacing-4     | <length> | 1em      | Card's padding.             |
-    | --font-size-1   | <length> | unset    | Category & date font-size.  |
-    | --color-primary | <color>  | unset    | Category & date font color. |
+    | Name                | Type     | Default  | Description                 |
+    |:--------------------|:---------|:---------|:----------------------------|
+    | --color-surface-500 | <color>  | unset    | Card's background color.    |
+    | --spacing-4         | <length> | 1em      | Card's padding.             |
+    | --font-size-1       | <length> | unset    | Category & date font-size.  |
+    | --color-primary     | <color>  | unset    | Category & date font color. |
 -->
 <script lang="ts">
   import { Button } from "@components";
@@ -48,6 +48,8 @@
   export let category: string;
   export let date: string | Date;
   export let cover: string = "img/article-cover-default";
+  
+  let href = `/blogpost/article-${_id}`;
 </script>
 
 <article>
@@ -61,13 +63,13 @@
       <span class="category">{category}</span>
       <DateTime {date} {options} />
     </section>
-    <Heading level={2} weight={650} size={3} maxlines={2}>
+    <Heading {href} level={2} weight={650} size={3} maxlines={2}>
       {title}
     </Heading>
     <Heading level={3} weight={400} size={1} maxlines={4}>
       {summary}
     </Heading>
-    <Button href={`/blogpost/article-${_id}`} appearance="text">
+    <Button {href} appearance="text">
       <Icon path={iconArrowNext} margin="0 0.4em 0 0" size="1.5em" color="primary" />
       Read
     </Button>
@@ -109,7 +111,8 @@
     align-items: start;
     row-gap: 1em;
     
-    background-color: var(--color-1-600);
+    background-color: var(--color-surface-500);
+    border: 1px solid var(--color-gray-300);
     width: 92%;
     
     grid-row: 2 / span 2;
