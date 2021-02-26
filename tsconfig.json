@@ -29,8 +29,8 @@
       "@svg/*": [ "src/components/svg/*" ],
       "@stores": [ "src/stores" ],
       "@stores/*": [ "src/stores/*" ],
-      "@config": [ "src/config" ],
       "#db": [ "src/services/db.ts" ],
+      "#types": [ "src/types" ],
       "@services": [ "src/services" ],
       "@services/*": [ "src/services/*" ],
       "@static/*": [ "static/*" ],
@@ -50,7 +50,6 @@
   ],
   "files": [
     "node_modules/@types",
-    "types.d.ts",
-    "src/types/main.d.ts"
+    "types.d.ts"
   ]
 }

@@ -32,7 +32,6 @@ const aliases = [
   [ "@svg", "src/components/svg" ],
   [ "@views", "src/views" ],
   [ "@stores", "src/stores" ],
-  [ "@config", "src/config" ],
   [ "@services", "src/services" ],
   [ "@static", "src/static" ],
   [ "#db", "src/services/db.ts" ], 
