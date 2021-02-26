@@ -56,8 +56,7 @@
 
 <style>
   details {
-    --border-color: var(--color-3);
-    --shadow-size: 0;
+    --border-color: hsl(var(--gray-h) var(--gray-s-600) var(--gray-l-600) / 0.35);
     
     display: flex;
     flex-direction: column;
@@ -75,7 +74,7 @@
     max-width: 100%;
     
     border-radius: var(--radius-medium);
-    box-shadow: 0 0 0 var(--shadow-size) var(--color-3-500);
+    box-shadow: 0 0 0 var(--focus-ring-size) var(--focus-ring-color);
     
     user-select: none;
     cursor: pointer;
@@ -92,8 +91,8 @@
   }
   
   summary:focus {
-    --border-color: var(--color-3-500);
-    --shadow-size: 2px;
+    --border-color: var(--color-primary);
+    --focus-ring-size: 2px;
     outline: none;
   }
   
@@ -116,8 +115,8 @@
   
   /* dropdown type */
   .dropdown {
-    background: var(--color-1-600);
-    border: 1px solid hsl(var(--color-gray-600-str) / 0.35);
+    background: var(--color-surface-500);
+    border: 1px solid var(--border-color);
   }
   
   .dropdown > .contents {
@@ -125,7 +124,7 @@
   }
   
   .dropdown[open] > .contents {
-    border-top: 1px solid hsl(var(--color-gray-600-str) / 0.35);
+    border-top: 1px solid var(--border-color);
   }
   
   /* accordion type */  
@@ -134,7 +133,7 @@
   }
   
   .accordion[open] > .contents {
-    border-left: 1px solid hsl(var(--color-gray-600-str) / 0.35);
+    border-left: 1px solid var(--border-color);
   }
   
   .accordion > .contents {
@@ -167,7 +166,7 @@
     position: absolute;
     top: calc(100% + var(--triangle-size) + 0.5em);
     left: 50%;
-    background-color: var(--color-1-600);
+    background-color: var(--color-surface-500);
     
     transform: translateX(-50%);
     
@@ -182,13 +181,13 @@
     left: 50%;
     width: var(--triangle-size);
     height: var(--triangle-size);
-    background-color: var(--color-1-600);
+    background-color: var(--color-surface-500);
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     transform: translateX(-50%);
   }
   
   /* button variants */  
   .button-fill summary  {
-    background-color: var(--color-1-600);
+    background-color: var(--color-surface-500);
   }
 </style>
