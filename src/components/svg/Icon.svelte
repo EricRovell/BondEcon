@@ -11,6 +11,8 @@
   export let color: Variant | null = null; 
   export let size: string = "1em";
   export let margin: string = "0";
+  
+  export let style: string = "";
 </script>
 
 <svelte:options namespace="svg" />
@@ -40,7 +42,7 @@
   xmlns="http://www.w3.org/2000/svg"
   {id}
   {viewBox}
-  style={`--icon-margin: ${margin}; ${color ? `--icon-color: var(--color-${color})` : ""}`}
+  style={`--icon-margin: ${margin}; ${color ? `--icon-color: var(--color-${color});` : ""} ${style}`}
   width={size}
   height={size}
   aria-labelledby={title ?? null}
