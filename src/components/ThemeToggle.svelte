@@ -79,19 +79,17 @@
 
 <style>
   label {
-    --shadow-size: 0;
-    
     width: var(--toggle-size, 1em);
     height: var(--toggle-size, 1em);
     padding: 1px;
-    box-shadow: 0 0 0 var(--shadow-size) hsl(var(--color-3-500-str) / 0.75);
+    box-shadow: 0 0 0 var(--focus-ring-size) var(--focus-ring-color);
     border-radius: var(--radius-medium);
     
     transition: box-shadow 0.15s linear;
   }
   
   label:focus-within {
-    --shadow-size: 1px;
+    --focus-ring-size: 1.5px;
   }
 
   input {
