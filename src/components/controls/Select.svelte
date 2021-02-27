@@ -61,15 +61,15 @@
   
   Inherited Custom Properties:
   
-    | Name               | type     | default | description                                                   |
-    |:-------------------|:---------|:--------|:--------------------------------------------------------------|
-    | --spacing-2        | <length> | 0.5em   | Determines margin between the input elements and the label.   |
-    | --color-1-500      | <color>  | unset   | Determines the background color of the select element.        |
-    | --color-gray-700   | <color>  | unset   | Sets the font-color for select element and it's children.     |
-    | --spacing-1        | <length> | 0.25em  | Sets the padding of the select element.                       | 
-    | --radius-small     | <length> | 2px     | Sets the border-radius of the select element.                 |
-    | --focus-ring-size  | <length> | 0       | Sets the focus ring (based on box-shadow) size.               |
-    | --focus-ring-color | <color>  | unset   | Sets the focus ring (based on box-shadow) color.              |
+    | Name                | type     | default | description                                                   |
+    |:--------------------|:---------|:--------|:--------------------------------------------------------------|
+    | --spacing-2         | <length> | 0.5em   | Determines margin between the input elements and the label.   |
+    | --color-surface-400 | <color>  | unset   | Determines the background color of the select element.        |
+    | --color-gray-700    | <color>  | unset   | Sets the font-color for select element and it's children.     |
+    | --spacing-1         | <length> | 0.25em  | Sets the padding of the select element.                       | 
+    | --radius-small      | <length> | 2px     | Sets the border-radius of the select element.                 |
+    | --focus-ring-size   | <length> | 0       | Sets the focus ring (based on box-shadow) size.               |
+    | --focus-ring-color  | <color>  | unset   | Sets the focus ring (based on box-shadow) color.              |
 -->
 <div class="wrapper">
   {#if label}
@@ -115,7 +115,7 @@
     align-items: center;
     width: 100%;
 
-    background: var(--color-1-500);
+    background: var(--color-surface-400);
     color: var(--color-gray-700);
     cursor: pointer;
     border: none;
