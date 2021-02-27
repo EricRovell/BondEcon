@@ -73,7 +73,7 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background: var(--color-3-500);
+    background: var(--color-primary);
     transform-origin: 0 100%;
     transition: transform 0.25s ease-in-out;
     transform: scaleY(0);
