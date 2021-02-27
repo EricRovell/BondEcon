@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
    
+  export let ref: HTMLInputElement | null = null;
   export let value: string = "";
   export let placeholder: string | undefined = undefined;
   export let required = false;
@@ -45,26 +46,30 @@
       />
     ```
     
-  | Prop name   | type    | default   | description      |
-  |:------------|:--------|:----------|:-----------------|
-  | value       | string  | undefined | self-explanatory |
-  | placeholder | string  | undefined | self-explanatory |
-  | required    | boolean | false     | self-explanatory |
+  Props:
+    
+    | Name        | type              | default   | description              |
+    |:------------|:------------------|:----------|:-------------------------|
+    | ref         | HTMLInputElement? | null      | The input node reference |
+    | value       | string            | undefined | self-explanatory         |
+    | placeholder | string            | undefined | self-explanatory         |
+    | required    | boolean           | false     | self-explanatory         |
   
   Forwarded events: 
   
-  | Event name        | type   | detail  | description                                                                           |
-  |:------------------|:-------|:--------|:--------------------------------------------------------------------------------------|
-  | on:input          | native | Event   | Fired when any character is added or removed in the text field.                       |
-  | on:change         | native | Event   | Fired when a change to the field's value is confirmed (with Enter or by unfocusing).  |
-  | on:focus          | native | Event   | Fired when the field gains focus.                                                     |
-  | on:blur           | native | Event   | Fired when the field loses focus.                                                     |
-  | on:keydown        | native | { key } | Fired when any key is pressed inside the text field.                                  |
-  | on:keydown@enter  | custom | { key } | Fired when "Enter" key is pressed inside the text field.                              |
-  | on:keydown@escape | custom | { key } | Fired when "Escape" key is pressed inside the text field.                             |
+    | Name              | type   | detail  | description                                                                           |
+    |:------------------|:-------|:--------|:--------------------------------------------------------------------------------------|
+    | on:input          | native | Event   | Fired when any character is added or removed in the text field.                       |
+    | on:change         | native | Event   | Fired when a change to the field's value is confirmed (with Enter or by unfocusing).  |
+    | on:focus          | native | Event   | Fired when the field gains focus.                                                     |
+    | on:blur           | native | Event   | Fired when the field loses focus.                                                     |
+    | on:keydown        | native | { key } | Fired when any key is pressed inside the text field.                                  |
+    | on:keydown@enter  | custom | { key } | Fired when "Enter" key is pressed inside the text field.                              |
+    | on:keydown@escape | custom | { key } | Fired when "Escape" key is pressed inside the text field.                             |
 -->
 <input
   type="text"
+  bind:this={ref}
   {required}
   bind:value
   on:input
