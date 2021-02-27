@@ -3,7 +3,6 @@
   import { setContext } from "svelte";
   
   export let wide = false;
-  export let transparent = false;
   export let noBorder = false;
   
   const { page } = stores();
@@ -28,7 +27,6 @@
   
     | Name        | type              | default  | description                                                                        |
     |:------------|:------------------|:---------|:-----------------------------------------------------------------------------------|
-    | transparent | boolean?          | false    | Removes background-color from element. By default is matches the theme background. |
     | wide        | boolean?          | false    | Element will take all the available width.                                         |
     | noBorder    | boolean?          | false    | Removes the bottom border from element.                                            |
     
@@ -37,7 +35,6 @@
 -->
 <nav
   class:wide
-  class:transparent
   class:noBorder>
     <ul>
       <slot />
@@ -48,8 +45,8 @@
   nav {
     --navigation-height: 50px;
     
-    background-color: var(--color-1-500);
-    border-bottom: 1.5px solid hsl(var(--color-gray-800-str) / 0.15);
+    background-color: var(--navigation-background, transparent);
+    border-bottom: 1.5px solid hsl(var(--gray-h) var(--gray-s-800) var(--gray-l-800) / 0.15);
     position: sticky;
     top: 0;
     z-index: 5;
@@ -70,9 +67,5 @@
   
   .wide {
     width: 100%;
-  }
-  
-  .transparent {
-    background-color: transparent;
   }
 </style>
