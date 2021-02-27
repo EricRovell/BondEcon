@@ -55,14 +55,14 @@
   input[type="date"] {
     --shadow-size: 0;
     
-    background: var(--color-1-500);
+    background: var(--color-surface-400);
     color: var(--color-gray-700);
     border: 1px solid var(--color-gray-500);
     border-radius: var(--radius-small);
     padding: var(--spacing-1);
     width: 100%;
     
-    box-shadow: 0 0 0 var(--shadow-size) var(--color-3-500);
+    box-shadow: 0 0 0 var(--shadow-size) var(--color-primary);
     transition: box-shadow 0.15s linear;
   }
 
