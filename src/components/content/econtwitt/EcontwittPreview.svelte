@@ -30,14 +30,14 @@
   
     | Name                 | Type     | Default  | Description                            |
     |:---------------------|:---------|:---------|:---------------------------------------|
-    | --color-1-600        | <color>  | unset    | Card's background color.               |
+    | --color-surface-500  | <color>  | unset    | Card's background color.               |
     | --spacing-em-base    | <length> | 0.25em   | Defines card's padding and inner gaps. | 
     | --radius-medium      | <length> | 5px      | Defines card's border-radius           |
     | --color-primary      | <color>  | orange   | Anchor hover color.                    |
     | --font-size-1        | <length> | unset    | Date string font-size.                 |
-    | --color-gray-800-str | <color>  | unset    | Date string font color.                |
+    | --color-gray-800     | <color>  | unset    | Date string font color.                |
     | --focus-ring-size    | <length> | 1.5px    | Focused state box-shadow size.         |
-    | --focus-ring-color   | <color>  | orange   | Focused state box-shadow color.        |    
+    | --focus-ring-color   | <color>  | orange   | Focused state box-shadow color.        | 
 -->
 <article {lang}>
   <a href={href ?? `/blogpost/econtwitt-${_id}`} title="Read more">
@@ -48,13 +48,12 @@
 
 <style>
   article {
-    --border-color: hsl(217 27% 35%);
     --datetime-font-size: var(--font-size-1);
-    --datetime-color: hsl(var(--color-gray-800-str) / 0.75);
+    --datetime-color: hsl(var(--gray-h) var(--gray-s-800) var(--gray-l-800) / 0.75);
     
     font-size: var(--font-size-4);
-    background-color: var(--color-1-600);
-    border: 1px solid var(--border-color);
+    background-color: var(--color-surface-500);
+    border: 1px solid var(--color-gray-300);
   }
   
   a {

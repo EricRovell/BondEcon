@@ -41,13 +41,13 @@
     
   Inherited Custom Properties:
   
-    | Name               | Type     | Default   | Description                       |
-    |:-------------------|:---------|:----------|:----------------------------------|
-    | --font-size-1      | <length> | unset     | Date string & tag list font-size. |
-    | --font-size-3      | <length> | unset     | Contents font-size.               |
-    | --color-1-600      | <color>  | unset     | Card's background color.          |
-    | --radius-small     | <length> | 2px       | Card's border-radius.             |
-    | --spacing-base-rem | <length> | 0.25rem   | Base spacing length.              |
+    | Name                | Type     | Default   | Description                       |
+    |:--------------------|:---------|:----------|:----------------------------------|
+    | --font-size-1       | <length> | unset     | Date string & tag list font-size. |
+    | --font-size-3       | <length> | unset     | Contents font-size.               |
+    | --color-surface-500 | <color>  | unset     | Card's background color.          |
+    | --radius-small      | <length> | 2px       | Card's border-radius.             |
+    | --spacing-base-rem  | <length> | 0.25rem   | Base spacing length.              |
 -->
 <article {lang} transition:fade={{ duration: 150 }}>
   <section class="content">
@@ -79,7 +79,7 @@
     
     position: relative;
     
-    background-color: var(--color-1-600); 
+    background-color: var(--color-surface-500); 
     max-width: 600px;
     height: min-content;
     border-radius: var(--radius-small, 2px);
