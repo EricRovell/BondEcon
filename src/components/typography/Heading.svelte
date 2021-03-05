@@ -90,7 +90,6 @@
 
 <style>
   .header {
-    padding-bottom: var(--spacing-1);
     font-weight: var(--size);
     font-size: var(--size, 1.25em);
     
