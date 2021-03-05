@@ -1,23 +1,23 @@
-import alias from "@rollup/plugin-alias";
-import resolve from "@rollup/plugin-node-resolve";
-import replace from "@rollup/plugin-replace";
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
-import typescript from "@rollup/plugin-typescript";
-import svelte from "rollup-plugin-svelte";
-import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
-import config from "sapper/config/rollup";
+import path from "path";
 import pkg from "./package.json";
 
+import config from "sapper/config/rollup";
+
+import alias from "@rollup/plugin-alias";
+import babel from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
+import resolve from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import typescript from "@rollup/plugin-typescript";
+import { terser } from "rollup-plugin-terser";
+import svelte from "rollup-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
 
 const mode = process.env.MODE;
 const dev = mode === "dev";
 const sourcemap = dev ? "inline" : false;
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
-
-import path from "path";
 
 const projectRootDir = path.resolve(__dirname);
 
@@ -28,6 +28,7 @@ const customResolver = resolve({
 /* Aliases */
 const aliases = [
   [ "@src", "src" ],
+  [ "@bondecon", "src/bondecon" ],
   [ "@components", "src/components" ],
   [ "@svg", "src/components/svg" ],
   [ "@views", "src/views" ],
@@ -49,11 +50,16 @@ const createPreprocessors = ({ sourceMap }) => [
 
 const preprocess = createPreprocessors({ sourceMap: !!sourcemap });
 
-const warningIsIgnored = (warning) => warning.message.includes(
+/* const warningIsIgnored = (warning) => warning.message.includes(
 	"Use of eval is strongly discouraged, as it poses security risks and may cause issues with minification",
-) || warning.message.includes("Circular dependency: node_modules");
+) || warning.message.includes("Circular dependency: node_modules"); */
 
-const onwarn = (warning, _onwarn) => {
+const onwarn = (warning, onwarn) =>
+	(warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
+	(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
+	onwarn(warning);
+
+/* const onwarn = (warning, _onwarn) => {
   // https://github.com/rollup/rollup/issues/1518#issuecomment-321875784
   if (warning.code === "THIS_IS_UNDEFINED") return;
 
@@ -64,7 +70,7 @@ const onwarn = (warning, _onwarn) => {
     warningIsIgnored(warning) ||
     console.warn(warning.toString()
   );
-};
+}; */
 
 export default {
 	client: {
@@ -72,14 +78,17 @@ export default {
 		output: { ...config.client.output(), sourcemap },
 		plugins: [
 			replace({
+        preventAssignment: true,
 				"process.browser": true,
 				"process.env.NODE_ENV": JSON.stringify(mode),
 			}),
 			svelte({
-				dev,
-				hydratable: true,
-				emitCss: true,
-        preprocess
+        preprocess,
+        /* emitCss: true, */
+        compilerOptions: {
+          dev,
+          hydratable: true
+        }
       }),
       alias({
         extensions: [ "js", "ts", "json", "css" ],
@@ -101,7 +110,6 @@ export default {
 				sourceMap: !!sourcemap,
       }),
 			json(),
-
 			legacy && babel({
 				extensions: [".js", ".mjs", ".html", ".svelte" ],
 				babelHelpers: "runtime",
@@ -133,15 +141,18 @@ export default {
 		output: { ...config.server.output(), sourcemap },
 		plugins: [
 			replace({
+        preventAssignment: true,
 				"process.browser": false,
 				"process.env.NODE_ENV": JSON.stringify(mode),
 				"module.require": "require",
 			}),
 			svelte({
-				generate: "ssr",
-				dev,
         preprocess,
-        hydratable: true
+        compilerOptions: {
+          generate: "ssr",
+          dev,
+          hydratable: true,
+        }
       }),
       alias({
         extensions: [ "js", "ts", "json", "css" ],
@@ -152,7 +163,7 @@ export default {
         customResolver
       }),
 			resolve({
-				dedupe: ["svelte"],
+				dedupe: [ "svelte" ],
 			}),
 			commonjs({
 				sourceMap: !!sourcemap,
@@ -177,6 +188,7 @@ export default {
 		plugins: [
 			resolve(),
 			replace({
+        preventAssignment: true,
 				"process.browser": true,
 				"process.env.NODE_ENV": JSON.stringify(mode),
 			}),
