@@ -98,7 +98,7 @@
   }
   
   .accent {
-    color: var(--color-3-500);
+    color: var(--color-primary);
   }
   
   .align-left {
@@ -151,10 +151,14 @@
     width: 100%;
     background: linear-gradient(
       to right,
-      hsl(var(--color-gray-500-str) / 0.1),
-      hsl(var(--color-gray-700-str) / 0.5),
-      hsl(var(--color-gray-500-str) / 0.1)
+      hsl(var(--gray-h) var(--gray-s-500) var(--gray-l-500) / 0.1),
+      hsl(var(--gray-h) var(--gray-s-700) var(--gray-l-700) / 0.5),
+      hsl(var(--gray-h) var(--gray-s-500) var(--gray-l-500) / 0.1)
     );
+  }
+  
+  .header:not(.accent) > a:hover {
+    color: var(--color-primary);
   }
   
   @supports (font-variation-settings: normal) {
