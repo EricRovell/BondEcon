@@ -71,8 +71,8 @@
     | --focus-ring-size        | <length> | 1.5px   | Focus ring size (bos-shadow based).      |
     | --focus-ring-color       | <color>  | -       | Focus ring color (bos-shadow based).     |
 -->
-<div class="search-field" class:hidden role="search">
-  <Button on:click={doSearch} shape="square" appearance="text">
+<form class="search-field" class:hidden role="search" on:submit|preventDefault={doSearch}>
+  <Button on:click={doSearch} shape="square" appearance="text" type="submit">
     <Icon path={iconSearch} />
   </Button>
   <InputText
@@ -87,7 +87,7 @@
   <Button on:click={cancelSearch} disabled={hidden} shape="square" appearance="text">
     <Icon path={iconCancel} />
   </Button>
-</div>
+</form>
 
 <style>
   .search-field {
