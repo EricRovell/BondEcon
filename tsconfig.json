@@ -17,12 +17,14 @@
       "resize-observer-browser"
     ],
     "typeRoots": [
-      "src/types"
+      "./src/types"
     ],
     "baseUrl": ".",
     "paths": {
       "@components": [ "src/components" ],
       "@components/*": [ "src/components/*" ],
+      "@bondecon": [ "src/bondecon" ],
+      "@bondecon/*": [ "src/bondecon/*" ],
       "@views": [ "src/views" ],
       "@views/*": [ "src/views/*" ],
       "@svg": [ "src/components/svg" ],
@@ -50,6 +52,6 @@
   ],
   "files": [
     "node_modules/@types",
-    "types.d.ts"
+    "src/types/types.d.ts"
   ]
 }
