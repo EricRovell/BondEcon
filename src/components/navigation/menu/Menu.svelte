@@ -12,15 +12,15 @@
 
 <!--
   @component
-  Navigation Component
+  Menun Component
   Wrapper component for navigational links.
   
   Usage:
     ```
-      <Navigation>
-        <NavItem />
-        <NavItem />
-      </Navigation>
+      <Menu>
+        <MenuItem />
+        <MenuItem />
+      </Menu>
     ```
     
   Props:

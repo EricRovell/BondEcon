@@ -3,7 +3,7 @@
   import { active } from "./active";
   
   export let href: string;
-  export let prefetch = false;
+  export let prefetch: true | undefined = undefined;
   export let pattern: RegExp | null = null;
   export let decoration: "top" | "bottom" = "bottom";
   
@@ -12,14 +12,14 @@
 
 <!--
   @component
-  Navigation Item component.
+  Menu Item component.
   
   Usage:
     ```
-      <Navigation>
-        <NavItem />
-        <NavItem />
-      </Navigation>
+      <Menu>
+        <MenuItem />
+        <MenuItem />
+      </Menu>
     ```
     
   Props:
@@ -36,7 +36,7 @@
     class="nav-link underline-{decoration}"
     {href}
     use:active={{ current: $page.path, pattern }}
-    rel={prefetch ? "prefetch" : undefined}>
+    sapper:prefetch={prefetch}>
       <slot />
   </a>
 </li>
