@@ -43,7 +43,7 @@
   export let options: Intl.DateTimeFormatOptions | undefined = undefined; 
   export let relative: boolean = false;
 
-  $: renderedDate = (relative)
+  let renderedDate = (relative)
     ? renderRelativeDate(date, $locale)
     : renderDate(date, $locale, options);
 </script>
@@ -70,7 +70,8 @@
     justify-content: flex-start;
     align-items: center;
 
-    font-size: inherit;
+    font-size: var(--datetime-font-size, inherit);
+    color: var(--datetime-color, inherit);
     user-select: none;
   }
 </style>
