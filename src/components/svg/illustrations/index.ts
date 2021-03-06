@@ -1,0 +1,1 @@
+export { illustrationShootingStar } from "./shooting-star";
