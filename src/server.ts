@@ -1,8 +1,7 @@
 import dotenv from "dotenv";
-
 import * as sapper from "@sapper/server";
+import express, { Express } from "express";
 import compression from "compression";
-import express, { Express, Request as ExpressRequest, Response as ExpressResponse } from "express";
 import sirv from "sirv";
 import { localeMiddleware } from "@stores/locale";
 
@@ -10,7 +9,7 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const mode = process.env.MODE;
-const dev = mode === "development";
+const dev = mode === "dev";
 
 const createSapper = async (): Promise<Express> => {
   const app = express();
@@ -20,11 +19,10 @@ const createSapper = async (): Promise<Express> => {
     sirv("static", { dev }),
     localeMiddleware(),
     sapper.middleware({
-      session: (request: ExpressRequest, response: ExpressResponse) => {
-        if (request.session) {
-          return request.session || {};
-        }
-      }
+      session: (request, response) => ({
+        // @ts-ignore
+        session: request.session
+      })
     }),
 	);
 
