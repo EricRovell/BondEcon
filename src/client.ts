@@ -4,5 +4,5 @@ import { startClient } from "@stores/locale";
 startClient();
 
 sapper.start({
-	target: document.querySelector("#sapper"),
+	target: <Element>document.querySelector<HTMLDivElement>("#sapper"),
 });
