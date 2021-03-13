@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import InputText from "./InputText.svelte";
-  import Button from "./Button.svelte";
-  import { Icon, iconSearch, iconCancel } from "../svg";
+  import InputText from "../InputText.svelte";
+  import Button from "../Button.svelte";
+  import { Icon, iconSearch, iconCancel } from "@svg";
 
   export let value = "";
   export let placeholder: string = "Type to search...";
@@ -72,7 +72,7 @@
     | --focus-ring-color       | <color>  | -       | Focus ring color (bos-shadow based).     |
 -->
 <form class="search-field" class:hidden role="search" on:submit|preventDefault={doSearch}>
-  <Button on:click={doSearch} shape="square" appearance="text" type="submit">
+  <Button on:click={doSearch} disabled={value.length === 0} shape="square" appearance="text" type="submit">
     <Icon path={iconSearch} />
   </Button>
   <InputText
