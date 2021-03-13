@@ -80,7 +80,7 @@
     border-radius: var(--radius-medium, 5px) var(--radius-medium, 5px) 0 0;
     transform-origin: 0 100%;
     transition: transform 0.15s ease-in-out;
-    transform: scaleY(0);    
+    transform: scaleY(0);
   }
   
   a[aria-current] {
