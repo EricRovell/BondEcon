@@ -10,7 +10,7 @@
   import { goto, stores } from "@sapper/app";
   import { locale, supportsLocale } from "@stores/locale";
   import { Icon, iconLocale } from "@svg";
-  import { Select } from "@components/controls";
+  import { Select } from "@components/input";
   
   const { page } = stores();
   
