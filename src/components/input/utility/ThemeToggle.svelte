@@ -86,6 +86,7 @@
     border-radius: var(--radius-medium);
     
     transition: box-shadow 0.15s linear;
+    cursor: pointer;
   }
   
   label:focus-within {
