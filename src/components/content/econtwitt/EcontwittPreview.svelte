@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DateTime } from "@components/typography";
+  import { DateTime } from "@components";
   
   export let _id: string;
   export let lang: string = "en";

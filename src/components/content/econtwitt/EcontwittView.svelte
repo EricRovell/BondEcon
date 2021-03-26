@@ -4,8 +4,9 @@
 
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { Article, Button, Tag } from "@components";
-  import { DateTime } from "@components/typography";
+  import { Article, Button } from "@components";
+  import { Chip } from "@components/data-display";
+  import { DateTime } from "@components";
   import { FlexBox } from "@components/layout";
   import { Icon, iconCopy, iconWebShare } from "@svg";
   
@@ -54,19 +55,19 @@
     <Article {html} />
     {#if Array.isArray(tags) && tags.length}
       <FlexBox tag="ol" justify="flex-start" gap="0.5em">
-        {#each tags as tag}
+        {#each tags as text}
         <li>
-          <Tag {tag} href={`/blog/econtwitts?tag=${tag}`} />
+          <Chip {text} href={`/blog/econtwitts?tag=${text}`} />
         </li>
       {/each}
     </FlexBox>
   {/if}
   </section>
   <aside class="panel">
-    <Button shape="square" on:click={() => copy({ summary, _id, tags })}>
+    <Button shape="square" appearance="text" on:click={() => copy({ summary, _id, tags })}>
       <Icon path={iconCopy} color="neutral" />
     </Button>
-    <Button shape="square" on:click={() => share()}>
+    <Button shape="square" appearance="text" on:click={() => share({ _id, summary })}>
       <Icon path={iconWebShare} color="neutral" />
     </Button>
     <DateTime relative {date} />
@@ -107,7 +108,7 @@
     padding-top: calc(1.5 * var(--spacing-base-rem, 0.25rem));
     padding-bottom: calc(1.5 * var(--spacing-base-rem, 0.25rem)); 
     
-    background: hsl(217 27% 23%);
+    background: var(--color-surface-600);
   }
   
   .panel :global(time) {
