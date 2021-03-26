@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Icon, iconLocation } from "@components/svg";
-  import { Heading } from "@components/typography";
+  import { Heading } from "@components/data-display";
   
   export let organization: string;
   export let href: string | undefined = undefined;

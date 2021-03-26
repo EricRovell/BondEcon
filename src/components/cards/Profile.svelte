@@ -1,7 +1,10 @@
 <script lang="ts">
   import { Avatar } from "@svg/complex";
   import { Icon, iconLocation, iconMobile, iconMail } from "@svg";
-  import { Heading } from "@components/typography";
+  import { Socials } from "@components/navigation/social";
+  import { Heading } from "@components/data-display";
+  
+  import { socials } from "@bondecon";
   
   export let name: string;
   export let location: string;
@@ -33,6 +36,7 @@
   <Heading level={1} size={7} alignment="center">
     {name}
   </Heading>
+  <Socials data={socials} hideLabel color="info" size="1.5em" />
   <ul>
     <li>
       <Icon path={iconLocation} margin="0 0.4em 0 0" color="primary" />
@@ -72,6 +76,7 @@
   #profile ul {
     display: flex;
     flex-direction: column;
+    place-items: center;
     place-items: center;
     gap: var(--spacing-2);
     

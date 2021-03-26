@@ -1,6 +1,6 @@
 <script lang="ts">
   import { message } from "@stores/locale";
-  import { Heading } from "@components/typography";
+  import { Heading } from "@components/data-display";
   
   export let title: string;
   export let href: string | undefined = undefined;
