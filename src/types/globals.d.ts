@@ -1,3 +1,12 @@
+declare namespace Sapper {
+  export interface SapperRequest {
+    session: any;
+  }
+  export interface SapperResponse {
+    session: any;
+  }
+}
+
 declare namespace Express {
   export interface Request {
     session: any;
