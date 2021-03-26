@@ -45,7 +45,7 @@
     background-image: linear-gradient(transparent 0px, var(--color-primary) 0px);
     background-repeat: no-repeat;
     box-shadow: none;
-    padding: 0;
+    padding: 0 0.25em;
     text-decoration: none;
     background-position: 0px 1em;
   }
