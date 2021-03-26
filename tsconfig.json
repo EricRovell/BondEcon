@@ -52,6 +52,6 @@
   ],
   "files": [
     "node_modules/@types",
-    "src/types/types.d.ts"
+    "src/types/globals.d.ts"
   ]
 }
