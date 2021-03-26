@@ -4,7 +4,8 @@ export { default as EcontwittPreview } from "./EcontwittPreview.svelte";
 export type {
   EcontwittRecord,
   EcontwittRecordCard,
-  EcontwittRecordPreview
+  EcontwittRecordPreview,
+  EcontwittSearchRecord
 } from "./types";
 
 export { copy, share } from "./utils";
