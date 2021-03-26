@@ -4,5 +4,6 @@ export { default as ArticleView } from "./ArticleView.svelte";
 export type {
   ArticleRecord,
   ArticleRecordCard,
-  ArticleRecordView
+  ArticleRecordView,
+  ArticleSearchRecord
 } from "./types";
