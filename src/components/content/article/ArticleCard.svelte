@@ -38,8 +38,7 @@
     | --color-primary     | <color>  | unset    | Category & date font color. |
 -->
 <script lang="ts">
-  import { Button } from "@components";
-  import { Heading, DateTime } from "@components/typography";
+  import { Button, Heading, DateTime } from "@components";
   import { Icon, iconArrowNext } from "@svg";
   
   export let _id: string;
@@ -69,8 +68,8 @@
     <Heading level={3} weight={400} size={1} maxlines={4}>
       {summary}
     </Heading>
-    <Button {href} appearance="text">
-      <Icon path={iconArrowNext} margin="0 0.4em 0 0" size="1.5em" color="primary" />
+    <Button {href} prefetch appearance="text">
+      <Icon path={iconArrowNext} size="1.5em" color="primary" />
       Read
     </Button>
   </div>

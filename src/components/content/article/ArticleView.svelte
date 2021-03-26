@@ -7,14 +7,12 @@
 </script>
 
 <script lang="ts">
-  import { Head } from "@components/head";
-  import type { HeadMeta } from "@components/head";
+  import { Head } from "@components/util";
+  import type { HeadMeta } from "@components/util/head";
   
-  import { Article, Tag } from "@components";
-  import { DateTime } from "@components/typography";  
-  import { FlexBox, FadingEdge } from "@components/layout";
+  import { Article, Heading, DateTime, Chip } from "@components";
+  import { FlexBox } from "@components/layout";
   import { Icon, iconQuillFilled, iconTag, iconEye, iconTime } from "@components/svg";
-  import { Heading } from "@components/typography";
   
   export let _id: string;
   export let html: string;
@@ -79,32 +77,31 @@
   <p>{summary}</p>
   <div class="meta">
     <div>
-      <span><Icon path={iconQuillFilled} color="primary" margin="0 0.4em 0 0" /></span>
+      <span><Icon path={iconQuillFilled} color="primary" /></span>
       <span>{author}</span>
     </div>
     <div>
-      <Icon path={iconTime} color="primary" margin="0 0.4em 0 0" />
+      <Icon path={iconTime} color="primary" />
       <DateTime options={dateOptions} {date} />
     </div>
     <div>
-      <span><Icon path={iconTag} color="primary" margin="0 0.4em 0 0" /></span>
+      <span><Icon path={iconTag} color="primary" /></span>
       <span>{category}</span>
     </div>
     <div>
-      <span><Icon path={iconEye} color="primary" margin="0 0.4em 0 0" /></span>
+      <span><Icon path={iconEye} color="primary" /></span>
       <span>{12023}</span>
     </div>
   </div>
 </header>
-<FadingEdge />
 <main>
   <Article {html} />
 </main>
 <aside>
   <FlexBox tag="ul" gap="0.5em" justify="flex-start">
-    {#each tags as tag}
+    {#each tags as text}
       <li>
-        <Tag {tag} />
+        <Chip {text} />
       </li>
     {/each}
   </FlexBox>
