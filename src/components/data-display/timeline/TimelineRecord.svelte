@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-  import { DateTime } from "@components/typography";
+  import DateTime from "../DateTime.svelte";
   
   export let timestamp: string | undefined = undefined;
 </script>
@@ -32,7 +32,9 @@
       | timestamp | string? | undefined | The valid date string to construct a date object. |
 -->
 <li>
-  <DateTime date={timestamp} {options} />
+  <span class="timestamp">
+    <DateTime date={timestamp} {options} />
+  </span>
   <span class="timeline" />
   <div class="content">
     <slot />
@@ -41,10 +43,10 @@
 
 <style>
   li {
-    --date-width: 7em;
+    --datetime-font-size: var(--font-size-1);
     
     display: grid;
-    grid-template: auto 1fr / var(--date-width) 1fr;
+    grid-template: auto 1fr / 10ch 1fr;
     grid-template-areas:
       "timestamp card"
       "timeline card";
@@ -55,18 +57,24 @@
     padding-bottom: var(--spacing-6);
   }
   
-  li :global(time) {
+  .timestamp {
     grid-area: timestamp;
-    align-self: start;
+    place-self: center;
     
     display: flex;
     justify-content: center;
+    border-radius: var(--radius-medium);
+    padding: var(--spacing-2);
+    background-color: hsl(var(--surface-h) var(--surface-s-500) var(--surface-l-500) / 0.75);
+    backdrop-filter: saturate(180%) blur(5px);
+    width: 10ch;
     
     position: sticky;
     top: calc(50px + var(--spacing-2));
     
-    padding: var(--spacing-2);
-    background: var(--color-1-600);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   
   .timeline {
@@ -75,7 +83,7 @@
     
     height: 100%;
     width: 1px;
-    background: var(--color-1-600);
+    background: var(--color-surface-500);
   }
   
   /* set ending of timeline */  
@@ -90,7 +98,7 @@
     height: 2px;
     bottom: 0;
     left: calc(50% - 0.75em);
-    background: var(--color-1-600);
+    background: var(--color-surface-500);
   }
   
   .content {
@@ -99,22 +107,20 @@
   
   @media screen and (max-width: 810px) {
     li {
-      --date-width: 1.5em;
+      grid-template: auto 1fr / 1fr;
+      grid-template-areas:
+        "timestamp"
+        "card";
+      row-gap: var(--spacing-6);
     }
     
-    li :global(time) {
-      writing-mode: vertical-lr;
-      border-top: 2px solid var(--color-1-700);
-    }
-  }
-  
-  @media screen and (max-width: 640px) {
-    li {
-      --date-width: 1.5em;
+    .timeline {
+      display: none;
     }
     
-    li :global(time) {
-      font-size: var(--font-size-1);
+    .timestamp {
+      justify-self: center;
+      margin: var(--spacing-2) 0;
     }
   }
 </style>
