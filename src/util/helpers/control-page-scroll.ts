@@ -1,7 +1,7 @@
 /**
  * Desables/Enables page scroll depending on condition.
  */
-export function managePageScroll(condition: boolean) {
+export function controlPageScroll(condition: boolean) {
   // SSR check
   if (!globalThis.window) return;
   
