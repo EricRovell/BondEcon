@@ -15,3 +15,7 @@ export interface ArticleRecord {
 
 export type ArticleRecordCard = Pick<ArticleRecord, "_id" | "title" | "summary" | "cover" | "category" | "date">;
 export type ArticleRecordView = Omit<ArticleRecord, "md">;
+
+export type ArticleSearchRecord =
+  Pick<ArticleRecord, "_id" | "title" | "summary"> &
+  Record<"type", "article">;
