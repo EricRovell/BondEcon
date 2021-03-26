@@ -10,3 +10,7 @@ export interface EcontwittRecord {
 
 export type EcontwittRecordCard = Omit<EcontwittRecord, "md">;
 export type EcontwittRecordPreview = Pick<EcontwittRecord, "_id" | "date" | "summary">;
+
+export type EcontwittSearchRecord =
+  Pick<EcontwittRecord, "_id" | "summary"> &
+  Record<"type", "econtwitt">;
