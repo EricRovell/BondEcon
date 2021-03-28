@@ -23,8 +23,8 @@
     "paths": {
       "@components": [ "src/components" ],
       "@components/*": [ "src/components/*" ],
-      "@bondecon": [ "src/bondecon" ],
-      "@bondecon/*": [ "src/bondecon/*" ],
+      "@core": [ "src/core" ],
+      "@core/*": [ "src/core/*" ],
       "@views": [ "src/views" ],
       "@views/*": [ "src/views/*" ],
       "@svg": [ "src/components/svg" ],

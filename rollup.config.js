@@ -28,7 +28,7 @@ const customResolver = resolve({
 /* Aliases */
 const aliases = [
   [ "@src", "src" ],
-  [ "@bondecon", "src/bondecon" ],
+  [ "@core", "src/core" ],
   [ "@components", "src/components" ],
   [ "@svg", "src/components/svg" ],
   [ "@views", "src/views" ],
