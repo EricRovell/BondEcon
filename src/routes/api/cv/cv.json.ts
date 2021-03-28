@@ -7,15 +7,20 @@ import type { Document } from "#types";
  */
 export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
   const { db } = await database();
-  const { lang = "ru" } = request.query;
+  const { lang = "en" } = request.query;
 
-  const data: Document | null = await db?.collection("personal")
-    .findOne({ document: "cv", lang }) || null;
+  try {
+    const data: Document | null = await db?.collection("personal")
+      .findOne({ document: "cv", lang }) || null;
 
-  if (data) {
-    response.setHeader("Content-Type", "application/json");
-    response.end(JSON.stringify(data));
-  } else {
+    if (data) {
+      response.setHeader("Content-Type", "application/json");
+      response.end(JSON.stringify(data));
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.error(error);
     next();
   }
 }
