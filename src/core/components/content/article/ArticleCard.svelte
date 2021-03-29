@@ -41,14 +41,13 @@
   import { Button, Heading, DateTime } from "@components";
   import { Icon, iconArrowNext } from "@svg";
   
-  export let _id: string;
+  export let _id: string | undefined = undefined;
   export let title: string;
   export let summary: string;
   export let category: string;
   export let date: string | Date;
   export let cover: string = "img/article-cover-default";
-  
-  let href = `/blogpost/article-${_id}`;
+  export let href: string = _id ? `/blogpost/article-${_id}` : "#";
 </script>
 
 <article>

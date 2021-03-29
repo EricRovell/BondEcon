@@ -1,11 +1,11 @@
 <script lang="ts">
   import { DateTime } from "@components";
   
-  export let _id: string;
+  export let _id: string | undefined = undefined;
   export let lang: string = "en";
   export let summary: string;
   export let date: string;
-  export let href: string | null = null;
+  export let href: string = "#";
 </script>
 
 <!--
@@ -39,8 +39,8 @@
     | --focus-ring-size    | <length> | 1.5px    | Focused state box-shadow size.         |
     | --focus-ring-color   | <color>  | orange   | Focused state box-shadow color.        | 
 -->
-<article {lang}>
-  <a href={href ?? `/blogpost/econtwitt-${_id}`} title="Read more">
+<article {lang} id={_id}>
+  <a {href} title="Read more">
     <span>{summary}</span>
     <DateTime {date} relative />
   </a>
