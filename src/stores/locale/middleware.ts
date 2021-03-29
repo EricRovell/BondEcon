@@ -4,16 +4,16 @@ import { config } from "./config";
 import { locale } from "./locale";
 import { getCookie, setCookie } from "@util";
 import { getLocaleFromNavigator } from "./locale";
-
+import type { Locale } from "./types";
 
 // current locale
-let currentLocale: string;
+let currentLocale: Locale;
 
 // update cookie on change
 locale.subscribe(value => {
   if (!value) return;
 
-  currentLocale = value.slice(0, 2);
+  currentLocale = value.slice(0, 2) as Locale;
 
   // client-side -> save the preference in a cookie
   if (typeof window !== "undefined") {
@@ -30,7 +30,12 @@ locale.subscribe(value => {
  * Initialize the localization on client
  */
 export function startClient() {
-  const localeValue = getCookie("locale") || getLocaleFromNavigator() || config.fallback;
+  const localeValue = 
+    getCookie("locale") ??
+    getLocaleFromNavigator() ??
+    config.fallback;
+  
+  // @ts-ignore
   locale.set(localeValue);
 }
 
@@ -62,6 +67,7 @@ export function localeMiddleware() {
     }
 
     if (localeValue && localeValue !== currentLocale) {
+      // @ts-ignore
       locale.set(localeValue);
     }
 

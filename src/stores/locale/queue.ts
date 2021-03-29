@@ -2,6 +2,7 @@ import { currentLocale, locale } from "./locale";
 import { addDictionary } from "./dict";
 
 import type {
+  Locale,
   LocaleQueue,
   Queue,
   DictionaryHistory,
@@ -39,7 +40,7 @@ const history: DictionaryHistory = new Set();
 /**
  * Register provided dictionaries.
  */
-export async function registerDictionaries(dicts: LocaleDictionaryURI[], sessionLocale?: string) {
+export async function registerDictionaries(dicts: LocaleDictionaryURI[], sessionLocale?: Locale) {
   for (let dict of dicts) {
     // check cache
     if (history.has(dict.url)) {
@@ -83,7 +84,7 @@ async function fetchDictionary({ url, locale }: LocaleDictionaryURI) {
 /**
  * Loads the registered dictionaries for the locale.
  */
-export async function loadLocaleDictionaries(locale: string) {
+export async function loadLocaleDictionaries(locale: Locale) {
   if (!globalThis.window) return;
 
   // check queue

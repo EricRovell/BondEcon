@@ -1,10 +1,10 @@
-export type locale = string;
+export type Locale = "ru" | "en" | "fr";
 
 export type LocaleDictionary = Map<string, any>;
-export type Dictionary = Map<locale, LocaleDictionary>;
+export type Dictionary = Map<Locale, LocaleDictionary>;
 
 export type LocaleQueue = Set<LocaleDictionaryURI>;
-export type Queue = Map<locale, LocaleQueue>;
+export type Queue = Map<Locale, LocaleQueue>;
 export type DictionaryHistory = Set<string>;
 
 export interface Message {
@@ -23,7 +23,7 @@ export interface AddDictionaryParams {
 }
 
 export interface LocaleDictionaryURI {
-  locale: locale;
+  locale: Locale;
   url: string;
 }
 

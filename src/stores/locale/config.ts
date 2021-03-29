@@ -1,14 +1,12 @@
+import type { Locale } from "./types";
+
 interface LocaleStoreConfig {
-  fallback: string;
+  fallback: Locale;
   supports: Set<string>;
   initial: string | null;
 }
 
-const supportedLangs = new Set([
-  "en",
-  "ru",
-  "fr"
-]);
+export const supportedLangs = new Set<Locale>([ "en", "ru", "fr" ]);
 
 // locale options
 export const config: LocaleStoreConfig = {
@@ -17,6 +15,6 @@ export const config: LocaleStoreConfig = {
   initial: null
 };
 
-export function supportsLocale(lang: string) {
+export function supportsLocale(lang: Locale) {
   return supportedLangs.has(lang);
 }

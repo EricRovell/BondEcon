@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import { flatObject } from "@util";
-import type { Dictionary, LocaleDictionary } from "./types";
+import type { Locale, Dictionary, LocaleDictionary } from "./types";
 
 // dictionary that holds locale dictionaries
 let dictionary: Dictionary;
@@ -17,7 +17,7 @@ const $dictionary = writable<Dictionary>(new Map());
  *     1.2: prefix: initial prefix for keys.
  *  2. The object can be added to the library as it is. Only the id should be specified. 
  */
-export function addDictionary( locale: string, dictionary: LocaleDictionary) {
+export function addDictionary( locale: Locale, dictionary: LocaleDictionary) {
   if (!dictionary) return;
 
   $dictionary.update(current => {
