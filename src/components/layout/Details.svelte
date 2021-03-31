@@ -41,7 +41,7 @@
 <details bind:open class={type}>
   <summary>
     <slot name="icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.44 100">
+      <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.44 100">
         <polygon points="0 4.45 34.16 50 0 95.55 5.94 100 43.44 50 5.94 0 0 4.45"/>
       </svg>
     </slot>
@@ -96,15 +96,15 @@
     outline: none;
   }
   
-  details[open] > summary svg {
+  details[open] .default-icon {
     transform: rotate(90deg);
   }
   
-  details > summary::-webkit-details-marker {
+  details > summary::marker {
     display: none;
   }
   
-  svg {
+  .default-icon {
     fill: var(--color-gray-800);
     width: 0.75em;
     height: 0.75em;
