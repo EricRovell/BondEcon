@@ -10,7 +10,9 @@
   import { goto, stores } from "@sapper/app";
   import { locale, supportsLocale } from "@stores/locale";
   import { Icon, iconLocale } from "@svg";
-  import { Select } from "@components/input";
+  import Select from "../Select.svelte";
+  
+  import type { Locale } from "@stores/locale/types";
   
   const { page } = stores();
   
@@ -19,13 +21,16 @@
    * Also, adds a "loc" query parameter.
    */
   async function handleChange(event: Event) {
-    const lang = (event.target as HTMLSelectElement).value;
+    const lang = (event.target as HTMLSelectElement).value as Locale;
 
     if (supportsLocale(lang)) {
       $locale = lang;
       
-      const query = new URLSearchParams({ ...$page.query, loc: lang });
-      await goto(`${$page.path}?${query}`);
+      const langRegex = new RegExp(`\/(en|ru|fr)(\/|$)`);
+      const newPath = $page.path.replace(langRegex, `/${$locale}/`);
+      console.log({ path: $page.path, newPath });  
+
+      await goto(`${newPath}`);
     }
   }
 </script>
