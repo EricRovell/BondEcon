@@ -1,7 +1,7 @@
 import { database } from "#db";
 import { EcontwittQueryBuilder } from "@services/query-builder";
 import type { SapperRequest, SapperResponse } from "@sapper/server";
-import type { EcontwittRecord } from "@components/content/econtwitt";
+import type { EcontwittRecord } from "@core/components/content";
 
 /**
  * Econtwitts publications API endpoint.

@@ -1,7 +1,7 @@
 import { database } from "#db";
 import { EcontwittQueryBuilder } from "@services/query-builder";
 import type { SapperRequest, SapperResponse } from "@sapper/server";
-import type { EcontwittRecordCard } from "@components/content/econtwitt";
+import type { EcontwittRecordCard } from "@core/components/content";
 
 export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
   const { db, ObjectID } = await database();

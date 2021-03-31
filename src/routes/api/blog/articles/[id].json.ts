@@ -1,7 +1,7 @@
 import { database } from "#db";
 import { ArticleQueryBuilder } from "@services/query-builder";
 import type { SapperRequest, SapperResponse } from "@sapper/server";
-import type { ArticleRecord } from "@components/content/article";
+import type { ArticleRecord } from "@core/components/content";
 
 /**
  * Article document data endpoint. 
