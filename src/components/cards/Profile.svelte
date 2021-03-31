@@ -4,7 +4,7 @@
   import { Socials } from "@components/navigation/social";
   import { Heading } from "@components/data-display";
   
-  import { socials } from "@bondecon";
+  import { socials } from "@core";
   
   export let name: string;
   export let location: string;
