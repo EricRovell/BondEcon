@@ -107,6 +107,7 @@
   
   .inline {
     display: inline-flex;
+    width: unset;
   }
   
   ol,
