@@ -59,7 +59,7 @@
     flex-flow: row wrap;
     place-content: center;
     gap: var(--spacing-em-base, 0.25em);
-    width: 100%;
+    width: min(100%, 720px);
   }
   
   ul li {
