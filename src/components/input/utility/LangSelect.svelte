@@ -30,7 +30,7 @@
       const newPath = $page.path.replace(langRegex, `/${$locale}/`);
       console.log({ path: $page.path, newPath });  
 
-      await goto(`${newPath}`);
+      await goto(`${newPath}`, { noscroll: true });
     }
   }
 </script>
