@@ -6,9 +6,9 @@ import type { SapperRequest, SapperResponse } from "@sapper/server";
  */
 export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
   const { db } = await database();
-  const { href = null, lang = "en" } = request.query;
+  const { id = null, lang = "en" } = request.query;
   
-  if (!href) {
+  if (!id) {
     response.writeHead(404, "Not Found");
     next();
   }
@@ -16,8 +16,8 @@ export async function get(request: SapperRequest, response: SapperResponse, next
   try {
     const data: string | null = await db?.collection("pages")
       .findOne(
-        { href, lang },
-        { projection: { _id: 0, html: 1 }}
+        { id, lang },
+        { projection: { _id: 0, date: 0, md: 0 }}
       ) ?? null;
 
     if (data) {
