@@ -1,7 +1,8 @@
 <script lang="ts">
   import { goto, stores } from "@sapper/app";
   
-  import { Details, SearchField, Button } from "@components";
+  import { SearchField, Button } from "@components";
+  import { Details } from "@components/layout";
   import { FormFilter } from "@components/input/forms";
   import { SVG, illustrationShootingStar } from "@svg";
   import { message } from "@stores/locale/localeDict.js";
