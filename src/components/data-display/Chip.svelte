@@ -22,10 +22,10 @@
     count ? "count" : "",
   ].filter(Boolean).join(" ");
   
-  console.assert(
-    appearance !== "text" && !count,
+  /* console.assert(
+    appearance === "text" && !count,
     "Using counter with 'text' chip appearance is not encouraged."
-  );
+  ); */
 </script>
 
 <!--
