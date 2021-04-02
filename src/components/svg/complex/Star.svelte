@@ -156,7 +156,7 @@
     stroke-width: 3px;
     fill-rule: evenodd;
 
-    transition: transform 0.35s ease-in-out;
+    transition: transform 0.25s ease-in-out 0.25s;
   }
 
   svg defs stop {
@@ -174,7 +174,7 @@
   /* dark star */
 
   .dark {
-    transform: rotate(36deg);
+    transform: rotate(72deg);
   }
 
   svg.dark defs stop:first-child {
