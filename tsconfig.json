@@ -13,8 +13,7 @@
     "types": [
       "svelte",
       "node",
-      "mongodb",
-      "resize-observer-browser"
+      "mongodb"
     ],
     "typeRoots": [
       "./src/types"
@@ -37,7 +36,8 @@
       "@services/*": [ "src/services/*" ],
       "@static/*": [ "static/*" ],
       "@util": [ "src/util" ],
-      "@util/*": [ "src/util/*" ]
+      "@util/*": [ "src/util/*" ],
+      "@styles/*": [ "src/styles/* "]
     },
     "resolveJsonModule": true
   },
