@@ -2,41 +2,24 @@ import { writable, get } from "svelte/store";
 import { media } from "../media/media";
 import { getCookie, setCookie } from "@util";
 
-export type Theme = "light" | "dark";
+import type { Theme } from "./types";
 
 function createThemeStore() {
-  const themeFromCookie = getCookie("theme") as Theme;
-  const themeFromMediaQuery = get(media).dark ? "dark" : "light";
+  const initial: Theme = 
+    getCookie("theme") as Theme ??
+    get(media).dark ? "dark" : "light" ??
+    "light";
 
-  // current theme value
-  const initial: Theme = themeFromCookie || themeFromMediaQuery || "light";
-
-  function themeState(name: Theme) {
-    return {
-      name,
-      dark: name === "dark",
-      styles: `styles/theme-${(name === "dark") ? "dark" : "light"}.css`,
-    }
-  }
-
-  const { subscribe, update } = writable(themeState(initial));
+  const { subscribe, update } = writable<Theme>(initial);
 
   // update cookie on change
   subscribe(value => {
-    setCookie("theme", value.name);
+    setCookie("theme", value);
   });
-
-  // change theme
-  function changeTheme() {
-    update(state => {
-      let theme: Theme = (state.name === "dark") ? "light" : "dark";
-      return themeState(theme);
-    });
-  }
 
   return {
     subscribe,
-    change: changeTheme
+    change: () => update(value => value === "dark" ? "light" : "dark")
   };
 }
 
