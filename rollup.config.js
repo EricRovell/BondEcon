@@ -6,6 +6,7 @@ import config from "sapper/config/rollup";
 import alias from "@rollup/plugin-alias";
 import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
+import cssbundle from "rollup-plugin-css-bundle";
 import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
@@ -36,7 +37,8 @@ const aliases = [
   [ "@services", "src/services" ],
   [ "@static", "src/static" ],
   [ "#db", "src/services/db.ts" ], 
-  [ "@util", "src/util" ]
+  [ "@util", "src/util" ],
+  [ "@styles", "src/styles" ]
 ];
 
 const createPreprocessors = ({ sourceMap }) => [
@@ -90,6 +92,10 @@ export default {
           hydratable: true
         }
       }),
+      cssbundle({
+        include: "src/styles/*.css",
+        output: "static/styles/bundle.css"
+      }),
       alias({
         extensions: [ "js", "ts", "json", "css" ],
         entries: aliases.map(([ find, replacement ]) => ({
@@ -126,7 +132,6 @@ export default {
 					}],
 				],
 			}),
-
 			!dev && terser({
 				module: true,
 			}),
@@ -150,9 +155,13 @@ export default {
         preprocess,
         compilerOptions: {
           generate: "ssr",
-          dev,
           hydratable: true,
+          dev
         }
+      }),
+      cssbundle({
+        include: "src/styles/*.css",
+        output: "static/styles/bundle.css"
       }),
       alias({
         extensions: [ "js", "ts", "json", "css" ],
