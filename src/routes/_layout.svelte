@@ -1,13 +1,9 @@
 <script>
-  import { theme, media } from "@stores";
+  import { media } from "@stores";
   import { Footer } from "@components/layout";
   
   $: mobileDevice = $media.small;
 </script>
-
-<svelte:head>
-  <link rel="stylesheet" href={$theme.styles}>
-</svelte:head>
 
 <!--
   @component
