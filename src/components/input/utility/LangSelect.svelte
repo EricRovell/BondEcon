@@ -28,7 +28,6 @@
       
       const langRegex = new RegExp(`\/(en|ru|fr)(\/|$)`);
       const newPath = $page.path.replace(langRegex, `/${$locale}/`);
-      console.log({ path: $page.path, newPath });  
 
       await goto(`${newPath}`, { noscroll: true });
     }
