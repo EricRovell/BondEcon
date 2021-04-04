@@ -25,7 +25,7 @@
   export let sunSize = 25;
   export let raySize = 5;
   export let rayOffset = 40;
-  export let rays = 8;  
+  export let rays = 8;
   
   // center
   const cx = 50;
@@ -33,7 +33,7 @@
   
   // dynamically set theme on root to change the theme custom properties
   $: if (globalThis.window) {
-    document.documentElement.setAttribute("theme", $theme.name);
+    document.documentElement.setAttribute("theme", $theme);
   }
 </script>
 
@@ -59,7 +59,7 @@
     | rays      | number | 8                       | the number of rays                     |
 -->
 <label style={size ? `--toggle-size: ${size}` : ""}>
-  <input type="checkbox" checked={!$theme.dark} on:change={theme.change}>
+  <input type="checkbox" checked={$theme === "light"} on:change={theme.change}>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <title>{title}</title>
     <defs>
