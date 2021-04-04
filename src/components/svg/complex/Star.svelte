@@ -83,7 +83,7 @@
     } else if ($page.error) {
       mode = "broken";
     } else {
-      mode = $theme.name;
+      mode = $theme;
     }
   }
 </script>
