@@ -4,7 +4,6 @@ import pkg from "./package.json";
 import config from "sapper/config/rollup";
 
 import alias from "@rollup/plugin-alias";
-import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import cssbundle from "rollup-plugin-css-bundle";
 import json from "@rollup/plugin-json";
@@ -18,7 +17,6 @@ import sveltePreprocess from "svelte-preprocess";
 const mode = process.env.MODE;
 const dev = mode === "dev";
 const sourcemap = dev ? "inline" : false;
-const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const projectRootDir = path.resolve(__dirname);
 
@@ -86,7 +84,6 @@ export default {
 			}),
 			svelte({
         preprocess,
-        /* emitCss: true, */
         compilerOptions: {
           dev,
           hydratable: true
@@ -106,32 +103,14 @@ export default {
       }),
 			resolve({
 				browser: true,
-				dedupe: ["svelte"],
+				dedupe: [ "svelte" ],
 			}),
-			commonjs({
-				sourceMap: !!sourcemap,
-			}),
+			commonjs({ sourceMap: !!sourcemap	}),
 			typescript({
 				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
       }),
 			json(),
-			legacy && babel({
-				extensions: [".js", ".mjs", ".html", ".svelte" ],
-				babelHelpers: "runtime",
-				exclude: ["node_modules/@babel/**"],
-				presets: [
-					["@babel/preset-env", {
-						targets: "> 0.25%, not dead",
-					}],
-				],
-				plugins: [
-					"@babel/plugin-syntax-dynamic-import",
-					["@babel/plugin-transform-runtime", {
-						useESModules: true,
-					}],
-				],
-			}),
 			!dev && terser({
 				module: true,
 			}),
@@ -174,9 +153,7 @@ export default {
 			resolve({
 				dedupe: [ "svelte" ],
 			}),
-			commonjs({
-				sourceMap: !!sourcemap,
-			}),
+			commonjs({ sourceMap: !!sourcemap	}),
 			typescript({
 				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
