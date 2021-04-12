@@ -1,6 +1,6 @@
 <script>
   import { media } from "@stores";
-  import { Footer } from "@components/layout";
+  import { Footer } from "@core/components";
   
   $: mobileDevice = $media.small;
 </script>
