@@ -14,6 +14,15 @@ export const aboutPagePath = derived(locale, $locale => `${$locale}/about`);
 export const articlePath = derived(basePath, $path => (id: string) => `${$path}/blogpost/article-${id}`);
 export const econtwittPath = derived(basePath, $path => (id: string) => `${$path}/blogpost/econtwitt-${id}`);
 
+// socials
+export const socialPaths = {
+  hse: "https://www.hse.ru/staff/bondarenko",
+  linkedin: "https://www.linkedin.com/in/ksenia-bondarenko-034649104/",
+  telegram: "https://t.me/BondEcon",
+  instagram: "https://www.instagram.com/xena_bond",
+  facebook: "https://www.facebook.com/Xenabondarenko/",
+};
+
 // information
 export const repositoryPath = "https://www.gitgub.com/EricRovell/bondecon.com";
 export const creatorGithubProfilePath = "https://github.com/EricRovell";
