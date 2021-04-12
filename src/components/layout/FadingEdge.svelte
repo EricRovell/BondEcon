@@ -1,27 +1,21 @@
 <script lang="ts" context="module">
-  import { customProperties } from "@util/actions";
+  export type Position = "top" | "right" | "bottom" | "left";
+  export type Mode = "sticky" | "fixed";
 </script>
 
 <script lang="ts">
-  export let mode: "sticky" | "fixed" | null = null;
+  export let position: Position = "top";
+  export let mode: Mode = "sticky";
+  export let size: string | null = null;  
+  export let bg: string | null = null;
+  export let style: string = "";
   
-  export let top: string | null = null;
-  export let right: string | null = null;
-  export let bottom: string | null = null;
-  export let left: string | null = null;
-  
-  export let height: string | null = null;  
-  export let bgColor: string | null = null;
-  
-  $: props = {
-    "fading-edge-mode": mode,
-    "fading-edge-top": top,
-    "fading-edge-right": right,
-    "fading-edge-bottom": bottom,
-    "fading-edge-left": left,
-    "fading-edge-bgColor": bgColor,
-    "fading-edge-height": height
-  }
+  $: customProperties = [
+    mode ? `--fading-edge-mode: ${mode};` : "",
+    `--fading-edge-position: ${position};`,
+    bg ? `--fading-edge-bg: ${bg};` : "",
+    size ? `--fading-edge-size: ${size};` : ""
+  ].join("").replace(/\s/g, "");
 </script>
 
 <!--
@@ -38,45 +32,69 @@
   
     | Prop name | Type             | Default | Description                    |
     |-----------|------------------|---------|--------------------------------|
-    | mode      | "sticky"/"fixed" | null    | edge's position mode           |
-    | top       | string           | null    | top stickiness offset          |
-    | right     | string           | null    | right stickiness offset        |
-    | bottom    | string           | null    | bottom stickiness offset       |
-    | left      | string           | null    | left stickiness offset         |
+    | mode      | "sticky"/"fixed" | sticky  | edge's position mode           |
+    | position  | Position         | top     | top stickiness offset          |
     | height    | string           | null    | edge's height                  |
-    | bgColor   | string           | null    | color to merge with background |
+    | bg        | string           | null    | color to merge with background |
+    | style     | string           | ""      | Inline styles string           |
     
   CSS Custom Properties:
   
     Component inherits custom properties for easier control.
     Custom properties are overriden with regular components props.
   
-    | Prop name             | Type     | Default       | Description                    |
-    |-----------------------|----------|---------------|--------------------------------|
-    | --fading-edge-mode    | string   | sticky        | edge's position mode  
-    | --fading-edge-top     | <length> | 50px          | top stickiness offset          |
-    | --fading-edge-right   | <length> | null          | right stickiness offset        |
-    | --fading-edge-bottom  | <length> | null          | bottom stickiness offset       |
-    | --fading-edge-left    | <length> | null          | left stickiness offset         |
-    | --fading-edge-height  | <length> | 1.5em         | edge's height                  |
-    | --fading-edge-bgColor | <color>  | --color-1-500 | color to merge with background |  
+    | Prop name              | Type     | Default           | Description                    |
+    |------------------------|----------|-------------------|--------------------------------|
+    | --fading-edge-mode     | string   | sticky            | edge's position mode           |
+    | --fading-edge-position | Position | top               | Position                       |
+    | --fading-edge-height   | <length> | 2.5em             | edge's height                  |
+    | --fading-edge-bg       | <color>  | color-surface-400 | color to merge with background | 
 -->
 <div
-  class="fading-edge"
-  use:customProperties={props}
+  class="fading-edge {position}"
+  style={`${customProperties} ${style}`}
 />
 
 <style>
   .fading-edge {
-    position: var(--fading-edge-mode, sticky);
-    top: var(--fading-edge-top, 50px);
-    right: var(--fading-edge-right);
-    bottom: var(--fading-edge-bottom);
-    left: var(--fading-edge-left);
+    --gradient-angle: 180deg;
     
-    height: var(--fading-edge-height, 1.5em);
-    
-    width: 100%;  
-    background: linear-gradient(180deg, var(--bgColor, var(--color-1-500)), transparent);
+    position: var(--fading-edge-mode, auto);
+    background: linear-gradient(
+      var(--gradient-angle),
+      var(--fading-edge-bg, var(--color-surface-400)),
+      transparent
+    );
+  }
+  
+  .top,
+  .bottom {
+    width: 100%;
+    height: var(--fading-edge-size, 1.5em);
+  }
+  
+  .left,
+  .right {
+    height: 100%;
+    width: var(--fading-edge-size, 1.5em);
+  }
+  
+  .top {
+    top: var(--fading-edge-position, 2.5em);
+  }
+  
+  .right {
+    --gradient-angle: 270deg;
+    right: var(--fading-edge-position, 2.5em);
+  }
+  
+  .bottom {
+    --gradient-angle: 0deg;
+    bottom: var(--fading-edge-position, 2.5em);
+  }
+  
+  .left {
+    --gradient-angle: 90deg;
+    left: var(--fading-edge-position, 2.5em);
   }
 </style>
