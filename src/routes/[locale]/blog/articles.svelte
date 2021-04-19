@@ -1,9 +1,8 @@
 <script context="module" lang="ts">
+  import { fetchAll } from "@util";
   import type { Preload } from "@sapper/common";
   import type { ArticleRecordCard } from "@core/components/content";
   
-  import { fetchAll } from "@util";
-
   export const preload: Preload = async function(this, page) {
     const uriList = [
       `api/blog/articles.json?${new URLSearchParams({ ...page.query })}`,
@@ -47,7 +46,6 @@
 <svelte:head>
 	<title>Blog: Articles</title>
 </svelte:head>
-
 <BlogView {finished} on:click={fetchNext}>
   <main>
     {#each articles as article (article._id)}
