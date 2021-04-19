@@ -3,7 +3,6 @@
 
   export const preload: Preload = async function(this, page) {
     const query = page.query.q;
-    
     const response = await this.fetch(`api/blog/search.json?query=${query}`);
     const blogSearchResults = await response.json();
 
@@ -15,17 +14,12 @@
 
 <script lang="ts">
   import { goto, stores } from "@sapper/app";
-  
   import { message } from "@stores/locale";
-  import { Head } from "@components/util";
-  import { SearchField } from "@components";
+  import { Head, SearchField, FlexBox, Button } from "@components";
   import { Chip, SearchResult } from "@components/data-display";
-  import { Button } from "@components/input";
-  import { FlexBox } from "@components/layout";
   import { SVG, Icon, iconRepeat, girlCatchingStars } from "@svg";
   
   import type { SearchResults } from "#types";
-
   
   const { page, preloading } = stores();
   
