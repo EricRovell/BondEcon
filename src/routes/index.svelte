@@ -7,6 +7,6 @@
       ? session.locale
       : "en";    
 
-    return this.redirect(301, `/${locale}/`);
+    return this.redirect(301, `/${locale}/home`);
   }
 </script>

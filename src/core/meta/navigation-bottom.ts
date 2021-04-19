@@ -16,7 +16,7 @@ export const navigation: NavigationItem[] = [
   },
   {
     label: "home",
-    href: "/",
+    href: "/home",
     icon: iconMagicWand,
   }
 ];

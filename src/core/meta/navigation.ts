@@ -3,7 +3,8 @@ import type { NavigationItem } from "../types";
 export const navigation: NavigationItem[] = [
   {
     label: "home",
-    href: "/"
+    href: "/home",
+    pattern: /home\/*/
   },
   {
     label: "blog",
