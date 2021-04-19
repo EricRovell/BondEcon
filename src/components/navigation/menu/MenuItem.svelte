@@ -1,3 +1,9 @@
+<script lang="ts" context="module">
+  import type { Variant } from "#types";
+  import type { PageContext } from "@sapper/common";
+  import type { Readable } from "svelte/store";
+</script>
+
 <script lang="ts">
   import { getContext } from "svelte";
   import { active } from "./active";
@@ -5,9 +11,11 @@
   export let href: string;
   export let prefetch: true | undefined = undefined;
   export let pattern: RegExp | null = null;
-  export let decoration: "top" | "bottom" = "bottom";
+  export let decorationPosition: "top" | "bottom" = "bottom";
+  export let decorationColor: Variant = "primary";
+  export let decorationSize: string = "2px";
   
-  const page = getContext("page");
+  const page = getContext<Readable<PageContext>>("page");
 </script>
 
 <!--
@@ -33,7 +41,8 @@
 -->
 <li>
   <a
-    class="nav-link underline-{decoration}"
+    class="menu-item underline-{decorationPosition}"
+    style="--menu-item-decoration-color: var(--color-{decorationColor}); --menu-item-decoration-size: {decorationSize}"
     {href}
     use:active={{ current: $page.path, pattern }}
     sapper:prefetch={prefetch}>
@@ -42,11 +51,7 @@
 </li>
 
 <style>
-  li:not(:first-child) {
-    margin-left: var(--spacing-3);
-  }
-
-  .nav-link {
+  .menu-item {
     width: 100%;
     height: 100%;
     text-decoration: none;
@@ -56,6 +61,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* gap: 0.5em; */
     height: var(--navigation-height);
     
     text-transform: capitalize;
@@ -63,38 +69,38 @@
     position: relative;
   }
   
-  .nav-link:hover {
+  .menu-item:hover {
     color: var(--color-gray-800);
   }
   
-  .nav-link::after {
+  .menu-item::after {
     content: "";
     position: absolute;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: var(--color-primary);
+    height: var(--menu-item-decoration-size, 2px);
+    background: var(--menu-item-decoration-color, orange);
     transform-origin: 0 100%;
     transition: transform 0.25s ease-in-out;
     transform: scaleY(0);
   }
 
-  .nav-link.underline-bottom::after {
+  .menu-item.underline-bottom::after {
     transform-origin: 0 100%;
     bottom: 0;
     border-radius: var(--radius-medium) var(--radius-medium) 0 0;
   }
   
-  .nav-link.underline-top::after {
+  .menu-item.underline-top::after {
     transform-origin: 100% 0%;
     top: 0;
   }
   
-  li :global(.nav-link[aria-current]) {
+  li :global(.menu-item[aria-current]) {
     color: var(--color-gray-900);
   }
 
-  li :global(.nav-link[aria-current]::after) {
+  li :global(.menu-item[aria-current]::after) {
     transform: scaleY(1);
   }
 </style>
