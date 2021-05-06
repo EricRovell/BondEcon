@@ -1,57 +1,50 @@
 {
   "compilerOptions": {
-    "lib": [ "DOM", "ES2018", "WebWorker", "ES2020.Promise" ],
-    "target": "es2018",
-    "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importsNotUsedAsValues": "error",
-    "isolatedModules": true,
     "moduleResolution": "node",
-    "sourceMap": true,
-    "strict": true,
+    "module": "ES2020",
+    "lib": [ "DOM", "ES2020" ],
+    "target": "ES2019",
+    /**
+			svelte-preprocess cannot figure out whether you have a value or a type, so tell TypeScript
+			to enforce using \`import type\` instead of \`import\` for Types.
+			*/
+		"importsNotUsedAsValues": "error",
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+    /**
+			To have warnings/errors of the Svelte compiler at the correct position,
+			enable source maps by default.
+			*/
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"allowJs": true,
+		"checkJs": true,
     "types": [
       "svelte",
       "node",
       "mongodb"
     ],
-    "typeRoots": [
-      "./src/types"
-    ],
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@components": [ "src/components" ],
-      "@components/*": [ "src/components/*" ],
-      "@core": [ "src/core" ],
-      "@core/*": [ "src/core/*" ],
-      "@views": [ "src/views" ],
-      "@views/*": [ "src/views/*" ],
-      "@svg": [ "src/components/svg" ],
-      "@svg/*": [ "src/components/svg/*" ],
-      "@stores": [ "src/stores" ],
-      "@stores/*": [ "src/stores/*" ],
-      "#db": [ "src/services/db.ts" ],
-      "#types": [ "src/types" ],
-      "@services": [ "src/services" ],
-      "@services/*": [ "src/services/*" ],
-      "@static/*": [ "static/*" ],
-      "@util": [ "src/util" ],
-      "@util/*": [ "src/util/*" ],
-      "@styles/*": [ "src/styles/* "]
+      "$ui": [ "lib/ui" ],
+      "$ui/*": [ "lib/ui/*" ],
+      "$components": [ "lib/components" ],
+      "$components/*": [ "lib/components/*" ],
+      "$core": [ "lib/core" ],
+      "$core/*": [ "lib/core/*" ],
+      "$views": [ "lib/views" ],
+      "$views/*": [ "lib/views/*" ],
+      "$stores": [ "lib/stores" ],
+      "$stores/*": [ "lib/stores/*" ],
+      "$types": [ "types" ],
+      "$services": [ "services" ],
+      "$services/*": [ "services/*" ],
+      "$util": [ "lib/util" ],
+      "$util/*": [ "lib/util/*" ],
+      "$styles/*": [ "styles/* "]
     },
-    "resolveJsonModule": true
   },
-  "include": [
-    "src/**/*",
-    "src/node_modules/**/*"
-  ],
-  "exclude": [
-    "node_modules/*",
-    "__sapper__/*",
-    "static/*"
-  ],
-  "files": [
-    "node_modules/@types",
-    "src/types/globals.d.ts"
-  ]
+  "include": [ "src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte" ]
 }
