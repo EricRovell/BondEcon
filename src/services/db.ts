@@ -1,17 +1,41 @@
-import { Db, MongoClient, ObjectID } from "mongodb";
+import { MongoClient } from "mongodb";
 
-let client: MongoClient | null = null;
-let db: Db | null = null;
+const MONGO_URI = import.meta.env.VITE_MONGO_URI;
+const MONGO_DB = import.meta.env.VITE_MONGO_DB;
 
-export async function database() {
-  if (!client) {
-    client = await MongoClient.connect(process.env.MONGO_URI as string, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+if (!MONGO_URI) {
+  throw new Error("Please define the MONGODB_URI environment variable inside .env");
+}
 
-    db = client.db(process.env.MONGO_DB);
+if (!MONGO_DB) {
+  throw new Error("Please define the MONGO_DB environment variable inside .env");
+}
+
+/**
+ * Global is used here to maintain a cached connection across hot reloads
+ * in development. This prevents connections growing exponentially
+ * during API Route usage.
+ */
+let cached = global["mongo"];
+
+if (!cached) {
+  cached = global["mongo"] = { connection: null, promise: null };
+}
+
+export async function connectDB() {
+  if (cached.connection) {
+    return cached.connection
   }
 
-  return { db, ObjectID };
+  if (!cached.promise) {
+    cached.promise = MongoClient.connect(MONGO_URI, { useUnifiedTopology: true }).then((client) => {
+      return {
+        client,
+        db: client.db(MONGO_DB),
+      }
+    });
+  }
+  
+  cached.connection = await cached.promise
+  return cached.connection;
 }
