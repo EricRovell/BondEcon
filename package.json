@@ -18,11 +18,11 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/adapter-node": "^1.0.0-next.18",
 		"mongodb": "^3.6.6"
 	},
 	"devDependencies": {
-		"@sveltejs/kit": "^1.0.0-next.99",
+		"@sveltejs/adapter-node": "^1.0.0-next.19",
+		"@sveltejs/kit": "^1.0.0-next.102",
 		"@types/mongodb": "^3.6.12",
 		"marked": "^2.0.3",
 		"svelte": "^3.38.2",
