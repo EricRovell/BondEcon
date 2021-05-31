@@ -1,30 +1,26 @@
-import { database } from "#db";
-import { ArticleQueryBuilder } from "@services/query-builder";
-import type { SapperRequest, SapperResponse } from "@sapper/server";
-import type { ArticleRecordCard } from "@core/components/content";
+import { connectDB } from "$services/db";
+import { buildArticleQuery } from "$services/new-query-builder/article/query";
+import type { ArticleRecordCard } from "$components/content";
 
 /**
  * Articles API endpoint.
+ * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
-  const { db } = await database();
-  
-  const queryBuilder = new ArticleQueryBuilder({ ...request.query, projection: "card" });
-  const [ query, options ] = queryBuilder.buildQuery();
+export async function get({ query }) {
+  const { db } = await connectDB();
+  const [ dbQuery, queryOptions ] = buildArticleQuery(query, { projection: "card" });
   
   try {
     const data: ArticleRecordCard[] | null = await db?.collection("blog.articles")
-      .find(query, options)
+      .find(dbQuery, queryOptions)
       .toArray() ?? null;
 
     if (data) {
-      response.setHeader("Content-Type", "application/json");
-      response.end(JSON.stringify(data));
-    } else {
-      next();
+      return {
+        body: JSON.stringify(data)
+      };
     }
   } catch (error) {
     console.error(error);
-    next();
   } 
 }

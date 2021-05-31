@@ -50,6 +50,9 @@
   --focus-ring-color: var(--color-primary);
   --focus-ring-size: 0;
   
+  /* borders */
+  --border-1: solid 1px hsl(var(--gray-h) var(--gray-s-600) var(--gray-l-600) / 0.35);
+  
   /* z-index */
   --z-index-under: -1;
   --z-index-default: 0;

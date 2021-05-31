@@ -1,4 +1,6 @@
-import { MongoClient } from "mongodb";
+import pkg from "mongodb";
+
+const { MongoClient } = pkg;
 
 const MONGO_URI = import.meta.env.VITE_MONGO_URI;
 const MONGO_DB = import.meta.env.VITE_MONGO_DB;

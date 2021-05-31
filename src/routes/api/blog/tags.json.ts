@@ -1,13 +1,13 @@
-import { database } from "#db";
-import type { SapperRequest, SapperResponse } from "@sapper/server";
-import type { BlogTagsCount } from "#types";
+import { connectDB } from "$services/db";
+import type { BlogTagsCount } from "$types";
 
 /**
  * Blog publications frequent tags API endpoint.
+ * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
-  const { db } = await database();
-  const { lang = "en", limit = 10 } = request.query;
+export async function get({ params }) {
+  const { db } = await connectDB();
+  const { lang = "en", limit = 10 } = params.query;
   
   const tagCountStages = [
     { $match: { lang }},
@@ -33,13 +33,13 @@ export async function get(request: SapperRequest, response: SapperResponse, next
       ]).toArray() ?? null;
       
     if (data) {
-      response.setHeader("Content-Type", "application/json");  
-      response.end(JSON.stringify(data[0]));
-    } else {
-      next();
-    }  
+      return {
+        body: {
+          data: JSON.stringify(data[0])
+        }
+      };
+    } 
   } catch (error) {
     console.error(error);
-    next();
   }
 }

@@ -1,0 +1,107 @@
+import { dictionary } from "./dict";
+import { localeValue } from "./locale";
+
+import type {
+  Locale,
+  LocaleQueue,
+  Queue,
+  DictionaryHistory,
+  LocaleDictionaryURI,
+  LocaleDictionaryResult
+} from "./types";
+
+/**
+ * The queue mimics the Dictionary, but instead of actual locale dictionaries
+ * it holds the dictionaries that is not loaded but registered to load as needed.
+ * 
+ * The dictionaries for the current locale are loaded immediately.
+ * 
+ * The queue stores the dictionaries to be loaded within the Map instance using locale as the key.
+ * 
+ * When the locale changes, all the dictionaries are fetched by the client.
+ */
+
+
+/**
+ * Holds the dictionary loaders objects that is not loaded to the dictionary yet.
+ * 
+ * Each key represents different locale.
+ * Each value contains the Set of loaders objects with information about dictionary
+ * and how should it be loaded.
+ */
+const queue: Queue = new Map();
+
+/**
+ * History contains all the loaded dictionaries URIs.
+ * To prevent the unnecessary dictionaries reload.
+ */
+const history: DictionaryHistory = new Set();
+
+/**
+ * Register provided dictionaries.
+ */
+export async function registerDictionaries(dicts: LocaleDictionaryURI[]) {
+  for (let dict of dicts) {
+    // check cache
+    if (history.has(dict.url)) {
+      continue;
+    }
+
+    // check locale presence
+    if (!queue.has(dict.locale)) {
+      queue.set(dict.locale, new Set());
+    }
+
+    (queue.get(dict.locale) as LocaleQueue).add(dict);
+  }
+  
+  await loadLocaleDictionaries(localeValue);
+}
+
+/**
+ * Fetch the dictionary object from URL and injects the data into the input object.
+ */
+async function fetchDictionary({ url, locale }: LocaleDictionaryURI): Promise<LocaleDictionaryResult> {
+  try {
+    const response = await fetch(url);
+    const dictionary = await response.json();
+
+    return {
+      url,
+      locale,
+      dictionary
+    };
+  } catch (error) {
+    console.error("Can't load the dictionary.");
+  }
+}
+
+/**
+ * Loads the registered dictionaries for the locale.
+ */
+export async function loadLocaleDictionaries(locale: Locale) {
+  if (!globalThis.window) return;
+
+  // check queue
+  if (!queue.has(locale)) return;
+  
+  const localeQueue = queue.get(locale) as LocaleQueue;
+
+  // nothing to load?
+  if (!localeQueue.size) return;
+
+  const loadedDictionaries = await Promise.allSettled(
+    [ ...localeQueue ].map(fetchDictionary)
+  );
+
+  for (let dict of loadedDictionaries) {
+    if (dict.status === "rejected") {
+      continue;
+    }
+
+    dictionary.add(dict.value.locale, dict.value.dictionary);
+    history.add(dict.value.url)
+  }
+
+  queue.delete(locale);
+}

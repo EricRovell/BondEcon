@@ -1,28 +1,26 @@
 <script lang="ts" context="module">
-  import type { Preload } from "@sapper/common";
-  
-  export const preload: Preload = async function(this, page, session) {
-    const query = new URLSearchParams({
-      lang: page.params.locale ?? session.locale ?? "en",
-      id: "about"
-    });
-
-    const uri = `api/page.json?${query}`;
-    const response = await this.fetch(uri);
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+  export async function load({ page, fetch }) {
+    const lang = page.params.locale ?? "ru";
+    
+    const response = await fetch(`/api/page.json?lang=${lang}&id=about`);
     const document = await response.json();
-
-    if (response.status === 200) {
-      return document;
+    
+    if (response.ok) {
+      return {
+        props: document
+      };
     }
-
-    this.error(404, "Not Found");
   }
 </script>
 
 <script lang="ts">
-  import { Article, Head } from "@components";
-  import { SVG, illustrationShootingStar } from "@svg";
-  import type { HeadMeta } from "@components/util/head";
+  import { Article } from "$ui/data-display";
+  import { Head } from "$ui/util";
+  import { SVG, illustrationShootingStar } from "$ui/svg";
+  import type { HeadMeta } from "$ui/util/head";
   
   export let html: string;
   export let title: string;

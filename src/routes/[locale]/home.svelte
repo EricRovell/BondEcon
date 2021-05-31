@@ -1,43 +1,35 @@
-<script context="module" lang="ts">
-  import { fetchAll } from "@util";
-  import type { Preload } from "@sapper/common";
-  import type { EcontwittRecordPreview, ArticleRecordCard } from "@core/components/content";
-
-  export const preload: Preload = async function(this, page, session) {
-    const fetch = this.fetch;
-    const query = page.query as Record<string, string>;
-    const lang = session.locale ?? "en";
-
-    const uriList = [
-      `api/blog/econtwitts.json?` + new URLSearchParams({
-        ...query,
-        lang,
-        limit: "10",
-        projection: "summary"
-      }),
-      `api/blog/articles.json?` + new URLSearchParams({
-        ...query,
-        lang,
-        limit: "7",
-        projection: "card"
-      })
-    ];
-
-    const [ econtwitts, articles ]: [ EcontwittRecordPreview[], ArticleRecordCard[] ] = await fetchAll(uriList, fetch);
-
+<script lang="ts" context="module">
+  import type { EcontwittRecordPreview, ArticleRecordCard } from "$components/content";
+  
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+  export async function load({ page, fetch }) {
+    const lang = page.params.locale ?? "ru";
+    
+    const responses = await Promise.all([
+      fetch(`/api/blog/econtwitts.json?lang=${lang}&limit=10&projection=summary`),
+      fetch(`/api/blog/articles.json?lang=${lang}&limit=5&projection=card`)
+    ]);
+    
+    const [ econtwitts, articles ] = await Promise.all(responses.map(r => r.json()));
+      
     return {
-      econtwitts,
-      articles
+      props: {
+        econtwitts,
+        articles
+      }
     };
   }
 </script>
 
 <script lang="ts">
-  import { Heading, FlexBox, GridView, Head } from "@components";
-  import { ArticleCard, EcontwittPreview } from "@core/components/content";
-  import { locale, message } from "@stores/locale";
-  import type { HeadMeta } from "@components/util/head";
-
+  import { Heading, FlexBox, GridView, Head } from "$ui";
+  import { ArticleCard, EcontwittPreview } from "$components/content";
+  import { message } from "$stores/locale";
+  import type { HeadMeta } from "$ui/util/head";
+  import { econtwittPath, articlesPagePath, econtwittsPagePath } from "$core/routes";
+  
   const head: HeadMeta = {
     title: "Bondecon: My Personal Space",
     meta: {
@@ -67,25 +59,25 @@
 <Head {...head} />
 <main>
   <section>
-    <Heading level={1} weight={600} size={5} href={`/${$locale}/blog/econtwitts`}>
-      {$message("econtwitts", { defaultMessage: "Econtwitts" })}
+    <Heading level={1} weight={600} size={5} href={$econtwittsPagePath}>
+      {$message("econtwitts", "Econtwitts")}
     </Heading>
     <FlexBox tag="ol" direction="column" gap="0.75em">
       {#each econtwitts as { _id, ...rest }}
         <li>
-          <EcontwittPreview {...rest} href={`/${$locale}/blogpost/econtwitt-${_id}`} />
+          <EcontwittPreview {...rest} href={$econtwittPath(_id)} />
         </li>
       {/each}
     </FlexBox>
   </section>
   <section>
-    <Heading level={1} weight={600} size={5} href={`/${$locale}/blog/articles`}>
-      {$message("articles", { defaultMessage: "Articles" })}
+    <Heading level={1} weight={600} size={5} href={$articlesPagePath}>
+      {$message("articles", "Articles")}
     </Heading>
     <GridView tag="ol">
-      {#each articles as { _id, ...rest }}
+      {#each articles as article}
         <li>
-          <ArticleCard {...rest} href={`/${$locale}/blogpost/article-${_id}`} />
+          <ArticleCard {...article} />
         </li>
       {/each}
     </GridView>

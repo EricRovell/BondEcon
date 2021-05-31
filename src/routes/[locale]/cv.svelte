@@ -1,36 +1,51 @@
 <script lang="ts" context="module">
-  import type { Preload } from "@sapper/common";
-  import type { Document } from "#types";
+  import type { Document } from "$types";
   
-  export const preload: Preload = async function(this, page, session) {
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+   export async function load({ page, fetch }) {
+    const lang = page.params.locale ?? "ru";
     
-    const query = new URLSearchParams({
-      lang: page.params.locale ?? session.locale ?? "en",
-      ...page.query
-    });
-
-    const uri = `api/cv/cv.json?${query}`;
-    const response = await this.fetch(uri);
-    const data: Document = await response.json();
-
-    if (response.status === 200) {
+    const response = await fetch(`/api/cv/cv.json?lang=${lang}`);
+    const document: Document = await response.json();
+    
+    if (response.ok) {
       return {
-        data
+        props: {
+          data: document
+        }
       };
     }
-
-    this.error(404, "Not Found");
   }
 </script>
 
 <script lang="ts">
-  import { locale, message } from "@stores/locale";
-  import { navigationCV as navigation } from "@core/meta";
-  import { Heading, IntersectionObserver, Timeline, TimelineRecord } from "@components";
-  import { ContentsTabular, ContentsTab } from "@components/navigation/toc";
-  import { ProfileCard, ExperienceCard, EducationCard, ProjectCard } from "@components/cards";
+  import { cvEducationSection, cvExperienceSection, cvProjectsSection } from "$core/routes";
+  import { locale, message } from "$stores/locale";
+  import { Heading, IntersectionObserver, Timeline, TimelineRecord } from "$ui";
+  import { ContentsTabular, ContentsTab } from "$ui/navigation/toc";
+  import { ProfileCard, ExperienceCard, EducationCard, ProjectCard } from "$components/cards";
 
   export let data: Document;
+  
+  $: tabs = [
+    {
+      label: "experience",
+      href: $cvExperienceSection,
+      id: "experience"
+    },
+    {
+      label: "projects",
+      href: $cvProjectsSection,
+      id: "projects"
+    },
+    {
+      label: "education",
+      href: $cvEducationSection,
+      id: "education"
+    }
+  ];
   
   $: sections = [
     {
@@ -72,8 +87,8 @@
 <div class="container">
   <nav>
     <ContentsTabular>
-      {#each navigation as { href, label, id }}
-        <ContentsTab href={`${$locale}${href}`} active={id === currentSection}>
+      {#each tabs as { href, label, id }}
+        <ContentsTab {href} active={id === currentSection}>
           {label}
         </ContentsTab>
       {/each}
@@ -85,7 +100,7 @@
       {#each sections as { sectionDictKey, defaultMessage, sectionID, data, Card }, index}
         <Timeline title={sectionID} bind:node={timelineSections[index]}>
             <Heading slot="title" size={6} weight={600} decorated id={sectionID}>
-                {$message(sectionDictKey, { defaultMessage })}
+                {$message(sectionDictKey)}
             </Heading>
             {#each data as { timestamp, ...rest }}
               <TimelineRecord {timestamp}>

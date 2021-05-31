@@ -21,6 +21,14 @@ const config = {
           "$styles": path.resolve("./src/styles"),
         }
       }
+    },
+    prerender: {
+      pages: [
+        "/ru/about",
+        "/en/about",
+        "/ru/cv",
+        "/en/cv"
+      ]
     }
 	}
 };

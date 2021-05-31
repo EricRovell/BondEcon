@@ -1,26 +1,27 @@
 <script context="module" lang="ts">
-  import { fetchAll } from "@util";
-  import type { Preload } from "@sapper/common";
-  import type { ArticleRecordCard } from "@core/components/content";
+  import type { ArticleRecordCard } from "$components/content";
   
-  export const preload: Preload = async function(this, page) {
-    const uriList = [
-      `api/blog/articles.json?${new URLSearchParams({ ...page.query })}`,
-    ];
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+   export async function load({ page, fetch }) {
+    const response = await fetch(`/api/blog/articles.json?${page.query?.toString()}`);
 
-    const [ articles ]: [ ArticleRecordCard[] ] = await fetchAll(uriList, this.fetch);
-
-    return {
-      articles
-    };
+    if (response.ok) {
+      return {
+        props: {
+          articles: await response.json()
+        }
+      };
+    }
   }
 </script>
 
 <script lang="ts">
-  import { BlogView } from "@views";
-  import { ArticleCard } from "@core/components/content";
+  import { BlogView } from "$views";
+  import { ArticleCard } from "$components/content";
+  import { articlePath } from "$core/routes";
 
-  // posts
   export let articles: ArticleRecordCard[] = [];
   
   $: tail = articles[articles.length - 1]?._id;
@@ -32,9 +33,9 @@
 
     if (!tail) return;
 
-    query.set("tail", tail);
+    query.set("cursor", tail);
 
-    const response = await fetch(`api/blog/articles.json?${query}`);
+    const response = await fetch(`/api/blog/articles.json?${query}`);
     const data = await response.json();
 
     (data && data?.length)

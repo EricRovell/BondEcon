@@ -1,37 +1,28 @@
-import { database } from "#db";
-import { EcontwittQueryBuilder } from "@services/query-builder";
-import type { SapperRequest, SapperResponse } from "@sapper/server";
-import type { EcontwittRecordCard } from "@core/components/content";
+import { connectDB } from "$services/db";
+import { buildEcontwittQuery } from "$services/new-query-builder/econtwitt/query";
+import type { EcontwittRecordCard } from "$components/content";
 
-export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
-  const { db, ObjectID } = await database();
-  const _id = request.params.id;
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
+export async function get({ params }) {
+  const { db } = await connectDB();
   
-  if (!ObjectID.isValid(_id)) {
-    response.writeHead(404, "Not Found");
-    response.end(JSON.stringify(null));
-  }
-  
-  const queryBuilder = new EcontwittQueryBuilder({
-    _id: request.params.id,
-    projection: "card"
-  });
-  
-  const [ query, options ] = queryBuilder.buildQuery();
+  const [ dbQuery, queryOptions ] = buildEcontwittQuery(
+    { _id: params.id },
+    { projection: "card" }
+  );
 
   try {
     let data: EcontwittRecordCard | null = await db?.collection("blog.econtwitts")
-      .findOne(query, options) ?? null;
+      .findOne(dbQuery, queryOptions) ?? null;
 
     if (data) {
-      response.setHeader("Content-Type", "application/json");
-      response.end(JSON.stringify(data));
-    } else {
-      next();
+      return {
+        body: JSON.stringify(data)
+      };
     }
-
   } catch (error) {
     console.error(error.message);
-    next();
   }
 }

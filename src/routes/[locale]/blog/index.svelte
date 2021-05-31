@@ -1,27 +1,42 @@
 <script context="module" lang="ts">
-  import type { Preload } from "@sapper/common";
-
-  export const preload: Preload = async function(this, page) {
-    const query = page.query.q;
-    const response = await this.fetch(`api/blog/search.json?query=${query}`);
-    const blogSearchResults = await response.json();
-
-    return {
-      blogSearchResults
-    };
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+   export async function load({ page, fetch }) {
+    const q = page.query.get("q");
+    
+    if (!q) {
+      return {
+        props: {
+          data: null,
+          total: null
+        }
+      };
+    }
+    
+    const response = await fetch(`/api/blog/search.json?q=${q}`);
+    const { data, total } = await response.json();
+    
+    if (response.ok) {
+      return {
+        props: {
+          data,
+          total
+        }
+      }
+    }
   }
 </script>
 
 <script lang="ts">
-  import { goto, stores } from "@sapper/app";
-  import { message } from "@stores/locale";
-  import { Head, SearchField, FlexBox, Button } from "@components";
-  import { Chip, SearchResult } from "@components/data-display";
-  import { SVG, Icon, iconRepeat, girlCatchingStars } from "@svg";
-  
-  import type { SearchResults } from "#types";
-  
-  const { page, preloading } = stores();
+  import { page, navigating } from "$app/stores";
+  import { goto } from "$app/navigation";
+  import { articlePath, econtwittPath } from "$core/routes";
+
+  import { message } from "$stores/locale";
+  import { Head, SearchField, FlexBox } from "$ui";
+  import { Chip, SearchResult } from "$ui/data-display";
+  import { SVG, girlCatchingStars } from "$ui/svg";
   
   const meta  = {
     title: "Bondecon: Blog Section",
@@ -35,51 +50,53 @@
     }
   };
   
-  let search: string = "";
+  // query
+  let q: string = "";
   
-  export let blogSearchResults: SearchResults | null = null;
+  export let data = null;
+  export let total = null;
   
-  async function searchIt() {
-    const query = new URLSearchParams({ q: search });
-    await goto(`${$page.path}?${query}`);
+  async function doSearch() {
+    await goto(`${$page.path}?q=${q}`);
   }
   
-  async function reset() {
-    search = "";
-    await searchIt();
+  async function clearSearch() {
+    q = "";
+    await goto(`${$page.path}`);
   }
 </script>
 
 <Head {...meta} />
-
 <main>
   <SearchField
-    bind:value={search}
-    on:search={searchIt}
-    placeholder={$message("placeholder-search", { defaultMessage: "Type to search"})} />
-  {#if $preloading}
+    bind:value={q}
+    on:search={doSearch}
+    on:cancel={clearSearch}
+    placeholder={$message("placeholder-search", "Type to search")}
+  />
+  <!-- Fetching -->
+  {#if $navigating}
     <p>Loading...</p>
-  {/if}
-  {#if blogSearchResults}
+  <!-- Show results if present -->
+  {:else if Array.isArray(data) && data.length}
     <FlexBox tag="ol" justify="flex-start" gap="0.5em">
-      <span class="total">Total search results:</span>
-      {#each blogSearchResults.total as { tag: text, count }}
+      {#each total as { type: text, count }}
         <li>
           <Chip {text} {count} href={`/blog/${text}`} variant="link" />
         </li>
       {/each}
     </FlexBox>
     <ol class="search-results">
-      {#each blogSearchResults.results as { _id, summary, title, type }}
+      {#each data as { _id, summary, title, type }}
         {#if type === "econtwitt"}
           <SearchResult
-            href={`/blogpost/econtwitt-${_id}`}
+            href={$econtwittPath(_id)}
             {summary}
             category={type}
           />
         {:else if type === "article"}
           <SearchResult
-            href={`/blogpost/article-${_id}`}
+            href={$articlePath(_id)}
             {summary}
             {title}
             category={type}
@@ -89,13 +106,10 @@
         <p>Empty</p>
       {/each}
     </ol>
-    <Button on:click={reset}>
-      <Icon path={iconRepeat} />
-      Start over
-    </Button>
+  <!-- Illustration -->
   {:else}
     <p>
-      <SVG data={girlCatchingStars} />
+      <SVG data={girlCatchingStars} size="400px" />
     </p>
   {/if}
 </main>
@@ -119,10 +133,5 @@
   .search-results {
     display: grid;
     gap: var(--spacing-2);
-  }
-  
-  .total {
-    display: flex;
-    place-items: center;
   }
 </style>

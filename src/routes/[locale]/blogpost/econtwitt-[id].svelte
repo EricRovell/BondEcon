@@ -1,23 +1,23 @@
 <script lang="ts" context="module">
-  import type { Preload } from "@sapper/common";
-  
-  export const preload: Preload = async function(this, page) {
-    const response = await this.fetch(`api/blog/econtwitts/${page.params.id}.json`);
-
-    if (response.status === 200) {
-      const post = await response.json();
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+   export async function load({ page, fetch }) {
+    const response = await fetch(`/api/blog/econtwitts/${page.params.id}.json`);
+    
+    if (response.ok) {
       return {
-        post
+        props: {
+          post: await response.json()
+        }
       };
     }
-
-    this.error(404, "Not Found");
   }
 </script>
 
 <script lang="ts">
-  import { EcontwittCard } from "@core/components/content";
-  import type { EcontwittRecordCard } from "@core/components/content";
+  import { EcontwittCard } from "$components/content";
+  import type { EcontwittRecordCard } from "$components/content";
 
   export let post: EcontwittRecordCard;
 </script>

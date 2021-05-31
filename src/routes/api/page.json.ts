@@ -1,17 +1,13 @@
-import { database } from "#db";
-import type { SapperRequest, SapperResponse } from "@sapper/server";
+import { connectDB } from "$services/db";
 
 /**
  * API route for specific fetching page content.
+ * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
-  const { db } = await database();
-  const { id = null, lang = "en" } = request.query;
-  
-  if (!id) {
-    response.writeHead(404, "Not Found");
-    next();
-  }
+export async function get({ query }) {
+  const { db } = await connectDB();
+  const id = query.get("id");
+  const lang = query.get("lang") ?? "en";
 
   try {
     const data: string | null = await db?.collection("pages")
@@ -21,13 +17,11 @@ export async function get(request: SapperRequest, response: SapperResponse, next
       ) ?? null;
 
     if (data) {
-      response.setHeader("Content-Type", "application/json");
-      response.end(JSON.stringify(data));
-    } else {
-      next();
+      return {
+        body: JSON.stringify(data)
+      };
     }
   } catch (error) {
     console.error(error.message);
-    next();
   }
 }

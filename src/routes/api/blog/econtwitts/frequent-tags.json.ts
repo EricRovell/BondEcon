@@ -1,14 +1,12 @@
-import { database } from "#db";
-import type { SapperRequest, SapperResponse } from "@sapper/server";
-import type { TagCount } from "#types";
+import { connectDB } from "$services/db";
+import type { TagCount } from "$types";
 
-export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
-  const { db } = await database();
-
-  const {
-    lang = "en",
-    limit = 10
-  } = request.query;
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
+export async function get({ params }) {
+  const { db } = await connectDB();
+  const { lang = "en", limit = 10 } = params.query;
 
   try {
     const data: TagCount[] | null = await db?.collection("blog.econtwitts")
@@ -23,13 +21,13 @@ export async function get(request: SapperRequest, response: SapperResponse, next
       ]).toArray() ?? null;
       
     if (data) {
-      response.setHeader("Content-Type", "application/json");
-      response.end(JSON.stringify(data));
-    } else {
-      next();
+      return {
+        body: {
+          data: JSON.stringify(data)
+        }
+      };
     }
   } catch (error) {
     console.error(error);
-    next();
   }    
 }

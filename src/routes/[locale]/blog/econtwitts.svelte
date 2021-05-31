@@ -1,45 +1,44 @@
 <script context="module" lang="ts">
-  import type { Preload } from "@sapper/common";
-  import type { EcontwittRecordCard } from "@core/components/content";
+  import type { EcontwittRecordCard } from "$components/content";
+  
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+   export async function load({ page, fetch }) {
+    const response = await fetch(`/api/blog/econtwitts.json?limit=10&${page.query}`);
 
-  import { fetchAll } from "@util";
-
-  export const preload: Preload = async function(this, page) {
-    const uriList = [
-      `api/blog/econtwitts.json?${new URLSearchParams({ ...page.query })}`
-    ];
-
-    const [ econtwitts ]: [ EcontwittRecordCard[] ] = await fetchAll(uriList, this.fetch);
-
-    return {
-      econtwitts
-    };
+    if (response.ok) {
+      return {
+        props: {
+          econtwitts: await response.json()
+        }
+      };
+    }
   }
 </script>
 
 <script lang="ts">
-  import { BlogView } from "@views";
-  import { EcontwittCard } from "@core/components/content";
+  import { page } from "$app/stores";
+  import { BlogView } from "$views";
+  import { EcontwittCard } from "$components/content";
 
   export let econtwitts: EcontwittRecordCard[] = [];
   
-  $: tail = econtwitts[econtwitts.length - 1]?._id;
-  $: finished = !!tail;
+  $: cursor = econtwitts[econtwitts.length - 1]?._id;
+  $: finished = !!cursor;
   
   async function fetchNext() {
-    const url = new URL(document.URL);
-    const query = new URLSearchParams(url.search);
+    if (!cursor) return;
     
-    if (!tail) return;
+    const { query } = $page;
+    query.set("cursor", cursor);
 
-    query.set("tail", tail);
-
-    const response = await fetch(`api/blog/econtwitts.json?${query}`);
+    const response = await fetch(`/api/blog/econtwitts.json?${query}&limit=10`);
     const data = await response.json();
 
     (data && data?.length)
       ? econtwitts = [ ...econtwitts, ...data ]
-      : tail = "";
+      : cursor = "";
   }
 </script>
 

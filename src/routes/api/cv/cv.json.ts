@@ -1,26 +1,24 @@
-import { database } from "#db";
-import type { SapperRequest, SapperResponse,  } from "@sapper/server";
-import type { Document } from "#types";
+import { connectDB } from "$services/db";
+import type { Document } from "$types";
 
 /**
- * CV document data endpoint. 
+ * CV document data endpoint.
+ * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get(request: SapperRequest, response: SapperResponse, next: () => void) {
-  const { db } = await database();
-  const { lang = "en" } = request.query;
+export async function get({ query }) {
+  const { db } = await connectDB();
+  const lang = query.get("lang") ?? "en";
 
   try {
     const data: Document | null = await db?.collection("personal")
-      .findOne({ document: "cv", lang }) || null;
+      .findOne({ document: "cv", lang }) ?? null;
 
     if (data) {
-      response.setHeader("Content-Type", "application/json");
-      response.end(JSON.stringify(data));
-    } else {
-      next();
+      return {
+        body: JSON.stringify(data)
+      };
     }
   } catch (error) {
     console.error(error);
-    next();
   }
 }

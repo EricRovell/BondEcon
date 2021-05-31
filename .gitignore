@@ -13,3 +13,9 @@ __sapper__/
 .env
 
 package-lock.json
+
+/.svelte-kit
+/build
+/functions
+
+./svelte-kit

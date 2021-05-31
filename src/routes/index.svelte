@@ -1,12 +1,17 @@
 <script context="module" lang="ts">
-  import type { Preload } from "@sapper/common";
-  import { supportsLocale } from "@stores/locale";
+  import { supportsLocale } from "$stores/locale";
   
-  export const preload: Preload = async function(this, page, session) {
+  /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+  export async function load({ fetch, session }) {
     const locale = supportsLocale(session?.locale)
       ? session.locale
-      : "en";    
-
-    return this.redirect(301, `/${locale}/home`);
+      : "en";
+      
+    return {
+      redirect: `/${locale}/home`,
+      status: 301
+    };
   }
 </script>
