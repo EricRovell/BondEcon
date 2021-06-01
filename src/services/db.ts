@@ -5,13 +5,13 @@ const { MongoClient } = pkg;
 const MONGO_URI = import.meta.env.VITE_MONGO_URI;
 const MONGO_DB = import.meta.env.VITE_MONGO_DB;
 
-if (!MONGO_URI) {
+/* if (!MONGO_URI) {
   throw new Error("Please define the MONGODB_URI environment variable inside .env");
 }
 
 if (!MONGO_DB) {
   throw new Error("Please define the MONGO_DB environment variable inside .env");
-}
+} */
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
