@@ -1,6 +1,8 @@
 <script lang="ts" context="module">
   import type { Document } from "$types";
   
+  //export const prerender = true;
+  
   /**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
