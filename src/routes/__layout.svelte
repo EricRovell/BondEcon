@@ -96,5 +96,9 @@
     #app {
       padding: 0;
     }
+    
+    .content {
+      padding: 0 1em;
+    }
   }
 </style>
