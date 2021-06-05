@@ -23,10 +23,8 @@ export function buildEcontwittQuery(queryParams: QueryParams = {}, queryOptions 
   const query = {};
   const options: Record<string, any> = {};
   
-  // build options  
-  if (params.has("sort")) {
-    options["sort"] = querySort(params.get("sort"));
-  }
+  // build options
+  options["sort"] = querySort(params.get("sort") ?? -1);
   
   if (params.has("limit")) {
     options["limit"] = queryLimit(params.get("limit"));

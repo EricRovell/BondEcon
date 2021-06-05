@@ -24,9 +24,7 @@ export function buildArticleQuery(queryParams: QueryParams = {}, queryOptions = 
   const options: Record<string, any> = {};
   
   // build options  
-  if (params.has("sort")) {
-    options["sort"] = querySort(params.get("sort"));
-  }
+  options["sort"] = querySort(params.get("sort") ?? -1);
   
   if (params.has("limit")) {
     options["limit"] = queryLimit(params.get("limit"));
