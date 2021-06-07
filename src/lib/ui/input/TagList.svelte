@@ -78,7 +78,8 @@
   }
   
   .tag-input {
-    padding: 0.25em;
+    padding: var(--spacing-2, 0.5em);
+    font-size: inherit;
   }
   
   .tag-list {
