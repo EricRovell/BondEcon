@@ -1,6 +1,7 @@
 <script lang="ts">
   export let name: string | undefined = undefined;
   export let label: string | undefined = undefined;
+  export let placeholder: string | undefined = undefined;
   
   export let list: string[] = []
   export let value: string | undefined = undefined;
@@ -40,6 +41,7 @@
     class="tag-input"
     on:keypress={handleKeyPress}
     type="text"
+    {placeholder}
   />
   <!-- <button on:click={() => addItem(value)}>
     +
