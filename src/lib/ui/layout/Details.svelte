@@ -94,7 +94,7 @@
     outline: none;
   }
   
-  details[open] .default-icon {
+  details[open] > summary .default-icon {
     transform: rotate(90deg);
   }
   
@@ -125,7 +125,11 @@
     border-top: 1px solid var(--border-color);
   }
   
-  /* accordion type */  
+  /* accordion type */
+  .accordion summary:hover {
+    background-color: var(--color-surface-500);
+  }
+  
   .accordion > summary {
     border-bottom: none;
   }
@@ -136,8 +140,8 @@
   
   .accordion > .contents {
     /* calc from summary's left padding and icon's half width */
-    margin-left: calc(var(--spacing-3) + 0.75em / 2);
-    padding: 0.5em 1em;
+    margin-left: calc(var(--spacing-1) / 2);
+    padding: 0.25em 1em;
   }
   
   /* button type */
