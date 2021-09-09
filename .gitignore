@@ -19,3 +19,7 @@ package-lock.json
 /functions
 
 ./svelte-kit
+
+/zip-upload.sh
+/db
+.env*
