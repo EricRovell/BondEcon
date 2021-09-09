@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dev } from "$app/env";
-  import { Textarea, Button, Select, TagList } from "$ui/input";
+  import { Textarea, Button, Select, TagList, DatePicker } from "$ui/input";
   import { econtwittPath } from "$core/routes";
   
   let insertedId = null;
@@ -32,6 +32,11 @@
       cols={25}
       required
     />
+    <TagList
+      label="Post tags:"
+      name="tags"
+      placeholder="Add tags using Enter key"
+    />
     <Select
       title="Select a language"
       label="Content language:"
@@ -43,12 +48,7 @@
       ]}
       hiddenFocus
     />
-    <TagList
-      label="Post tags:"
-      name="tags"
-      placeholder="Add tags using Enter key"
-    />
-    <input type="datetime-local" name="date" />
+    <DatePicker type="datetime-local" name="date" label="Creation time:" />
     <Button appearance="fill" variant="info" type="submit">Post</Button>
     <Button appearance="outline" variant="info" type="reset">Reset</Button>
   </form>
@@ -69,7 +69,7 @@
   form {
     display: grid;
     grid-auto-flow: row;
-    gap: 0.75em;
+    gap: 1em;
     
     place-self: center;
     width: 640px;
