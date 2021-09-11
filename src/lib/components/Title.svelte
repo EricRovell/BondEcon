@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Star } from "$ui/svg";
+  import { Star } from "./svg";
   
   export let size: string = "1em";
   export let iconSize: string = "1.5em";

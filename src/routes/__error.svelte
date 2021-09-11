@@ -1,9 +1,5 @@
 <script lang="ts">
-  import { dev } from "$app/env";
-  import { SVG, girlSleeping } from "$ui/svg";
-  
-  export let status: string;
-	export let error: Error;
+  import { SVG, girlSleeping } from "@components/svg";
 </script>
 
 <article>
@@ -11,13 +7,7 @@
     <SVG data={girlSleeping} />
   </figure>
   <h1>Something has broken!</h1>
-  <h2>Error: {error.message}</h2>
-  <p>Status: {status}</p>
 </article>
-
-{#if dev}
-	<pre>{error.stack}</pre>
-{/if}
 
 <style>
   article {

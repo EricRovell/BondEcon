@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { message } from "$stores/locale";
-  import { Heading } from "$ui/data-display";
+  import { _ } from "svelte-i18n";
+  import Heading from "./Heading.svelte";
   
   export let title: string;
   export let href: string | undefined = undefined;
@@ -37,7 +37,7 @@
   <p class="description">{description}</p>
   {#if goals && Array.isArray(goals) && goals.length}
     <Heading level={4} size={2}>
-      {$message("goals", "Goals")}:
+      {$_("goals")}:
     </Heading>
     <ol class="goals">
       {#each goals as goal}

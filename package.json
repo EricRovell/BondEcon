@@ -3,7 +3,8 @@
 	"description": "BondEcon blog platform.",
 	"keywords": [
 		"blog",
-		"svelte/kit"
+		"economics",
+		"finance"
 	],
 	"homepage": "www.bondecon.com",
 	"repository": {
@@ -18,18 +19,22 @@
 		"preview": "svelte-kit preview"
 	},
 	"type": "module",
-	"dependencies": {
-		"@sveltejs/kit": "^1.0.0-next.113",
-		"marked": "^2.0.3",
-		"mongodb": "^3.6.6",
-		"svelte": "^3.38.2"
-	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "^1.0.0-next.24",
-		"@types/mongodb": "^3.6.17",
+		"@sveltejs/adapter-static": "^1.0.0-next.17",
+		"@sveltejs/kit": "^1.0.0-next.113",
+		"eslint": "^7.32.0",
+		"eslint-plugin-svelte3": "^3.2.0",
+		"marked": "^2.0.3",
+		"mdsvex": "^0.9.8",
+		"svelte": "^3.38.2",
+		"svelte-media-observer": "^1.0.1",
 		"svelte-preprocess": "^4.7.3",
 		"tslib": "^2.2.0",
 		"typescript": "^4.3.2",
 		"vite": "^2.3.6"
+	},
+	"dependencies": {
+		"svelte-i18n": "^3.3.10"
 	}
 }

@@ -4,7 +4,7 @@ import {
   iconSocialTelegram,
   iconSocialInstagram,
   iconSocialFacebook
-} from "$ui/svg";
+} from "@components/svg";
 
 import type { SocialItem } from "./types";
 

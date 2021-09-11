@@ -1,36 +1,42 @@
-import preprocess from "svelte-preprocess";
-import adapter from "@sveltejs/adapter-node";
+import sveltePreprocess from "svelte-preprocess";
+import { mdsvex } from "mdsvex";
+import adapter from "@sveltejs/adapter-static";
 import path from "path";
 
+const aliasList = [
+  { name: "@components", path: "./src/lib/components" },
+  { name: "@stores", path: "./src/lib/stores" },
+  { name: "@util", path: "./src/lib/util" },
+  { name: "@core", path: "./src/lib/core" },
+  { name: "@types", path: "./src/types" },
+  { name: "@styles", path: "./src/styles" },
+  { name: "@assets", path: "./static" }
+];
+
 /** @type {import('@sveltejs/kit').Config} */
-const config = {
-	preprocess: preprocess(),
+export default {
+	preprocess: [
+    mdsvex(),
+		sveltePreprocess(),
+	],
+  extensions: [ ".svelte", ".svx" ],
 	kit: {
     adapter: adapter(),
 		target: '#svelte',
     vite: {
       resolve: {
-        alias: {
-          "$ui": path.resolve("./src/lib/ui"),
-          "$components": path.resolve("./src/lib/components"),
-          "$core": path.resolve("./src/lib/core"),
-          "$services": path.resolve("./src/services"),
-          "$stores": path.resolve("./src/lib/stores"),
-          "$util": path.resolve("./src/lib/util"),
-          "$views": path.resolve("./src/lib/views"),
-          "$styles": path.resolve("./src/styles"),
-        }
+        alias: Object.fromEntries(aliasList.map(alias => (
+          [ alias.name, path.resolve(alias.path) ]
+        )))
       }
     },
-    prerender: {
+    /* prerender: {
       pages: [
         "/ru/about",
         "/en/about",
         "/ru/cv",
         "/en/cv"
       ]
-    }
+    } */
 	}
 };
-
-export default config;

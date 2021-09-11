@@ -1,5 +1,5 @@
 import { derived } from "svelte/store";
-import { locale } from "$stores";
+import { locale } from "svelte-i18n";
 
 export const basePath = derived(locale, $locale => `/${$locale}`);
 

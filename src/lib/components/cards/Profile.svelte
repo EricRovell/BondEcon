@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Avatar, Icon, iconLocation, iconMobile, iconMail } from "$ui/svg";
-  import { Socials } from "$ui/navigation/social";
-  import { Heading } from "$ui/data-display";
-  import { socials } from "$core/routes/socials";
+  import { Avatar, Icon, iconLocation, iconMobile, iconMail } from "../svg";
+  import { Socials } from "../social";
+  import Heading from "./Heading.svelte";
+  import { socials } from "@core/routes/socials";
   
   export let name: string;
   export let location: string;

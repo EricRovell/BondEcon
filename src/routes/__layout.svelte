@@ -1,34 +1,15 @@
-<script lang="ts" context="module">
-  import { registerDictionaries, locale } from "$stores/locale";
-  
-  /**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-   export async function load({ page }) {
-    locale.set(page.params?.locale ?? "en");
-    
-    await registerDictionaries([
-      { locale: "en" , url: "/locale/default-en.json" },
-      { locale: "ru", url: "/locale/default-ru.json" }
-    ]);
-      
-    return {
-      status: 201
-    };
-  }
-</script>
-
 <script lang="ts">
-  import { media } from "$stores";
-  import { Footer } from "$components/layout";
+  import { media } from "@stores";
+  import { i18nInit } from "@core/i18n";
+  import { Footer } from "@components";
   
-  import "$styles/main.css";
-  import "$styles/normalize.css";
-  import "$styles/theme-dark.css";
-  import "$styles/theme-light.css";
-  import "$styles/typography.css";
-  
-  $: mobileDevice = $media.small;
+  import "@styles/main.css";
+  import "@styles/normalize.css";
+  import "@styles/theme-dark.css";
+  import "@styles/theme-light.css";
+  import "@styles/typography.css";
+
+  i18nInit();
 </script>
 
 <!--
@@ -38,8 +19,8 @@
   Provides common layout for entire application.
 -->
 <div id="app">
-  {#if !mobileDevice}
-    {#await import("$components/layout/Header.svelte") then Header}
+  {#if !$media.mobile}
+    {#await import("@components/Header.svelte") then Header}
       <svelte:component this={Header.default} />
     {/await}
   {/if}
@@ -47,8 +28,8 @@
     <slot />
   </div>
   <Footer />
-  {#if mobileDevice}
-    {#await import("$components/layout/BottomNavigation.svelte") then BottomNavigation}
+  {#if $media.mobile}
+    {#await import("@components/BottomNavigation.svelte") then BottomNavigation}
       <svelte:component this={BottomNavigation.default} />
     {/await}
   {/if}
@@ -63,14 +44,6 @@
     line-height: 1.0;
 
     position: relative;
-  }
-
-  :global(#sapper) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1 1 0%;
   }
   
   #app {

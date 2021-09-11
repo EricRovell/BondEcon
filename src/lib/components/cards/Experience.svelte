@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Icon, iconLocation } from "$ui/svg";
-  import { Heading } from "$ui/data-display";
+  import { Icon, iconLocation } from "../svg";
+  import Heading from "./Heading.svelte";
   
   export let organization: string;
   export let href: string | undefined = undefined;

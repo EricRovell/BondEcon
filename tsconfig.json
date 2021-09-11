@@ -4,47 +4,36 @@
     "module": "ES2020",
     "lib": [ "DOM", "DOM.Iterable", "ES2020" ],
     "target": "ES2019",
-    /**
-			svelte-preprocess cannot figure out whether you have a value or a type, so tell TypeScript
-			to enforce using \`import type\` instead of \`import\` for Types.
-			*/
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
 		"resolveJsonModule": true,
-    /**
-			To have warnings/errors of the Svelte compiler at the correct position,
-			enable source maps by default.
-			*/
 		"sourceMap": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"allowJs": true,
 		"checkJs": true,
-    "types": [
-      "svelte",
-      "node",
-      "mongodb"
-    ],
+    "types": [ "svelte", "node" ],
     "baseUrl": "./src",
     "paths": {
-      "$ui": [ "lib/ui" ],
-      "$ui/*": [ "lib/ui/*" ],
-      "$components": [ "lib/components" ],
-      "$components/*": [ "lib/components/*" ],
-      "$core": [ "lib/core" ],
-      "$core/*": [ "lib/core/*" ],
-      "$views": [ "lib/views" ],
-      "$views/*": [ "lib/views/*" ],
-      "$stores": [ "lib/stores" ],
-      "$stores/*": [ "lib/stores/*" ],
-      "$types": [ "types" ],
-      "$services": [ "services" ],
-      "$services/*": [ "services/*" ],
-      "$util": [ "lib/util" ],
-      "$util/*": [ "lib/util/*" ],
-      "$styles/*": [ "styles/* "]
+      "@components": [ "lib/components" ],
+      "@components/*": [ "lib/components/*" ],
+      "@core": [ "lib/core" ],
+      "@core/*": [ "lib/core/*" ],
+      "@stores": [ "lib/stores" ],
+      "@stores/*": [ "lib/stores/*" ],
+      "@types": [ "types" ],
+      "@util": [ "lib/util" ],
+      "@util/*": [ "lib/util/*" ],
+      "@styles/*": [ "styles/* "],
+      "@assets/*": [ "../static/*" ]
     },
   },
-  "include": [ "src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte" ]
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.svelte",
+    "static/locale/*.json"
+  ]
 }

@@ -1,8 +1,6 @@
 <script lang="ts" context="module">
   import type { Document } from "$types";
   
-  //export const prerender = true;
-  
   /**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
@@ -23,11 +21,11 @@
 </script>
 
 <script lang="ts">
-  import { cvEducationSection, cvExperienceSection, cvProjectsSection } from "$core/routes";
-  import { locale, message } from "$stores/locale";
+  import { cvEducationSection, cvExperienceSection, cvProjectsSection } from "@core/routes";
+  import { _ } from "svelte-i18n";
   import { Heading, IntersectionObserver, Timeline, TimelineRecord } from "$ui";
-  import { ContentsTabular, ContentsTab } from "$ui/navigation/toc";
-  import { ProfileCard, ExperienceCard, EducationCard, ProjectCard } from "$components/cards";
+  //import { ContentsTabular, ContentsTab } from "$ui/navigation/toc";
+  import { ProfileCard, ExperienceCard, EducationCard, ProjectCard } from "@components/cards";
 
   export let data: Document;
   
@@ -87,7 +85,7 @@
 </svelte:head>
 
 <div class="container">
-  <nav>
+  <!-- <nav>
     <ContentsTabular>
       {#each tabs as { href, label, id }}
         <ContentsTab {href} active={id === currentSection}>
@@ -95,14 +93,14 @@
         </ContentsTab>
       {/each}
     </ContentsTabular>
-  </nav>
+  </nav> -->
   <ProfileCard {...data.contacts} name={data.name} />
   <IntersectionObserver elements={timelineSections} on:intersect={handleIntersect}>
     <div id="cv">
-      {#each sections as { sectionDictKey, defaultMessage, sectionID, data, Card }, index}
+      {#each sections as { sectionDictKey, sectionID, data, Card }, index}
         <Timeline title={sectionID} bind:node={timelineSections[index]}>
             <Heading slot="title" size={6} weight={600} decorated id={sectionID}>
-                {$message(sectionDictKey)}
+                {$_(sectionDictKey)}
             </Heading>
             {#each data as { timestamp, ...rest }}
               <TimelineRecord {timestamp}>
