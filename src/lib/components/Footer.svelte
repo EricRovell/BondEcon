@@ -19,7 +19,7 @@
   <div class="wrapper">
     <Title size="1.5rem" iconSize="1.75rem" />
     <span class="summary">
-      {$_("introduction")}
+      {$_("message.introduction")}
     </span>
     <Socials data={socials} color="info" size="35px" />
     <span class="author">

@@ -11,6 +11,8 @@
   import { locale } from "svelte-i18n";
   import { Icon, iconLocale } from "../svg";
   import Select from "../Select.svelte";
+
+  export let title: string | undefined = undefined;
   
   /**
    * Get's the locale value, validates it and updates the URL path.
@@ -45,7 +47,7 @@
     | --spacing-1        | <length> | 0.25em   | Icon and options spacing.           |
     | --radius-medium    | <length> | 5px      | Element's border radius.            |
 -->
-<div class="wrapper">
+<div class="wrapper" {title}>
   <Icon path={iconLocale} color="primary" />
   <Select
     id="global-language-select"

@@ -41,13 +41,13 @@
     <Menu slot="navigation">
       {#each navigation as { href, label, pattern }}
         <MenuItem {href} {pattern} decorationPosition="top" decorationSize="4px">
-          {$_(label)}
+          {$_(`sections.${label}`)}
         </MenuItem>
       {/each}
     </Menu>
     <svelte:fragment slot="controls">
-      <LangSelect />
-      <ThemeToggle size="35px" />
+      <LangSelect title={$_("tooltip.change-locale")} />
+      <ThemeToggle size="35px" title={$_("tooltip.change-theme")} />
     </svelte:fragment>
   </Masthead>
 </div>

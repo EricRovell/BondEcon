@@ -46,7 +46,7 @@
       <MenuItem {href} decorationPosition="top" prefetch {pattern}>
         <span class="nav-button">
           <Icon path={icon} size="25px" />
-          {$_(label)}
+          {$_(`section.${label}`)}
         </span>
       </MenuItem>
     {/each}
