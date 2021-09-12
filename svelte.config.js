@@ -16,10 +16,15 @@ const aliasList = [
 /** @type {import('@sveltejs/kit').Config} */
 export default {
 	preprocess: [
-    mdsvex(),
+    mdsvex({
+      extensions: [ ".svelte", ".svx", ".md" ],
+      layout: {
+				page: "./src/lib/layout/Page.svelte"
+			}
+    }),
 		sveltePreprocess(),
 	],
-  extensions: [ ".svelte", ".svx" ],
+  extensions: [ ".svelte", ".svx", ".md" ],
 	kit: {
     adapter: adapter(),
 		target: '#svelte',
