@@ -21,9 +21,7 @@
   async function handleChange(event: Event) {
     const lang = (event.target as HTMLSelectElement).value;
     $locale = lang;
-    const langRegex = new RegExp(`\/(en|ru)(\/|$)`);
-    const newPath = $page.path.replace(langRegex, `/${$locale}/`);
-    await goto(`${newPath}`, { noscroll: true });
+    await goto(`/${lang}/home`);
   }
 </script>
 
