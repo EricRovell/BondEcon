@@ -46,7 +46,7 @@
       <MenuItem {href} decorationPosition="top" prefetch {pattern}>
         <span class="nav-button">
           <Icon path={icon} size="25px" />
-          {$_(`section.${label}`)}
+          {$_(`sections.${label}`)}
         </span>
       </MenuItem>
     {/each}
@@ -54,7 +54,7 @@
       <Button on:click={switchMenu} appearance="text">
         <span class="nav-button">
           <Icon path={iconMagic} size="25px" />
-          {$_("menu")}
+          {$_("sections.menu")}
         </span>
       </Button>
     </li>
