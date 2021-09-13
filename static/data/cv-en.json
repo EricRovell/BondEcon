@@ -1,0 +1,89 @@
+{
+	"lang": "en",
+	"name": "Ksenia Bondarenko",
+	"contacts": {
+		"location": "Moscow, Russia",
+		"mobile": "+7 (927) 177-54-84",
+		"mail": "xenabondarenko@gmail.com"
+	},
+	"education": [
+		{
+			"organization": "Higher School of Economics",
+			"href": "https://www.hse.ru/staff/bondarenko",
+			"degree": "PhD of Economics",
+			"location": "Moscow, Russia",
+			"timestamp": "2018-01-01T00:00:00.000+00:00"
+		},
+		{
+			"organization": "Gubkin Russian State Oil and Gas University",
+			"href": "https://gubkin.uz/",
+			"degree": "Specialist in Economics and Management (with honors)",
+			"location": "Tashkent, Uzbekistan",
+			"timestamp": "2010-01-01T00:00:00.000+00:00"
+		}
+	],
+	"experience": [
+		{
+			"organization": "ING bank Eurasia, JSC, Russia",
+			"href": "https://www.ing.ru/ru/home",
+			"title": "Economist, Global Markets Research",
+			"location": "Moscow, Russia",
+			"timestamp": "2019-01-01T00:00:00.000+00:00",
+			"activities": [
+				"Coverage of CIS+ macroeconomic performance: Russia, Kazakhstan, Ukraine, Azerbaijan",
+				"Daily reports on Global and Russian macro-performance",
+				"Weekly overview of DM and EM macroeconomics and financial markets",
+				"Quarterly reports on CIS+ macroeconomic development and forecasts",
+				"Econometric modelling using ‘Eviews’",
+				"Analyzing statistical macro-data and trends"
+			]
+		},
+		{
+			"organization": "Analytical Center for the Government of the Russian Federation",
+			"href": "https://ac.gov.ru/",
+			"title": "Adviser",
+			"location": "Moscow, Russia",
+			"timestamp": "2018-03-31T21:00:00.000+00:00",
+			"activities": [
+				"Preparation of monthly bulletin on economic development in various countries",
+				"Preparation of monthly bulletin on key areas of Russian economic performance",
+				"Analysis of current macroeconomic trends",
+				"Statistical data coverage and econometric modelling"
+			]
+		},
+		{
+			"organization": "KPMG",
+			"href": "https://home.kpmg/ru/ru/home.html",
+			"title": "Intern / Audit Department",
+			"location": "Moscow, Russia",
+			"timestamp": "2017-12-31T21:00:00.000+00:00",
+			"activities": [
+				"Analyzing financial data"
+			]
+		},
+		{
+			"organization": "TAHLIL Center for Social Research",
+			"href": "https://www.idealist.org/en/nonprofit/deb91687b54746c9beefe60918b6deed-tahlil-center-for-social-research-tashkent",
+			"title": "Project coordinator / Researcher",
+			"location": "Tashkent, Uzbekistan",
+			"timestamp": "2016-05-31T21:00:00.000+00:00",
+			"activities": [
+				"Analyzing socio-economic data",
+				"Preparation of final reports upon the completion of projects",
+				"Socio-economic modelling using Excel VBA/STATA"
+			]
+		},
+		{
+			"organization": "Institute of Forecasting and Macroeconomic Research",
+			"href": "http://ifmr.uz/",
+			"title": "Researcher",
+			"location": "Tashkent, Uzbekistan",
+			"timestamp": "2014-01-31T20:00:00.000+00:00",
+			"activities": [
+				"Forecasting macroeconomic indicators and implementing scenario options of socio-economic development",
+				"Making final reports upon the completion of projects",
+				"Modelling models using Excel VBA/STATA"
+			]
+		}
+	]
+}
