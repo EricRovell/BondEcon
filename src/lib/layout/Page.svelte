@@ -10,7 +10,7 @@
 </svelte:head>
 
 <header>
-	<SVG data={girlCatchingStars} size="min(100%, 35ch)" />
+	<SVG data={girlCatchingStars} size="min(100%, 75vw, 350px)" />
 	<h1>{title}</h1>	
 </header>
 <article>
