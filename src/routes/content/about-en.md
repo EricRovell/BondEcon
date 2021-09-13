@@ -13,9 +13,4 @@ All of it requires deep analysis and creates challenges for all of us, and, espe
 
 This website is here to provide you with some information of how to understand the numbers the World Economy and the countries so care about.
 
-My blog section consists of bite-sized [econtwitts][1] and [articles][2]. All this may help you (and me!) to see the light.
-
 As since you are here, you are the one. This is way!
-
-[1]: /blog/econtwitts "Bondecon Blog: Econtwitts"
-[2]: /blog/articles "Bondecon Blog: Articles"
