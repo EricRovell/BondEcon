@@ -2,6 +2,8 @@
   import { _ } from "svelte-i18n";
   import { Socials } from "./social";
   import Title from "./Title.svelte";
+  import { LangSelect } from "./utility";
+  import { licencePath } from "@core/routes";
   
   import { socials } from "@core/routes/socials";
   
@@ -21,6 +23,7 @@
     <span class="summary">
       {$_("message.introduction")}
     </span>
+    <LangSelect />
     <Socials data={socials} color="info" size="35px" />
     <span class="author">
       <span>Made by</span>
@@ -31,7 +34,7 @@
       </a>
     </span>
     <span class="copyright">
-      © {new Date().getFullYear()} BondEcon | All rights reserved.
+      © {new Date().getFullYear()} BondEcon | <a href={$licencePath}>Licence</a>
     </span>
   </div>
 </footer>
@@ -64,7 +67,8 @@
     text-align: center;
   }
   
-  .author a {
+  .author a,
+  .copyright a {
     color: var(--color-primary, orange);
   }
 </style>
