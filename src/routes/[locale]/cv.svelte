@@ -1,83 +1,33 @@
-<script lang="ts" context="module">
-  import type { Document } from "$types";
-  
-  /**
+<script context="module">
+	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-   export async function load({ page, fetch }) {
-    const lang = page.params.locale ?? "ru";
-    
-    const response = await fetch(`/api/cv/cv.json?lang=${lang}`);
-    const document: Document = await response.json();
-    
-    if (response.ok) {
-      return {
-        props: {
-          data: document
-        }
-      };
-    }
-  }
+	export async function load({ page, fetch }) {
+		const url = `/data/cv-${page.params.locale}.json`;
+		const res = await fetch(url);
+
+		if (res.ok) {
+			return {
+				props: {
+					document: await res.json()
+				}
+			};
+		}
+
+		return {
+			status: res.status,
+			error: new Error(`Could not load ${url}`)
+		};
+	}
 </script>
 
 <script lang="ts">
-  import { cvEducationSection, cvExperienceSection, cvProjectsSection } from "@core/routes";
   import { _ } from "svelte-i18n";
-  import { Heading, IntersectionObserver, Timeline, TimelineRecord } from "$ui";
-  //import { ContentsTabular, ContentsTab } from "$ui/navigation/toc";
-  import { ProfileCard, ExperienceCard, EducationCard, ProjectCard } from "@components/cards";
+  import { Heading, Timeline, TimelineRecord } from "@components";
+  import { ProfileCard, ExperienceCard, EducationCard } from "@components/cards";
+  import type { Document } from "@types";
 
-  export let data: Document;
-  
-  $: tabs = [
-    {
-      label: "experience",
-      href: $cvExperienceSection,
-      id: "experience"
-    },
-    {
-      label: "projects",
-      href: $cvProjectsSection,
-      id: "projects"
-    },
-    {
-      label: "education",
-      href: $cvEducationSection,
-      id: "education"
-    }
-  ];
-  
-  $: sections = [
-    {
-      sectionDictKey: "sections.experience",
-      defaultMessage: "Experience",
-      sectionID: "experience",
-      data: data.experience,
-      Card: ExperienceCard
-    },
-    {
-      sectionDictKey: "sections.projects",
-      defaultMessage: "Projects",
-      sectionID: "projects",
-      data: data.projects,
-      Card: ProjectCard
-    },
-    {
-      sectionDictKey: "sections.education",
-      defaultMessage: "Education",
-      sectionID: "education",
-      data: data.education,
-      Card: EducationCard
-    },
-  ];
-  
-  const timelineSections: HTMLElement[] = [];
-  let currentSection: string = "experience";
-  
-  const handleIntersect = (event: CustomEvent) => {
-    const node = event.detail.target;
-    currentSection = node.dataset.title;
-  };
+  export let document: Document;
 </script>
 
 <svelte:head>
@@ -85,32 +35,27 @@
 </svelte:head>
 
 <div class="container">
-  <!-- <nav>
-    <ContentsTabular>
-      {#each tabs as { href, label, id }}
-        <ContentsTab {href} active={id === currentSection}>
-          {label}
-        </ContentsTab>
-      {/each}
-    </ContentsTabular>
-  </nav> -->
-  <ProfileCard {...data.contacts} name={data.name} />
-  <IntersectionObserver elements={timelineSections} on:intersect={handleIntersect}>
+  <ProfileCard {...document.contacts} name={document.name} />
     <div id="cv">
-      {#each sections as { sectionDictKey, sectionID, data, Card }, index}
-        <Timeline title={sectionID} bind:node={timelineSections[index]}>
-            <Heading slot="title" size={6} weight={600} decorated id={sectionID}>
-                {$_(sectionDictKey)}
-            </Heading>
-            {#each data as { timestamp, ...rest }}
-              <TimelineRecord {timestamp}>
-                <Card {...rest} />
-              </TimelineRecord>
-            {/each}
-        </Timeline>
-      {/each}
+      <Timeline>
+        <Heading slot="title" size={6} weight={600} decorated>
+          {$_("sections.experience")}
+        </Heading>
+        {#each document.experience as { timestamp, ...rest }}
+          <TimelineRecord {timestamp}>
+            <ExperienceCard {...rest} />
+          </TimelineRecord>
+        {/each}
+      </Timeline>
+        <Heading slot="title" size={6} weight={600} decorated>
+          {$_("sections.education")}
+        </Heading>
+        {#each document.education as { timestamp, ...rest }}
+          <TimelineRecord {timestamp}>
+            <EducationCard {...rest} />
+          </TimelineRecord>
+        {/each}
     </div>
-  </IntersectionObserver>
 </div>
 
 <style>
@@ -123,17 +68,6 @@
     width: 100%;
     
     place-self: center;  
-  }
-  
-  nav {
-    position: sticky;
-    top: 0;
-    width: min(var(--max-width, 1440px), 100%);
-    justify-self: center;
-    z-index: calc(var(--z-index-navigation) + 1);
-    background-color: hsl(var(--surface-h) var(--surface-s-400) var(--surface-l-400) / 0.8);
-    backdrop-filter: saturate(180%) blur(5px);
-    transition: background-color 0.2s linear;
   }
 
   #cv {
