@@ -19,7 +19,8 @@ export default {
     mdsvex({
       extensions: [ ".svelte", ".svx", ".md" ],
       layout: {
-				page: "./src/lib/layout/Page.svelte"
+				page: "./src/lib/layout/Page.svelte",
+        blogpost: "./src/lib/layout/Blogpost.svelte"
 			}
     }),
 		sveltePreprocess(),
