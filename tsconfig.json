@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "ES2020",
+    "lib": [ "DOM", "DOM.Iterable", "ES2020" ],
+    "target": "ES2019",
+		"importsNotUsedAsValues": "error",
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"allowJs": true,
+		"checkJs": true,
+    "types": [ "svelte", "node" ],
+    "baseUrl": "./src",
+    "paths": {
+      "@components": [ "lib/components" ],
+      "@components/*": [ "lib/components/*" ],
+      "@core": [ "lib/core" ],
+      "@core/*": [ "lib/core/*" ],
+      "@stores": [ "lib/stores" ],
+      "@stores/*": [ "lib/stores/*" ],
+      "@types": [ "types" ],
+      "@util": [ "lib/util" ],
+      "@util/*": [ "lib/util/*" ],
+      "@styles/*": [ "styles/* "],
+      "@assets/*": [ "../static/*" ]
+    },
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.svelte",
+    "static/locale/*.json"
+  ]
+}

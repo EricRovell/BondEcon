@@ -10,9 +10,10 @@ __sapper__/
 /src/admin
 /src/components/experimental
 
-.env*
-/db
-
 package-lock.json
-./svelte-kit
-./build
+/.svelte-kit
+/build
+/functions
+/zip-upload.sh
+/db
+.env*
