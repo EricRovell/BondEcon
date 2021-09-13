@@ -25,3 +25,5 @@ export { Social, Socials } from "./social";
 export { Icon, SVG } from "./svg";
 export { Timeline, TimelineRecord } from "./timeline";
 export { LangSelect, SearchField, ThemeToggle } from "./utility";
+
+export * as TimelineSimple from "./simple-timeline";
