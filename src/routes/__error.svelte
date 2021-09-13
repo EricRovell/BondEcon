@@ -25,10 +25,6 @@
     color: var(--color-danger);
   }
   
-  h2, p {
-    font-size: var(--font-size-7);
-  }
-  
   figure {
     width: min(500px, 100%);
   }
