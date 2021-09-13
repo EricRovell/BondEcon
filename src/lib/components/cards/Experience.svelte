@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Icon, iconLocation } from "../svg";
-  import Heading from "./Heading.svelte";
+  import Heading from "../Heading.svelte";
   
   export let organization: string;
   export let href: string | undefined = undefined;
