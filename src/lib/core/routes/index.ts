@@ -13,9 +13,10 @@ export const cvExperienceSection = derived(cvPagePath, $path => `${$path}#experi
 export const cvEducationSection = derived(cvPagePath, $path => `${$path}#education`);
 export const cvProjectsSection = derived(cvPagePath, $path => `${$path}#projects`);
 export const aboutPagePath = derived(basePath, $basePath => `${$basePath}/about`);
+export const licencePath = derived(basePath, $basePath => `${$basePath}/licence`);
 
 // contents
-export const articlePath = derived(basePath, $path => (id: string) => `${$path}/blogpost/article-${id}`);
+export const articlePath = derived(basePath, $path => (slug: string) => `${$path}/blog/${slug}`);
 export const econtwittPath = derived(basePath, $path => (id: string) => `${$path}/blogpost/econtwitt-${id}`);
 
 // information
