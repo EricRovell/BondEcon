@@ -52,7 +52,7 @@
     grid-template: 1fr / auto 1fr auto auto;
     grid-template-areas: "logo . navigation controls";
     place-items: center;
-    gap: var(--spacing-3, 0.75em);
+    gap: var(--spacing-4, 1em);
 
     width: min(100%, var(--max-width));
     height: var(--header-height, 50px);
