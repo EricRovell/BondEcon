@@ -8,7 +8,8 @@
     "experience": "Experience",
     "projects": "Projects",
     "education": "Education",
-    "about": "About"
+    "about": "About",
+    "menu": "Menu"
   },
   "tooltip": {
     "copy": "Copy",
@@ -19,6 +20,8 @@
   "message": {
     "wip": "Currently in development",
     "404": "Magic is broken here...",
-    "introduction": "My name is Kseniya, I am passionate learner, researcher, economist, and a phD student."
+    "introduction": "My name is Kseniya, I am passionate learner, researcher, economist, and a phD student.",
+    "welcome": "Welcome to my website!",
+    "wip:page": "This page currently is under construction!"
   }
 }
