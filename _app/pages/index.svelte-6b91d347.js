@@ -1,0 +1,1 @@
+import{S as s,i as t,s as n,K as e,Y as o}from"../chunks/vendor-3f2a1874.js";import{r}from"../chunks/singletons-bb9012b7.js";const a=async function(s,t){return r.goto(s,t,[])};function c(s,t,n){let r;return e(s,o,(s=>n(0,r=s))),a(`${r.slice(0,2)}/home`,{replaceState:!0}),[]}export default class extends s{constructor(s){super(),t(this,s,c,null,n,{})}}
