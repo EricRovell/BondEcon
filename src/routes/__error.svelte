@@ -15,7 +15,6 @@
     gap: var(--spacing-2, 0.5em);
     place-items: center;
     justify-self: center;
-    margin-top: 10vh;
     
     color: var(--color-gray-700);
   }

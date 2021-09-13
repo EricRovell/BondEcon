@@ -17,7 +17,6 @@
     display: grid;
     justify-items: center;
     width: 100%;
-    margin-top: 10vh;
   }
 
   p {
