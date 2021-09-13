@@ -1,4 +1,6 @@
 <script>
+	import { SVG, girlCatchingStars } from "@components/svg";
+
 	export let title;
 </script>
 
@@ -8,7 +10,8 @@
 </svelte:head>
 
 <header>
-	<h1>{title}</h1>
+	<SVG data={girlCatchingStars} size="min(100%, 35ch)" />
+	<h1>{title}</h1>	
 </header>
 <article>
 	<slot />
@@ -20,11 +23,13 @@
 		gap: 0.75em;
 		width: 100%;
 		margin-top: 10vh;
-		margin-bottom: 10vh;
+		margin-bottom: 1em;
+		justify-items: center;
 	}
 
 	h1 {
 		text-align: center;
+		padding: 0.5em;
 	}
 
 	article {
