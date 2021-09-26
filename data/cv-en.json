@@ -10,7 +10,7 @@
 		{
 			"organization": "Higher School of Economics",
 			"href": "https://www.hse.ru/staff/bondarenko",
-			"degree": "PhD of Economics",
+			"degree": "PhD in Economics (in progress)",
 			"location": "Moscow, Russia",
 			"timestamp": "2018-01-01T00:00:00.000+00:00"
 		},
@@ -23,9 +23,33 @@
 		}
 	],
 	"experience": [
+		{			
+			"organization": "VTB Capital, JSC",
+			"href": "https://www.vtbcapital.ru/",
+			"title": "Country & Sovereign Risk Analyst, Credit Risk, RISK",
+			"location": "Moscow, Russia",
+			"timestamp": "2020-12-28T21:00:00.000+00:00",
+			"activities": [
+				"Country risk modelling",
+				"Annual reports on 40+ countries: overview, macroeconomic performance, credit risk",
+				"Daily overview of the most significant events, connected with macro-performance/credit risk"
+			]
+		},
+		{
+			"organization": "Higher School of Economics",
+			"href": "https://www.hse.ru/staff/bondarenko",
+			"title": "Lecturer",
+			"location": "Moscow, Russia",
+			"timestamp": "2019-01-01T00:00:00.000+00:00",
+			"activities": [
+				"Global Business Environment (Minor, English)",
+				"International Currency and Financial Relationships (Bachelor’s programme, English)",
+				"Introduction to World Economy (Bachelor’s programme, Russian)"			
+			]
+		},
 		{
 			"organization": "ING bank Eurasia, JSC, Russia",
-			"href": "https://www.ing.ru/ru/home",
+			"href": "https://think.ing.com/",
 			"title": "Economist, Global Markets Research",
 			"location": "Moscow, Russia",
 			"timestamp": "2019-01-01T00:00:00.000+00:00",
