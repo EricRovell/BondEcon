@@ -3,7 +3,7 @@
   
   import { _ } from "svelte-i18n";
   import { Menu, MenuItem } from "./menu";
-  import { ThemeToggle } from "./utility";
+  import { ThemeToggle, LangSelect } from "./utility";
   import Title from "./Title.svelte";
   import Masthead from "./Masthead.svelte";
   
@@ -47,6 +47,7 @@
     </Menu>
     <svelte:fragment slot="controls">
       <ThemeToggle size="35px" title={$_("tooltip.change-theme")} />
+      <LangSelect />
     </svelte:fragment>
   </Masthead>
 </div>

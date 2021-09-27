@@ -19,7 +19,7 @@
     align-items: center;
 		gap: var(--spacing-1);
    
-    font-size: var(--font-size-4);
+    font-size: var(--font-size-2);
     padding: var(--spacing-1, 0.25em);
     border-radius: var(--radius-medium, 5px);
 		border: var(--border-1);

@@ -75,6 +75,7 @@
     grid-auto-flow: column;
     grid-auto-columns: auto;
     grid-template-rows: 1fr;
+    gap: 0.75em;
     width: max-content;
   }
 </style>
