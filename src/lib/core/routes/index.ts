@@ -9,6 +9,8 @@ export const blogPagePath = derived(basePath, $basePath => `${$basePath}/blog`);
 export const articlesPagePath = derived(blogPagePath, $path => `${$path}/articles`);
 export const econtwittsPagePath = derived(blogPagePath, $path => `${$path}/econtwitts`);
 export const cvPagePath = derived(basePath, $basePath => `${$basePath}/cv`);
+export const researchPath = derived(basePath, $basePath => `${$basePath}/research`);
+export const caseStudiesPath = derived(basePath, $basePath => `${$basePath}/cases`);
 export const cvExperienceSection = derived(cvPagePath, $path => `${$path}#experience`);
 export const cvEducationSection = derived(cvPagePath, $path => `${$path}#education`);
 export const cvProjectsSection = derived(cvPagePath, $path => `${$path}#projects`);

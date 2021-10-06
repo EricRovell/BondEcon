@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { homePagePath, blogPagePath, cvPagePath, aboutPagePath } from "@core/routes";
+  import {
+    homePagePath,
+    blogPagePath,
+    cvPagePath,
+    researchPath,
+    caseStudiesPath,
+    aboutPagePath
+  } from "@core/routes";
   
   import { _ } from "svelte-i18n";
   import { Menu, MenuItem } from "./menu";
@@ -22,6 +29,16 @@
       label: "cv",
       href: $cvPagePath,
       pattern: /cv\/*/
+    },
+    {
+      label: "research",
+      href: $researchPath,
+      pattern: /research\/*/
+    },
+    {
+      label: "cases",
+      href: $caseStudiesPath,
+      pattern: /cases\/*/
     },
     {
       label: "about",
