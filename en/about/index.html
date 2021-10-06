@@ -38,14 +38,12 @@
 		<link rel="modulepreload" href="/./_app/chunks/timeline.module-d8019824.js">
 		<link rel="modulepreload" href="/./_app/chunks/socials-2e6bc1c9.js">
 		<link rel="modulepreload" href="/./_app/chunks/stores-4ab48e90.js">
-		<link rel="modulepreload" href="/./_app/pages/content/about-en.md-c63a6cf6.js">
-		<link rel="modulepreload" href="/./_app/chunks/Page-99554168.js">
-		<link rel="modulepreload" href="/./_app/chunks/SVG-29b00bdd.js">
+		<link rel="modulepreload" href="/./_app/pages/[locale]/__layout.svelte-57954cf3.js">
+		<link rel="modulepreload" href="/./_app/pages/[locale]/about.svelte-c6d4aab9.js">
 		<link rel="stylesheet" href="/./_app/assets/start-a8cd1609.css">
 		<link rel="stylesheet" href="/./_app/assets/__layout-4bd0d3ca.css">
 		<link rel="stylesheet" href="/./_app/assets/Avatar.svelte_svelte&type=style&lang-bb406248.css">
 		<link rel="stylesheet" href="/./_app/assets/timeline.module-1922a42f.css">
-		<link rel="stylesheet" href="/./_app/assets/Page-575f03fb.css">
 
 		<script type="module">
 			import { start } from "/./_app/start-99341eae.js";
@@ -62,13 +60,14 @@
 					error: null,
 					nodes: [
 						import("/./_app/pages/__layout.svelte-45fd0857.js"),
-						import("/./_app/pages/content/about-en.md-c63a6cf6.js")
+						import("/./_app/pages/[locale]/__layout.svelte-57954cf3.js"),
+						import("/./_app/pages/[locale]/about.svelte-c6d4aab9.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
-						path: "/content/about-en",
+						path: "/en/about",
 						query: new URLSearchParams(""),
-						params: {}
+						params: {"locale":"en"}
 					}
 				}
 			});

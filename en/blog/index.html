@@ -38,11 +38,15 @@
 		<link rel="modulepreload" href="/./_app/chunks/timeline.module-d8019824.js">
 		<link rel="modulepreload" href="/./_app/chunks/socials-2e6bc1c9.js">
 		<link rel="modulepreload" href="/./_app/chunks/stores-4ab48e90.js">
-		<link rel="modulepreload" href="/./_app/pages/index.svelte-1116a589.js">
+		<link rel="modulepreload" href="/./_app/pages/[locale]/__layout.svelte-57954cf3.js">
+		<link rel="modulepreload" href="/./_app/pages/[locale]/blog/index.svelte-2de88ac6.js">
+		<link rel="modulepreload" href="/./_app/chunks/Heading-75f1daf4.js">
+		<link rel="modulepreload" href="/./_app/chunks/Button-0ac3efa4.js">
 		<link rel="stylesheet" href="/./_app/assets/start-a8cd1609.css">
 		<link rel="stylesheet" href="/./_app/assets/__layout-4bd0d3ca.css">
 		<link rel="stylesheet" href="/./_app/assets/Avatar.svelte_svelte&type=style&lang-bb406248.css">
 		<link rel="stylesheet" href="/./_app/assets/timeline.module-1922a42f.css">
+		<link rel="stylesheet" href="/./_app/assets/pages/[locale]/blog/index.svelte-5b28abc0.css">
 
 		<script type="module">
 			import { start } from "/./_app/start-99341eae.js";
@@ -59,13 +63,14 @@
 					error: null,
 					nodes: [
 						import("/./_app/pages/__layout.svelte-45fd0857.js"),
-						import("/./_app/pages/index.svelte-1116a589.js")
+						import("/./_app/pages/[locale]/__layout.svelte-57954cf3.js"),
+						import("/./_app/pages/[locale]/blog/index.svelte-2de88ac6.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
-						path: "/",
+						path: "/en/blog",
 						query: new URLSearchParams(""),
-						params: {}
+						params: {"locale":"en"}
 					}
 				}
 			});
@@ -76,7 +81,26 @@
 			
 
 <div id="app" class="svelte-1r1fkrq">
-  <div class="content svelte-1r1fkrq"></div>
+  <div class="content svelte-1r1fkrq"><ol class="_timeline_gka36_1"><li class="_item_gka36_27"><div class="_marker_gka36_59"></div>
+	<article>
+<time datetime="4 дек. 2019 г., 15:00" class="svelte-gd9sbs">4 дек. 2019 г., 15:00</time>
+<h2>New blogpost</h2>
+
+
+<article class="svelte-g17gxt"><section class="card svelte-g17gxt"><footer class="meta svelte-g17gxt">
+<time datetime="04.12.2019" class="svelte-gd9sbs">04.12.2019</time></footer>
+    
+<h2 class="header align-left svelte-1lzik0d   align line-clamp" style="--weight: 650; --size: var(--font-size-3); --maxlines: 2"><a href="/ru/blog/from-china-with-virus" class="svelte-1lzik0d">From China with Virus</a></h2>
+    
+<a id="undefined" style="" class="button text variant-neutral rect   svelte-l54gnn" href="/ru/blog/from-china-with-virus" sapper:prefetch="true" aria-current="null">
+
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="--icon-margin: 0; --icon-color: var(--color-primary); " width="1.5em" height="1.5em" role="presentation" class="svelte-1c65o49"><path d="M97.07,33.22A50,50,0,1,0,2.93,66.79a2,2,0,0,0,3.83-1.37A45.89,45.89,0,1,1,30.28,91.47c-1.31-.62-2.59-1.31-3.83-2a2,2,0,0,0-2.08,3.49,50,50,0,0,0,72.7-59.69ZM72.37,50a2,2,0,0,0-2-2H19.68a2,2,0,0,0,0,4.07H70.34a2,2,0,0,0,2-2ZM56.17,71.28a2,2,0,0,0-.05,2.83l.05,0a2,2,0,0,0,2.87,0L81.75,51.44a2,2,0,0,0,0-2.83l0,0L59,25.85a2,2,0,1,0-2.87,2.88L77.44,50Z"></path></svg>
+      Read
+    </a></section></article>
+</article></li></ol></div>
   
 <footer class="svelte-7dq02h"><div class="wrapper svelte-7dq02h">
 <a href="/" class="logo svelte-zot2t4" style="--title-size: 1.5rem">
@@ -153,7 +177,7 @@
   </div>
 
 
-	
+	<script type="svelte-data" url="/api/blog/posts.json">{"status":200,"statusText":"","headers":{"content-type":"application/json"},"body":"[{\"title\":\"From China with Virus\",\"date\":\"2019-12-04T15:00:00.000Z\",\"slug\":\"from-china-with-virus\",\"lang\":\"en\",\"tags\":[\"china\",\"virus\",\"economics\"]}]"}</script>
 
 		</div>
 	</body>
