@@ -78,4 +78,15 @@
     gap: 0.75em;
     width: max-content;
   }
+
+  @media (max-width: 720px) {
+    header {
+      grid-template: 1fr / auto auto;
+      grid-template-areas: "navigation controls";
+    }
+
+    section[label="logo"] {
+      display: none;
+    }
+  }
 </style>

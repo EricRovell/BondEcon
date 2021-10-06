@@ -9,13 +9,41 @@
   
   import { 
     creatorGithubProfilePath,
-    designerPortfolioPath
+    designerPortfolioPath,
+    blogPagePath,
+    cvPagePath,
+    researchPath,
+    caseStudiesPath,
+    aboutPagePath
   } from "@core/routes";
+
+  $: sitemapRoutes = [
+    {
+      label: "blog",
+      path: $blogPagePath
+    },
+    {
+      label: "cv",
+      path: $cvPagePath
+    },
+    {
+      label: "research",
+      path: $researchPath
+    },
+    {
+      label: "cases",
+      path: $caseStudiesPath
+    },
+    {
+      label: "about",
+      path: $aboutPagePath
+    }
+  ];
 </script>
 
 <!--
   @component
-  Footer Component  
+  Footer Component
 -->
 <footer>
   <div class="wrapper">
@@ -33,6 +61,15 @@
         Victoria
       </a>
     </span>
+    <ul class="sitemap">
+      {#each sitemapRoutes as { label, path }}
+        <li>
+          <a href={path}>
+            {$_(`sections.${label}`)}
+          </a>
+        </li>
+      {/each}
+    </ul>
     <span class="copyright">
       © {new Date().getFullYear()} BondEcon | <a href={$licencePath}>Licence</a>
     </span>
@@ -70,5 +107,11 @@
   .author a,
   .copyright a {
     color: var(--color-primary, orange);
+  }
+
+  .sitemap {
+    display: flex;
+    gap: 0.5em;
+    color: var(--color-primary);
   }
 </style>
